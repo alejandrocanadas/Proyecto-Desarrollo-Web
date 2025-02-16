@@ -1,0 +1,56 @@
+/* Header & Navigation */
+header {
+    background-color: #95A7B3;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header .subtitulo{
+    color: #122732;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+nav {
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo img {
+    width: 120px;
+    height: 120px;
+}
+
+.items-navegacion {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #122732;
+    font-weight: 500;
+    font-size: large;
+    font-weight: bold;
+}
+
+.contacto-btn {
+    background-color: #E2E8F0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.contacto-btn:hover {
+    background-color: #122732;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
