@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * { 
     margin: 0;
     padding: 0;
@@ -51,31 +55,34 @@ body {
     gap: 16px;
 }
 
-.btn{
+.btn-agendar{
     padding: 12px 24px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
-}
-
-.agendar {
     background-color: #FBBC08;
     color: #122732;
 }
 
-.agendar:hover {
+.btn-agendar:hover {
     background-color: #f57b11;
     color: #F8FAFC;
 }
 
-.comunidad {
+.btn-comunidad {
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
     background-color: #F8FAFC;
     color: #122732;
     border: 2px solid #122732;
+    cursor: pointer;
 }
 
-.comunidad:hover {
+.btn-comunidad:hover {
     background-color: #122732;
     border-color: #ffffff;
     color: #F8FAFC;
@@ -314,7 +321,7 @@ body {
 }
 
 
-
+/* Sección Servicios */
 #servicios {
     display: flex;
     justify-content: center;
@@ -409,29 +416,23 @@ body {
 }
 
 
-.botones-servicio {
-    display: flex;
-    gap: 15px;
-}
-
-
-.boton {
+.botones-servicio button {
     background-color: #F8FAFC;
-    border: 3px solid #23969F; 
-    color: #23969F;
-    padding: 10px 15px; 
-    font-size: 16px;
+    border: 2px solid #122732;
+    color: #122732;
+    padding: 8px 16px;
+    font-size: 14px;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Inter', sans-serif; 
 }
 
-.boton:hover {
-    background-color: #23969F;
+.botones-servicio button:hover {
+    background-color: #122732;
     color: #F8FAFC;
 }
-
 
 
 /* Sección Suscripciones */
@@ -573,3 +574,192 @@ body {
     margin-bottom: 15px; 
 }
 
+/* Estilos para modales */
+#modal-suscribir {
+    display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-contenido {
+    background: #C9DCE8; 
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animación para mostrar el modal */
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-contenido {
+    animation: fadeIn 0.3s forwards;
+}
+
+/* Botón para cerrar el modal */
+.cerrar {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #122732;
+}
+
+.cerrar:hover {
+    color: #F8FAFC;
+}
+
+.modal-contenido h2 {
+    color: #122732;
+    font-size: 26px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+
+.modal-contenido form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.modal-contenido label {
+    font-weight: bold;
+    text-align: left;
+    color: #122732;
+    font-size: 14px;
+}
+
+
+.modal-contenido input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #95A7B3;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #122732;
+    background-color: #F8FAFC;
+}
+
+.modal-contenido input:focus {
+    border-color: #23969F;
+    outline: none;
+}
+
+
+.modal-contenido button {
+    background-color: #122732;
+    color: #F8FAFC;
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-contenido button:hover {
+    background-color: #F8FAFC;
+    color: #122732;
+    transform: scale(1.05);
+}
+
+
+#mensaje-registro {
+    display: none;
+    color: #122732;
+    font-weight: bold;
+    background-color: #FBBC08;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Estilos del Modal servicio */
+#modal-opcion {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+
+.modal-contenido {
+    background: #C9DCE8;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s forwards;
+    cursor: pointer;
+}
+
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.cerrar {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #F8FAFC;
+}
+
+.cerrar:hover {
+    color: #122732;
+}
+
+#imagen-opcion {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
