@@ -128,21 +128,21 @@ body {
 
 
 .texto-servicios:nth-child(1) {
-    background-image: url("../Resources/petsupplies.webp");
+    background-image: url("../Resources/servicios/petsupplies.webp");
 }
 
 .texto-servicios:nth-child(2) {
-    background-image: url("../Resources/serviciosgrooming.jpg");
+    background-image: url("../Resources/servicios/serviciosgrooming.jpg");
 }
 .texto-servicios:nth-child(3) {
-    background-image: url("../Resources/soporteveterinario.jpg");
+    background-image: url("../Resources/servicios/soporteveterinario.jpg");
 }
 .texto-servicios:nth-child(4) {
-    background-image: url("../Resources/asistenciadopcion.avif");
+    background-image: url("../Resources/servicios/asistenciadopcion.avif");
     grid-column-start: 2;
 }
 .texto-servicios:nth-child(5) {
-    background-image: url("../Resources/daycare.jpg");
+    background-image: url("../Resources/servicios/daycare.jpg");
     grid-column-start: 3;
 }
 
