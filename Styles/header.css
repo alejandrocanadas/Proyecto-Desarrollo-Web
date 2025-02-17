@@ -62,3 +62,50 @@ a {
 body {
     padding-top: 150px;
 }
+
+
+@media (max-width: 1024px) { 
+    .items-navegacion {
+        display: none;
+        flex-direction: column;
+        background-color: #95A7B3;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .items-navegacion.active {
+        display: flex;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #122732;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+}
+
+
+@media (min-width: 1025px) {
+    .menu-hamburguesa {
+        display: none;
+    }
+
+    .items-navegacion {
+        display: flex !important; 
+    }
+}

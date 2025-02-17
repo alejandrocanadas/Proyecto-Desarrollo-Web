@@ -113,6 +113,32 @@ body {
     object-fit: cover;
 }
 
+@media (max-width: 768px) {
+    .contenedor-animales {
+        display: grid;
+        grid-template-columns: 1fr; 
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .imagen-animales {
+        width: 90%;
+        max-width: 350px; 
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .imagen-animales img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+}
+
+
 
 /* Sección Marquesina */
 .marquesina-texto {
@@ -226,6 +252,43 @@ body {
     font-size: 15px;
     color: #F8FAFC;
 }
+
+@media (max-width: 768px) {
+    #metricas {
+        flex-direction: column; /* Apilar elementos */
+        text-align: center;
+        padding: 50px 5%;
+        gap: 20px;
+    }
+
+    .imagen-metricas {
+        width: 100%;
+        max-width: 400px; 
+        height: auto; 
+        margin: 0 auto;
+    }
+
+    .imagen-metricas img {
+        width: 100%;
+        height: auto;
+        max-height: 300px; 
+        object-fit: cover; 
+        border-radius: 20px;
+    }
+
+    .contenedor-metricas {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .contenedor-estadisticas {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
 
 /* Sección Misión */
 #mision {
@@ -434,6 +497,39 @@ body {
     color: #F8FAFC;
 }
 
+@media (max-width: 768px) {
+    .contenedor-servicios {
+        flex-direction: column; 
+        padding: 30px;
+        gap: 40px;
+        width: 90%;
+    }
+
+    .imagen-servicio img {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .lista-servicios {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .card-servicio {
+        width: 90%;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .card-servicio img {
+        margin-bottom: 10px;
+    }
+}
+
+
 
 /* Sección Suscripciones */
 #suscripciones {
@@ -573,6 +669,31 @@ body {
 .plan-header p {
     margin-bottom: 15px; 
 }
+
+@media (max-width: 768px) {
+    .planes {
+        grid-template-columns: 1fr; /* Hace que las tarjetas se apilen una debajo de la otra */
+        gap: 20px;
+    }
+
+    .plan {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .plan div {
+        margin-right: 0; /* Elimina el margen derecho en móviles */
+    }
+
+    .lista-servicios {
+        padding-left: 0;
+    }
+}
+
 
 /* Estilos para modales */
 #modal-suscribir {
