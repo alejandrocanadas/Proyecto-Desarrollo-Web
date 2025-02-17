@@ -1,0 +1,51 @@
+#servicios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+}
+#servicios h2{
+    font-size: 30px;
+}
+#servicios ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+}
+#servicios li{
+    list-style: none;
+    align-items: center;
+    font-weight: 300;
+    color: white;
+}
+.servicio{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    background-color: #87a0b1;
+    padding: 50px;
+    border-radius: 15px;
+    color: white;
+    width: 100%;
+}
+.servicio h3{
+    color: white;
+}
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    width: 300px;  /* Ajusta el ancho de cada tarjeta */
+    height: auto;  /* La altura se ajusta automáticamente */
+    padding: 20px;
+    background-color: #122732; /* Color de fondo menta */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    text-align: center;
+    color: #122732; /* Color del texto */
+    font-weight: 600;
+}
