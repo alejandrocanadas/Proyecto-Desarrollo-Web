@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Mostrar modal al hacer clic en "Pet Supplies"
     petSupplies.addEventListener("click", function() {
-        modal.style.display = "block";
+        modal.style.display = "flex";
+        modal.style.alignContent = "center";
+        modal.style.justifyContent = "center";
+
     });
 
     // Cerrar modal al hacer clic en la "X"
