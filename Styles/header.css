@@ -2,6 +2,12 @@ header {
     background-color: #95A7B3;
     padding: 1rem 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: 'Inter', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 header .subtitulo{
@@ -52,4 +58,7 @@ a {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+body {
+    padding-top: 150px;
 }
