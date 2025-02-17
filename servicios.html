@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="Styles/header.css" />
     <link rel="stylesheet" href="Styles/footer.css" />
     <link rel="stylesheet" href="Styles/servicios.css" />
+    <script src="Functions/servicios.js" defer></script>
+    <script src="Functions/agregarCarrito.js" defer></script>
 </head>
 <header>
     <nav id="menu">
@@ -24,13 +26,24 @@
           <a class="items" href="reserva_online.html">Reserva online</a>
         </li>
       </ul>
+      <ul id="carro">
+        <li id="carrito">
+            <img src="./Resources/shopping-cart.png" alt="Cart" height="30px">
+            <div id="carritoContenido">
+                
+                <h2>Carrito de Compras</h2>
+                <ul id="listaCarrito"></ul>
+                <p id="totalCarrito">Total: 0 COP</p>
+            </div>
+        </li>
+      </ul>
       <a href="" class="contacto-btn">Contáctanos</a>
     </nav>
   </header>
 <body>
     <section id="titulo">
         <h1>Nuestros Servicios <br></h1>
-        <h2>¡Todo lo que tu mascota necesita en un solo lugar! 🐾<br><br></h2>
+        <h2>¡Todo lo que tu mascota necesita en un solo lugar! 🐾<br></h2>
         <p>En Bucky’s Vet, nos apasiona el bienestar de los perros y gatos. Por eso, ofrecemos una variedad de servicios diseñados para cuidar, consentir y acompañar a tu mejor amigo en cada etapa de su vida.<br>
         <br>Ven a Bucky’s Vet y bríndale a tu mascota la atención que se merece. ¡Tu mejor amigo está en buenas manos! 💛🐶<br></p>
         <br>
@@ -58,11 +71,85 @@
     <br>
     <section class="marquesina-texto">
         <div class="marquesina-contenedor">
-          <span>🐶¡Cuidado profesional para tu mascota en Bucky’s Vet!🐶</span>
+          <span>🐶¡Cuidado profesional para tu mascota en Jurassic Bark!🐶</span>
           <span>💉Consulta veterinaria disponible💉</span>
           <span>🛁Servicio de grooming🛁</span>
           <span>🐾Adopción de mascotas 🐾</span>
           <span>🌤️Broading y Daycare🌤️</span>
+        </div>
+    </section>
+    <section id="destacados">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Productos Disponibles</h2>
+                <div id="productos">
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/juguete1.webp" alt="juguete1" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Enredado</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/juguete2.webp" alt="juguete2" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Mordida Dura</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/juguete3.webp" alt="juguete3" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Ganzo</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/juguete4.jpg" alt="juguete4" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Hueso Colorido</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/juguete5.webp" alt="juguete5" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Lazo</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/juguete6.webp" alt="juguete6" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Hueso</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/wowcan.png" alt="wowcan1" height="300px">
+                        <ul>
+                            <li class="nombre">Comida WowCan</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/correa1.jpg" alt="correa1" height="300px">
+                        <ul>
+                            <li class="nombre">Correa Resorte</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <footer>
