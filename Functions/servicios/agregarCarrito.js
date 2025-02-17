@@ -42,12 +42,12 @@ function actualizarCarrito() {
             const img = document.createElement("img");
             item.style.display = "flex";
             item.style.alignItems = "center";
-            item.style.maxWidth = "300px";
+            item.style.maxWidth = "400px";
             item.style.fontSize = "20px";
             item.style.fontWeight = "bold";
             img.src = producto.imagen;
             img.alt = producto.nombre;
-            img.style.width = "130px";
+            img.style.width = "150px";
             img.style.height = "160px";
             img.style.objectFit = "co"; 
             img.style.borderRadius = "10px";
@@ -65,7 +65,7 @@ function actualizarCarrito() {
             listaCarrito.appendChild(item); 
         });
     }
-    totalCarrito.innerText = `Total: ${total.toLocaleString()} COP`;;
+    totalCarrito.innerText = `Total: ${total.toLocaleString()} COP`;
 }
 function eliminarDelCarrito(index) {
     carrito.splice(index, 1);

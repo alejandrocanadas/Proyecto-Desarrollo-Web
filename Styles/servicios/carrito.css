@@ -28,7 +28,8 @@
 }
 #carritoContenido ul{
     list-style: none;
-    padding-top: 100px;
+    padding-top: 80px;
+    padding-bottom: 8px;
     padding-right: -150px;
     align-items: left;
 }
@@ -52,7 +53,6 @@
     font-size: 20px;
     color: red;
     padding: 5px;
-    position: absolute;
     right: 30px; /* Lo coloca a la derecha */
 }
 #listaCarrito button:hover {
