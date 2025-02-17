@@ -151,3 +151,30 @@
 .imgBorder{
     border: 5px solid #FBBC08;
 }
+.marquesina-petsupplies {
+    background-color:#FBBC08;
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #122732;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.marquesina-contenedor {
+    display: flex;
+    gap: 32px;
+    animation: scrollText 20s linear infinite;
+    white-space: nowrap;
+}
+
+/* Animación de desplazamiento */
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
