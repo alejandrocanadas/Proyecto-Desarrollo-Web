@@ -83,13 +83,13 @@ body {
 /* Sección Marquesina 1 */
 .marquesina-texto {
     background-color: #FBBC08;
-    padding: 16px 0;
+    padding: 10px 0;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
     color: #F8FAFC;
     font-weight: bold;
-    font-size: 24px; /* Aumenta el tamaño del texto */
+    font-size: 20px; /* Aumenta el tamaño del texto */
 }
 
 .marquesina-contenedor {
@@ -102,13 +102,13 @@ body {
 /* Sección Marquesina 2 */
 .marquesina2-texto {
     background-color: #FBBC08;
-    padding: 16px 0;
+    padding: 10px 0;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
     color: #F8FAFC;
     font-weight: bold;
-    font-size: 40px; /* Aumenta el tamaño del emoji para mayor visibilidad */
+    font-size: 20px; /* Aumenta el tamaño del emoji para mayor visibilidad */
 }
 
 .marquesina2-contenedor {
