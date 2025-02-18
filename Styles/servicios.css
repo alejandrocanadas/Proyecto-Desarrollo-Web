@@ -147,3 +147,16 @@ body {
     grid-column-start: 3;
 }
 
+/* Para pantallas menores a 1024px (tablets) */
+@media (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* Para pantallas menores a 768px (móviles) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
