@@ -8,19 +8,22 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
+    
 }
 .modal-content {
     background-color: #C9DCE8;
     padding: 50px;
     border-radius: 10px;
     margin-top: 50px;
-    width: 1500px;
+    margin-bottom: 200px;
+    width: 1200px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 1001;
     max-height: 700px;
     overflow-y: auto; 
+    border: 5px solid #FBBC08;
 }
 .modal-content h2{
     font-size: 50px;
