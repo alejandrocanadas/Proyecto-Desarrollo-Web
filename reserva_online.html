@@ -7,31 +7,73 @@
     <link rel="stylesheet" href="Styles/header.css" />
     <link rel="stylesheet" href="Styles/footer.css" />
     <link rel="stylesheet" href="Styles/reserva_online/reservaonline.css" />
+    <script src="Functions/reserva/reserva_online.js" defer></script>
 </head>
-<header>
-    <nav id="menu">
-      <div class="logo">
-        <img src="Resources/logo.jpg" alt="Logo Jurassic Bark" />
-        <span class="subtitulo">Jurassic Bark Vet</span>
-      </div>
-      <button class="menu-hamburguesa">&#9776;</button>
-      <ul class="items-navegacion">
-        <li><a class="items" href="inicio.html">Inicio</a></li>
-        <li>
-          <a class="items" href="sobre_nosotros.html">Sobre Nosotros</a>
-        </li>
-        <li>
-          <a class="items" href="servicios.html">Servicios</a>
-        </li>
-        <li>
-          <a class="items" href="reserva_online.html">Reserva online</a>
-        </li>
-      </ul>
-      <a href="" class="contacto-btn">Contáctanos</a>
-    </nav>
-</header>
-<body>
 
+<body>
+    <header>
+        <nav id="menu">
+          <div class="logo">
+            <img src="Resources/logo.jpg" alt="Logo Jurassic Bark" />
+            <span class="subtitulo">Jurassic Bark Vet</span>
+          </div>
+          <button class="menu-hamburguesa">&#9776;</button>
+          <ul class="items-navegacion">
+            <li><a class="items" href="inicio.html">Inicio</a></li>
+            <li>
+              <a class="items" href="sobre_nosotros.html">Sobre Nosotros</a>
+            </li>
+            <li>
+              <a class="items" href="servicios.html">Servicios</a>
+            </li>
+            <li>
+              <a class="items" href="reserva_online.html">Reserva online</a>
+            </li>
+          </ul>
+          <a href="" class="contacto-btn">Contáctanos</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Agendamiento de consulta para tu mascota</h1>
+        <form id="reserva-form">
+            <div class="datos-cliente">
+                <h2>Reserva Online</h2>
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono"  required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="tipo_mascota">Tipo Mascota:</label>
+                <select id="tipo_mascota" name="tipo_mascota" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="perro">Perro</option>
+                    <option value="gato">Gato</option>
+                </select>
+
+                <div id="raza-container" style="display: none;">
+                    <label for="raza">Raza:</label>
+                    <input list="lista-razas" id="raza" name="raza">
+                    <datalist id="lista-razas"></datalist>
+                </div>
+
+                <label for="fecha">Fecha de la Cita:</label>
+                <input type="date" id="fecha" name="fecha" required>
+
+                <label for="hora">Hora de la Cita:</label>
+                <input type="time" id="hora" name="hora" required>
+
+                <button type="submit">Agendar Cita</button>
+            </div>
+        </form>
+    </main>
     <footer>
         <div class="contenedor-footer">
           <div class="logo-footer">
