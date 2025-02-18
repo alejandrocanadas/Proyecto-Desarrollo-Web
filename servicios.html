@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="Styles/servicios/grooming.css" />
     <link rel="stylesheet" href="Styles/servicios/veterinaria.css" />
     <link rel="stylesheet" href="Styles/servicios/adopcion.css" />
+    <link rel="stylesheet" href="Styles/servicios/daycare.css" />
     <script src="Functions/servicios/servicios.js" defer></script>
     <script src="Functions/servicios/agregarCarrito.js" defer></script>
     <script src="Functions/header/header.js" defer></script>
@@ -351,8 +352,9 @@
     <section id="adopcion">
       <div id="asistencia" class="modal">
           <div class="modal-content">
-              <span id="close" class="close">&times;</span>
-              <h2>¿Quieres compañía para tu peludito?</h2>
+            <span id="close" class="close">&times;</span>
+            <h2>¿Quieres compañía para tu peludito?</h2>
+            <div class="textoadopcion">
               <h3>🐾 Adopción Exclusiva para Miembros de Jurassic Bark 🐶</h3>
               <p>En Jurassic Bark, creemos en segundas oportunidades y en el amor incondicional que un perrito puede brindar. Por eso, ofrecemos un programa exclusivo de adopción dirigido únicamente a nuestros miembros, asegurando que cada mascota encuentre un hogar lleno de cariño, responsabilidad y compromiso. <br>
 
@@ -362,14 +364,33 @@
                 <br>✔ Convocatorias privadas: Las fechas y ubicaciones de las jornadas de adopción son enviadas exclusivamente a los miembros mediante correo electrónico y notificaciones privadas. <br>
                 <br>✔ Asesoría veterinaria: Cada perrito pasa por una revisión veterinaria completa antes de ser entregado a su nueva familia, asegurando su estado de salud y bienestar. <br>
                 <br>✔ Requisitos y seguimiento: Evaluamos a los adoptantes para garantizar que cada mascota llegue a un hogar estable y seguro. Además, ofrecemos seguimiento posterior a la adopción. <br></p>
-              <h3>🐶 Beneficios de adoptar con Bucky’s Vet</h3>
+              <h3>🐶 Beneficios de adoptar con Jurassic Barks</h3>
               <p>
                 ✅ Perritos vacunados, desparasitados y con chequeo médico previo. <br>
                 <br>✅ Asesoría personalizada para la integración de la mascota al nuevo hogar. <br>
                 <br>✅ Descuentos exclusivos en consultas y servicios veterinarios post-adopción. <br>
-                <br>Si eres miembro de Bucky’s Vet y deseas darle una segunda oportunidad a un perrito, mantente atento a nuestras convocatorias privadas de adopción. Juntos, podemos cambiar vidas y darles un hogar lleno de amor. 💛🐾<br>
+                <br>Si eres miembro de Jurassic Barks y deseas darle una segunda oportunidad a un perrito, mantente atento a nuestras convocatorias privadas de adopción. Juntos, podemos cambiar vidas y darles un hogar lleno de amor. 💛🐾<br>
               </p>
-              <p>📩 ¿Tienes dudas? Dale click al boton "Contactanos", escríbenos y te brindaremos toda la información necesaria. 🚀</p>
+              <p class="enfasis">📩 ¿Tienes dudas? Dale click al boton "Contactanos", escríbenos y te brindaremos toda la información necesaria. 🚀</p>
+            </div>
+            <section class="marquesina-petsupplies">
+              <div class="marquesina-contenedor">
+                <span>🐶 Labrador Retriever 🐶</span>
+                <span>🐕 Golden Retriever 🐕</span>
+                <span>🐾 Bulldog Francés 🐾</span>
+                <span>🦴 Pastor Alemán 🦴</span>
+                <span>🐕‍🦺 Border Collie 🐕‍🦺</span>
+                <span>🐾 Husky Siberiano 🐾</span>
+                <span>🏆 Rottweiler 🏆</span>
+                <span>🦮 Beagle 🦮</span>
+              </div>
+            </section>
+            <div class="serviciosvet">
+              <div class="boton">
+                <h3>Haz click en el botón para hacerte miembro de Jurassic Bark y darle la mejor experiencia a tu Peludito:</h3>
+                <button>Hacerme <br>de Miembro</button>
+              </div>
+            </div>
           </div>
         </div>
     </section>
@@ -377,7 +398,76 @@
       <div id="broading" class="modal">
           <div class="modal-content">
               <span id="close" class="close">&times;</span>
-              <h2>Productos Disponibles</h2>
+              <h2>Planes de Broading y Daycare</h2>
+              <p class="parrafo">En Jurassic Barks, sabemos que a veces necesitas un lugar <b>seguro y confiable</b> donde dejar a tu peludito mientras trabajas o viajas. Por eso, ofrecemos servicios de Boarding (hospedaje) y Daycare (guardería diurna) <b>diseñados para el bienestar y la comodidad de tu mascota.</b></p>
+              <div id="serviciosdaycare">
+                <div class="serviciodaycare">
+                  <h3 class="name">1️⃣ Plan Día Feliz 🐶 <i>(Daycare Básico)</i>✂️</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Horario: 8:00 AM - 6:00 PM.</li>
+                      <li>✔ Socialización con otros perritos bajo supervisión.</li>
+                      <li>✔ Juegos dirigidos y paseos en zonas seguras.</li>
+                    </ul>
+                    <p>Costo: 30.000 COP/Día</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+                <div class="serviciodaycare">
+                  <h3 class="name">2️⃣ Plan Aventurero 🏃‍♂️ <i>(Daycare Plus)</i> 🦴</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Horario: 7:00 AM - 7:00 PM.</li>
+                      <li>✔ Todo lo del <i>Plan Día Feliz</i> + Caminatas adicionales.</li>
+                      <li>✔ Estimulación mental con juguetes interactivos.</li>
+                      <li>✔ Alimentación supervisada con opciones saludables.</li>
+                      <li>✔ Reporte con fotos y videos del día.</li>
+                    </ul>
+                    <p>Costo: 50.000 COP/Día</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+                <div class="serviciodaycare">
+                  <h3 class="name">3️⃣ Plan Vacaciones Tranquilas 🏡 <i>(Boarding Básico - 24h)</i> 🌙</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Hospedaje en instalaciones seguras y cómodas.</li>
+                      <li>✔ Alimentación personalizada según las necesidades del perrito.</li>
+                      <li>✔ Paseos y actividades recreativas diarias.</li>
+                      <li>✔ Supervisión veterinaria disponible 24/7.</li>
+                      <li>✔ Reporte diario a los dueños vía WhatsApp.</li>
+                    </ul>
+                    <p>Costo: 80.000 COP/Noche</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+                <div class="serviciodaycare">
+                  <h3 class="name">4️⃣ Plan VIP 🏆 <i>(Boarding Premium - 24h)</i> 🎖️</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Todo lo del <i>Plan Vacaciones Tranquilas</i> + Suite privada.</li>
+                      <li>✔ Sesión de <b>grooming básica gratuita</b>.</li>
+                      <li>✔ Tiempo de juego personalizado con cuidadores.</li>
+                      <li>✔ Entrenamiento básico en obediencia.</li>
+                      <li>✔ Cámara en vivo para que puedas ver a tu perrito en todo momento.</li>
+                    </ul>
+                    <p>Costo: 120.000 COP/Noche</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+              </div>
+              <section class="marquesina-petsupplies">
+                <div class="marquesina-contenedor">
+                  <span>🐶 Labrador Retriever 🐶</span>
+                  <span>🐕 Golden Retriever 🐕</span>
+                  <span>🐾 Bulldog Francés 🐾</span>
+                  <span>🦴 Pastor Alemán 🦴</span>
+                  <span>🐕‍🦺 Border Collie 🐕‍🦺</span>
+                  <span>🐾 Husky Siberiano 🐾</span>
+                  <span>🏆 Rottweiler 🏆</span>
+                  <span>🦮 Beagle 🦮</span>
+                </div>
+              </section>
           </div>
         </div>
     </section>
