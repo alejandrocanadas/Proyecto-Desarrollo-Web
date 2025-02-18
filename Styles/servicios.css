@@ -147,16 +147,136 @@ body {
     grid-column-start: 3;
 }
 
-/* Para pantallas menores a 1024px (tablets) */
-@media (max-width: 1024px) {
-    body {
-        font-size: 16px;
+/* --- ESTILOS GENERALES RESPONSIVE --- */
+
+/* Para pantallas mayores a 1024px (escritorios estándar) */
+@media (min-width: 1025px) {
+    #servicios {
+        width: 90%;
+        max-width: 1100px;
+    }
+
+    .contenedor-servicios {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .modal-content{
+        width: 50px;
+    }
+
+    .texto-servicios:nth-child(4),
+    .texto-servicios:nth-child(5) {
+        grid-column: span 1;
     }
 }
 
-/* Para pantallas menores a 768px (móviles) */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
+/* Para tablets (pantallas menores a 1024px) */
+@media (max-width: 1024px) {
+    #titulo h1 {
+        font-size: 70px;
+    }
+    .modal-content {
+        width: 100%;
+        max-width: 700px;
+        padding: 15px;
+    }
+    #titulo h2 {
+        font-size: 25px;
+    }
+
+    #titulo p {
+        font-size: 18px;
+    }
+
+    #servicios {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .contenedor-servicios {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .texto-servicios {
+        width: 90%;
+        height: 180px;
+        font-size: 1.1rem;
     }
 }
+
+/* Para pantallas menores a 768px (celulares) */
+@media (max-width: 768px) {
+    #menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .items-navegacion {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    #titulo {
+        text-align: center;
+        height: auto;
+        padding: 20px;
+    }
+
+    #titulo h1 {
+        font-size: 50px;
+    }
+
+    #titulo h2 {
+        font-size: 22px;
+    }
+
+    #titulo p {
+        font-size: 16px;
+    }
+
+    #servicios {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .contenedor-servicios {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .texto-servicios {
+        width: 90%;
+        height: 150px;
+        font-size: 1rem;
+    }
+
+    .marquesina-texto {
+        font-size: 14px;
+    }
+
+    .marquesina-contenedor {
+        gap: 20px;
+        animation-duration: 15s;
+    }
+
+    .footer-bottom p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .redes-sociales img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
