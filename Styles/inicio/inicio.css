@@ -558,30 +558,38 @@ body {
 }
 
 
+
 .planes {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Se ajusta automáticamente */
     gap: 20px;
+    width: 100%;
 }
-
 
 .plan {
     background-color: #EAEFF2;
     border-radius: 15px;
     overflow: hidden;
     display: flex;
-    align-items: center; 
-    justify-content: space-between;
-    width: 800px; 
-    min-height: 180px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Centrar contenido */
+    width: 100%;
+    min-height: auto;
     padding: 25px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.plan div{
-    margin-right: 50px;
+/* Ajustar la información de los planes */
+.plan-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
+
 
 
 .plan:hover {
@@ -595,13 +603,6 @@ body {
     color: #F8FAFC;
 }
 
-.plan-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    flex: 1;
-}
 
 .etiqueta-plan {
     font-size: 16px;
@@ -692,6 +693,13 @@ body {
     }
 }
 
+
+/* Responsividad */
+@media (max-width: 1024px) {
+    .planes {
+        grid-template-columns: 1fr; /* Apilar en una sola columna en pantallas medianas y móviles */
+    }
+}
 
 /* Estilos para modales */
 #modal-suscribir {
