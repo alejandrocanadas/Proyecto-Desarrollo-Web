@@ -4,10 +4,13 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     font-family: 'Inter', sans-serif;
     position: fixed;
+    align-items: center;
     top: 0;
     left: 0;
     width: 100%;
+    height: 120px;
     z-index: 1000;
+
 }
 
 header .subtitulo{
@@ -25,7 +28,9 @@ nav {
 .logo {
     display: flex;
     align-items: center;
+    transform: scale(0.8);
     gap: 1rem;
+    margin-top: -10px;
 }
 
 .logo img {
