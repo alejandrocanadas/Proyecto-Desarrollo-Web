@@ -116,15 +116,15 @@ document.addEventListener("DOMContentLoaded", function () {
             descripcion: "Los juguetes ayudan a mantener activa y feliz a tu mascota."
         },
         "Accesorios": {
-            imagen: "Resources/raoul-droog-yMSecCHsIBc-unsplash.jpg",
+            imagen: "Resources/reed-shepherd-r1q76Rut5t8-unsplash.jpg",
             descripcion: "Dale estilo y comodidad a tu mascota con nuestros accesorios."
         },
         "Uñas": {
-            imagen: "Resources/karsten-winegeart-4OprnvM9UQs-unsplash.jpg",
+            imagen: "Resources/servicios/daycare.jpg",
             descripcion: "El corte de uñas es fundamental para la salud y comodidad de tu mascota."
         },
         "Cortes de pelo": {
-            imagen: "Resources/charlesdeluvio-DziZIYOGAHc-unsplash.jpg",
+            imagen: "Resources/servicios/serviciosgrooming.jpg",
             descripcion: "Un corte de pelo adecuado mantiene a tu mascota fresca y cómoda."
         },
         "Chequeo de salud": {

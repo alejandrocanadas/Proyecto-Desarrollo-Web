@@ -380,9 +380,13 @@ body {
 
 
 .card img {
-    width: 40px;
-    height: 40px;
+    width: 200px;
+    height: 150px;
     margin-bottom: 10px;
+    object-fit: cover;
+    align-items: center;
+    margin: 0 auto;
+    margin-left: 20px;
 }
 
 
@@ -903,7 +907,10 @@ body {
 }
 
 #imagen-opcion {
-    width: 100%;
+    width: 250px;
+    height: 250px;
     border-radius: 10px;
     margin-top: 10px;
+    transform: scale(0.8);
+    object-fit: cover;
 }
