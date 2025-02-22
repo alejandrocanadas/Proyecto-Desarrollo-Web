@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurassic Bark</title>
+    <link rel="stylesheet" href="Styles/header.css" />
+    <link rel="stylesheet" href="Styles/footer.css" />
+    <link rel="stylesheet" href="Styles/servicios.css" />
+    <link rel="stylesheet" href="Styles/servicios/carrito.css" />
+    <link rel="stylesheet" href="Styles/servicios/ventanaemergente.css" />
+    <link rel="stylesheet" href="Styles/servicios/grooming.css" />
+    <link rel="stylesheet" href="Styles/servicios/veterinaria.css" />
+    <link rel="stylesheet" href="Styles/servicios/adopcion.css" />
+    <link rel="stylesheet" href="Styles/servicios/daycare.css" />
+    <script src="Functions/servicios/servicios.js" defer></script>
+    <script src="Functions/servicios/agregarCarrito.js" defer></script>
+    <script src="Functions/header/header.js" defer></script>
+</head>
+<header>
+    <nav id="menu">
+      <div class="logo">
+        <img src="Resources/logo.jpg" alt="Logo Jurassic Bark" />
+        <span class="subtitulo">Jurassic Bark Vet</span>
+      </div>
+      <button class="menu-hamburguesa">&#9776;</button>
+      <ul class="items-navegacion">
+        <li><a class="items" href="inicio.html">Inicio</a></li>
+        <li>
+          <a class="items" href="sobre_nosotros.html">Sobre Nosotros</a>
+        </li>
+        <li>
+          <a class="items" href="servicios.html">Servicios</a>
+        </li>
+        <li>
+          <a class="items" href="reserva_online.html">Reserva online</a>
+        </li>
+      </ul>
+      <ul id="carro">
+        <li id="carrito">
+            <img src="./Resources/servicios/shopping-cart.png" alt="Cart" height="30px">
+            <div id="carritoContenido">
+                
+                <h2>Carrito de Compras</h2>
+                <ul id="listaCarrito"></ul>
+                <p id="totalCarrito">Total: 0 COP</p>
+            </div>
+        </li>
+      </ul>
+      <a href="reserva_online.html" class="contacto-btn">Contáctanos</a>
+    </nav>
+  </header>
+<body>
+    <section id="titulo">
+        <h1>Nuestros Servicios <br></h1>
+        <h2>¡Todo lo que tu mascota necesita en un solo lugar! 🐾<br></h2>
+        <p>En Bucky’s Vet, nos apasiona el bienestar de los perros y gatos. Por eso, ofrecemos una variedad de servicios diseñados para cuidar, consentir y acompañar a tu mejor amigo en cada etapa de su vida.<br>
+        <br>Ven a Bucky’s Vet y bríndale a tu mascota la atención que se merece. ¡Tu mejor amigo está en buenas manos! 💛🐶<br></p>
+        <br>
+    </section>
+    <br>
+    <section id="servicios">
+        <div class="contenedor-servicios">
+            <div class="texto-servicios">
+                <h1>Pet Supplies</h1>
+            </div>
+            <div class="texto-servicios">
+                <h1>Servicios de <br>Grooming</h1>
+            </div>
+            <div class="texto-servicios">
+                <h1>Soporte <br>Veterinario</h1>
+            </div>
+            <div class="texto-servicios">
+                <h1>Asistencia en <br>Adopción</h1>
+            </div>
+            <div class="texto-servicios">
+                <h1>Broading y <br>Daycare</h1>
+            </div>
+        </div>
+    </section>
+    <br>
+    <section class="marquesina-texto">
+        <div class="marquesina-contenedor">
+          <span>🐶¡Cuidado profesional para tu mascota en Jurassic Bark!🐶</span>
+          <span>💉Consulta veterinaria disponible💉</span>
+          <span>🛁Servicio de grooming🛁</span>
+          <span>🐾Adopción de mascotas 🐾</span>
+          <span>🌤️Broading y Daycare🌤️</span>
+        </div>
+    </section>
+    <section id="destacados">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Productos Disponibles</h2>
+                <div id="productos">
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/juguete1.webp" alt="juguete1" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Enredado</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/juguete2.webp" alt="juguete2" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Mordida Dura</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/juguete3.webp" alt="juguete3" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Ganzo</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/juguete4.jpg" alt="juguete4" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Hueso Colorido</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/juguete5.webp" alt="juguete5" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Lazo</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/juguete6.webp" alt="juguete6" height="300px">
+                        <ul>
+                            <li class="nombre">Juguete Hueso</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/wowcan.png" alt="wowcan1" height="300px">
+                        <ul>
+                            <li class="nombre">Comida WowCan</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                    <div class="producto">
+                        <img class="imgBorder" src="Resources/servicios/correa1.jpg" alt="correa1" height="300px">
+                        <ul>
+                            <li class="nombre">Correa Resorte</li>
+                            <li>Precio: 72.000 COP</li>
+                        </ul>
+                        <button class="agregar">Añadir al carrito</button>
+                    </div>
+                </div>
+                <section class="marquesina-petsupplies">
+                  <div class="marquesina-contenedor">
+                    <span>🐶Comida🐶</span>
+                    <span>💉Medicinas💉</span>
+                    <span>🛁Juguetes🛁</span>
+                    <span>🐾Accesorios🐾</span>
+                    <span>🌤️Ropa🌤️</span>
+                  </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <section id="grooming">
+      <div id="servgroom" class="modal">
+        <div class="modal-content">
+          <span id="close" class="close">&times;</span>
+          <h2>¡Nuestros Servicios de Grooming!</h2>
+          <div id="serviciosgrooming">
+            <h2>🛁¡Bañamos a tu Perrito!🛁</h2>
+            <div class="servicio">
+              <div class="tarjeta">
+                <h3>Baño Básico</h3>
+                <ul>
+                  <li>🐶  Lavado con shampoo especializado según el tipo de piel y pelaje</li>
+                  <li>🐶  Secado con toalla o secador de aire templado.</li>
+                  <li>🐶  Cepillado básico.</li>
+                </ul>
+                <p>Costo: 30.000 COP</p>
+              </div>
+              <div class="tarjeta">
+                <h3>Baño Medicado 🩺</h3>
+                <ul>
+                  <li>🐶  Uso de shampoo especial para alergias, piel sensible o problemas dermatológicos.</li>
+                  <li>🐶  Recomendado para perros con dermatitis o infecciones cutáneas.</li>
+                  <li>🐶  Toque final con perfume especial para perros.</li>
+                </ul>
+                <p>Costo: 50.000 COP</p>
+              </div>
+            </div>
+            <h2>¡Cuidamos la Imagen de tu Perrito!</h2>
+            <div class="servicio">
+              <div class="tarjeta">
+                <h3>Limpieza de Oídos 👂</h3>
+                <ul>
+                  <li>🐶  Eliminación de suciedad y cerumen acumulado.</li>
+                  <li>🐶  Prevención de infecciones y malos olores.</li>
+                </ul>
+                <p>Costo: 35.000 COP</p>
+              </div>
+              <div class="tarjeta">
+                <h3>Limpieza de Glándulas Anales 🩸</h3>
+                <ul>
+                  <li>🐶  Vaciado de glándulas anales para evitar infecciones y malestar.</li>
+                  <li>🐶  Tenemos veterinarios especializados que cuidaran de tu perrito.</li>
+                </ul>
+                <p>Costo: 45.000 COP</p>
+              </div>
+              <div class="tarjeta">
+                <h3>Tratamiento Antipulgas y Garrapatas 🦟</h3>
+                <ul>
+                  <li>🐶  Aplicación de productos antiparasitarios para prevenir infestaciones.</li>
+                  <li>🐶  Queremos brindarle la mejor experiencia a tu perrito</li>
+                </ul>
+                <p>Costo: 15.000 COP</p>
+              </div>
+            </div>
+            <hr>
+            <h2>¡Cuidamos la Higiene de tu Perrito!</h2>
+            <div class="servicio">
+              <div class="tarjeta">
+                <h3>Corte de Pelo ✂️</h3>
+                <ul>
+                  <li>🐶  Corte de raza: estilo específico según la raza del perro.</li>
+                  <li>🐶  Corte higiénico: recorte en zonas sensibles como patas, cara y zona perianal.</li>
+                  <li>🐶  Corte estético: personalización del corte para mejorar la apariencia del perro.</li>
+                </ul>
+                <p>Costo: 15.000 COP</p>
+              </div>
+              <div class="tarjeta">
+                <h3>Cepillado y Desenredo 🪮</h3>
+                <ul>
+                  <li>🐶  Eliminación de nudos y enredos del pelaje.</li>
+                  <li>🐶  Prevención de esteras y acumulación de suciedad.</li>
+                </ul>
+                <p>Costo: 15.000 COP</p>
+              </div>
+              <div class="tarjeta">
+                <h3>Corte y Limpieza de Uñas 🐾</h3>
+                <ul>
+                  <li>🐶  Recorte seguro de las uñas para evitar molestias y lesiones.</li>
+                  <li>🐶  Suavizado de bordes para prevenir rasguños.</li>
+                </ul>
+                <p>Costo: 15.000 COP</p>
+              </div>
+            </div>
+            <hr>
+            <h2>Servicios VIB <i>(Very Important Barks)</i>🐾</h2>
+            <div class="servicio vib">
+              <div class="tarjeta es">
+                <h3>Hidratación de Pelaje <br><i>(con aceites naturales)</i></h3>
+                <ul>
+                  <li>🐶  Nutre y fortalece el pelo con aceites esenciales naturales.</li>
+                  <li>🐶  Reduce la sequedad y evita el quiebre del pelaje.</li>
+                  <li>🐶  Deja el pelaje suave, brillante y con una fragancia agradable.</li>
+                </ul>
+              </div>
+              <div class="tarjeta es">
+                <h3>Masaje Relajante <br><i>(ideal para perros nerviosos)</i></h3>
+                <ul>
+                  <li>🐶  Ayuda a reducir el estrés y la ansiedad en perros inquietos.</li>
+                  <li>🐶  Mejora la circulación sanguínea y relaja los músculos.</li>
+                  <li>🐶  Ideal para perros mayores o con problemas articulares.</li>
+                </ul>
+              </div>
+              <div class="tarjeta es">
+                <h3>Baño de Ozono <br><i>(para mejorar la salud de la piel)</i></h3>
+                <ul>
+                  <li>🐶  Elimina bacterias y hongos, ayudando en problemas dermatológicos.</li>
+                  <li>🐶  Favorece la regeneración celular y cicatrización de heridas.</li>
+                  <li>🐶  Estimula el sistema inmunológico y combate los malos olores.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="boton">
+                <h3>Recuerda que puedes agendar cualqueira de nuestros servicios dando click en el boton:</h3>
+                <button>Agendar Servicios <br>de Grooming</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="veterinaria">
+      <div id="vet" class="modal">
+          <div class="modal-content">
+              <span id="close" class="close">&times;</span>
+              <h2>¿Se enfermó tu peludito?</h2>
+              <p class="parrafo">Te ofrecemos atención veterinaria las 24/7. Además, si eres miembro <br>de Jurassic Bark, tienes acceso a 3 citas sin costo al mes.</p>
+              <div id="serviciosvet">
+                <div class="serviciovet">
+                  <h3>Servicio General: Consulta Veterinaria <b>Básica</b></h3>
+                  <div class="tarjetavet">
+                    <ul>
+                      <li>🐶 Examen físico general para evaluar el estado de salud.</li>
+                      <li>🐶 Vacunación y desparasitación preventiva.</li>
+                      <li>🐶 Asesoría en nutrición, comportamiento y cuidados básicos.</li>
+                      <li>🐶 Control de peso y recomendaciones de alimentación balanceada.</li>
+                      <li>🐶 Limpieza de oídos y revisión dental.</li>
+                      <li>🐶 Registro de historial clínico para seguimientos futuros.</li>
+                    </ul>
+                    <br>
+                    <p>Costo: 50.000 COP</p>
+                  </div>
+                </div>
+                <div class="serviciovet">
+                  <h3>Servicio Especializado: <b>Diagnóstico y Tratamiento</b></h3>
+                  <div class="tarjetavet">
+                    <ul>
+                      <li>🐾  Consulta de evaluación física completa.</li>
+                      <li>🐾 Triage de urgencias 24/7 para casos críticos.</li>
+                      <li>🐾 Asesoría personalizada y receta de medicamentos específicos.</li>
+                      <li>🐾 Pruebas de laboratorio (sangre, orina, cultivos, etc.).</li>
+                      <li>🐾 Diagnóstico por imágenes (rayos X, ecografías, etc.).</li>
+                      <li>🐾 Tratamiento de enfermedades crónicas o infecciosas.</li>
+                    </ul>
+                    <br>
+                    <p>Costo: 75.000 COP</p>
+                  </div>
+                </div>
+              </div>
+              <div class="serviciosvet">
+                <div class="boton">
+                  <h3>Recuerda que puedes agendar cualqueira de nuestros servicios dando click en el boton:</h3>
+                  <button>Agendar Servicios <br>de Grooming</button>
+                </div>
+              </div>
+              <br>
+              <section class="marquesina-petsupplies">
+                <div class="marquesina-contenedor">
+                  <span>🐶Atención personalizada🐶</span>
+                  <span>💉Medicinas💉</span>
+                  <span>🛁Hospitalización🛁</span>
+                  <span>🐾Tratamiento🐾</span>
+                  <span>🌤️Cuidado🌤️</span>
+                  <span>🚑Veterinaria de Calidad🚑</span>
+                </div>
+              </section>
+          </div>
+        </div>
+    </section>
+    <section id="adopcion">
+      <div id="asistencia" class="modal">
+          <div class="modal-content">
+            <span id="close" class="close">&times;</span>
+            <h2>¿Quieres compañía para tu peludito?</h2>
+            <div class="textoadopcion">
+              <h3>🐾 Adopción Exclusiva para Miembros de Jurassic Bark 🐶</h3>
+              <p>En Jurassic Bark, creemos en segundas oportunidades y en el amor incondicional que un perrito puede brindar. Por eso, ofrecemos un programa exclusivo de adopción dirigido únicamente a nuestros miembros, asegurando que cada mascota encuentre un hogar lleno de cariño, responsabilidad y compromiso. <br>
+
+              <br>Nuestra iniciativa de adopción está diseñada para conectar a perritos rescatados con familias que realmente desean brindarles una vida digna y amorosa. Como miembro de Bucky’s Vet, recibirás información exclusiva sobre nuestras jornadas de adopción, donde podrás conocer a los peluditos disponibles y recibir asesoría personalizada sobre cuál podría ser el compañero ideal para tu familia.<br></p>
+              <h3>🐕 ¿Cómo funciona el proceso de adopción?</h3>
+              <p>✔ Solo para miembros: El programa de adopción está reservado para clientes registrados en nuestro plan de membresía. <br>
+                <br>✔ Convocatorias privadas: Las fechas y ubicaciones de las jornadas de adopción son enviadas exclusivamente a los miembros mediante correo electrónico y notificaciones privadas. <br>
+                <br>✔ Asesoría veterinaria: Cada perrito pasa por una revisión veterinaria completa antes de ser entregado a su nueva familia, asegurando su estado de salud y bienestar. <br>
+                <br>✔ Requisitos y seguimiento: Evaluamos a los adoptantes para garantizar que cada mascota llegue a un hogar estable y seguro. Además, ofrecemos seguimiento posterior a la adopción. <br></p>
+              <h3>🐶 Beneficios de adoptar con Jurassic Barks</h3>
+              <p>
+                ✅ Perritos vacunados, desparasitados y con chequeo médico previo. <br>
+                <br>✅ Asesoría personalizada para la integración de la mascota al nuevo hogar. <br>
+                <br>✅ Descuentos exclusivos en consultas y servicios veterinarios post-adopción. <br>
+                <br>Si eres miembro de Jurassic Barks y deseas darle una segunda oportunidad a un perrito, mantente atento a nuestras convocatorias privadas de adopción. Juntos, podemos cambiar vidas y darles un hogar lleno de amor. 💛🐾<br>
+              </p>
+              <p class="enfasis">📩 ¿Tienes dudas? Dale click al boton "Contactanos", escríbenos y te brindaremos toda la información necesaria. 🚀</p>
+            </div>
+            <section class="marquesina-petsupplies">
+              <div class="marquesina-contenedor">
+                <span>🐶 Labrador Retriever 🐶</span>
+                <span>🐕 Golden Retriever 🐕</span>
+                <span>🐾 Bulldog Francés 🐾</span>
+                <span>🦴 Pastor Alemán 🦴</span>
+                <span>🐕‍🦺 Border Collie 🐕‍🦺</span>
+                <span>🐾 Husky Siberiano 🐾</span>
+                <span>🏆 Rottweiler 🏆</span>
+                <span>🦮 Beagle 🦮</span>
+              </div>
+            </section>
+            <div class="serviciosvet">
+              <div class="boton">
+                <h3>Haz click en el botón para hacerte miembro de Jurassic Bark y darle la mejor experiencia a tu Peludito:</h3>
+                <button>Hacerme <br>de Miembro</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section id="daycare">
+      <div id="broading" class="modal">
+          <div class="modal-content">
+              <span id="close" class="close">&times;</span>
+              <h2>Planes de Broading y Daycare</h2>
+              <p class="parrafo">En Jurassic Barks, sabemos que a veces necesitas un lugar <b>seguro y confiable</b> donde dejar a tu peludito mientras trabajas o viajas. Por eso, ofrecemos servicios de Boarding (hospedaje) y Daycare (guardería diurna) <b>diseñados para el bienestar y la comodidad de tu mascota.</b></p>
+              <div id="serviciosdaycare">
+                <div class="serviciodaycare">
+                  <h3 class="name">1️⃣ Plan Día Feliz 🐶 <i>(Daycare Básico)</i>✂️</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Horario: 8:00 AM - 6:00 PM.</li>
+                      <li>✔ Socialización con otros perritos bajo supervisión.</li>
+                      <li>✔ Juegos dirigidos y paseos en zonas seguras.</li>
+                    </ul>
+                    <p>Costo: 30.000 COP/Día</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+                <div class="serviciodaycare">
+                  <h3 class="name">2️⃣ Plan Aventurero 🏃‍♂️ <i>(Daycare Plus)</i> 🦴</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Horario: 7:00 AM - 7:00 PM.</li>
+                      <li>✔ Todo lo del <i>Plan Día Feliz</i> + Caminatas adicionales.</li>
+                      <li>✔ Estimulación mental con juguetes interactivos.</li>
+                      <li>✔ Alimentación supervisada con opciones saludables.</li>
+                      <li>✔ Reporte con fotos y videos del día.</li>
+                    </ul>
+                    <p>Costo: 50.000 COP/Día</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+                <div class="serviciodaycare">
+                  <h3 class="name">3️⃣ Plan Vacaciones Tranquilas 🏡 <i>(Boarding Básico - 24h)</i> 🌙</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Hospedaje en instalaciones seguras y cómodas.</li>
+                      <li>✔ Alimentación personalizada según las necesidades del perrito.</li>
+                      <li>✔ Paseos y actividades recreativas diarias.</li>
+                      <li>✔ Supervisión veterinaria disponible 24/7.</li>
+                      <li>✔ Reporte diario a los dueños vía WhatsApp.</li>
+                    </ul>
+                    <p>Costo: 80.000 COP/Noche</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+                <div class="serviciodaycare">
+                  <h3 class="name">4️⃣ Plan VIP 🏆 <i>(Boarding Premium - 24h)</i> 🎖️</h3>
+                  <div class="tarjetadaycare">
+                    <ul>
+                      <li>✔ Todo lo del <i>Plan Vacaciones Tranquilas</i> + Suite privada.</li>
+                      <li>✔ Sesión de <b>grooming básica gratuita</b>.</li>
+                      <li>✔ Tiempo de juego personalizado con cuidadores.</li>
+                      <li>✔ Entrenamiento básico en obediencia.</li>
+                      <li>✔ Cámara en vivo para que puedas ver a tu perrito en todo momento.</li>
+                    </ul>
+                    <p>Costo: 120.000 COP/Noche</p>
+                    <button class="agregar">Añadir al Carrito</button>
+                  </div>
+                </div>
+              </div>
+              <section class="marquesina-petsupplies">
+                <div class="marquesina-contenedor">
+                  <span>🐶 Labrador Retriever 🐶</span>
+                  <span>🐕 Golden Retriever 🐕</span>
+                  <span>🐾 Bulldog Francés 🐾</span>
+                  <span>🦴 Pastor Alemán 🦴</span>
+                  <span>🐕‍🦺 Border Collie 🐕‍🦺</span>
+                  <span>🐾 Husky Siberiano 🐾</span>
+                  <span>🏆 Rottweiler 🏆</span>
+                  <span>🦮 Beagle 🦮</span>
+                </div>
+              </section>
+          </div>
+        </div>
+    </section>
+    <footer>
+      <div class="contenedor-footer">
+          <div class="footer-top">
+              <div class="logo-footer">
+                  <img src="Resources/logo.jpg" alt="Logo Jurassic Bark" />
+                  <h1 class="titulo">Jurassic Bark</h1>
+              </div>
+  
+              <div class="menu-footer">
+                  <div class="items-interes">
+                      <h3>Company</h3>
+                      <a href="#">About us</a>
+                      <a href="#">Our Team</a>
+                      <a href="#">Careers</a>
+                      <a href="#">Press</a>
+                  </div>
+                  <div class="items-interes">
+                      <h3>Services</h3>
+                      <a href="#">Pet Care</a>
+                      <a href="#">Vaccinations</a>
+                      <a href="#">Emergency</a>
+                      <a href="#">Wellness Plans</a>
+                  </div>
+                  <div class="items-interes">
+                      <h3>Resources</h3>
+                      <a href="#">Blog</a>
+                      <a href="#">FAQs</a>
+                      <a href="#">Pet Adoption</a>
+                      <a href="#">Insurance</a>
+                  </div>
+                  <div class="items-interes">
+                      <h3>Contact</h3>
+                      <a href="#">Help Center</a>
+                      <a href="#">Support</a>
+                      <a href="#">Appointments</a>
+                      <a href="#">Location</a>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="footer-bottom">
+            <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
+            <div class="redes-sociales">
+                <a href="#">
+                    <img src="Resources/1298738_facebook_brand_fb_logo_social media_icon.png" alt="Facebook">
+                </a>
+                <a href="#">
+                    <img src="Resources/1298747_instagram_brand_logo_social media_icon.png" alt="Instagram">
+                </a>
+                <a href="#">
+                    <img src="Resources/3225179_app_logo_media_popular_social_icon.png" alt="Whatsapp">
+                </a>
+                <a href="#">
+                    <img src="Resources/3225183_app_logo_media_popular_social_icon.png" alt="Twitter">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+</body>
+</html>
