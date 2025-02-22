@@ -52,8 +52,8 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public int getimagen() {
-        return edad;
+    public String getimagen() {
+        return imagen;
     }
 
     public void setimagen(String imagen) {
