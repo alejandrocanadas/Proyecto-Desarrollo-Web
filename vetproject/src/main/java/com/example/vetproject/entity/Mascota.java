@@ -7,15 +7,15 @@ public class Mascota {
     String tipo;
     String raza;
     int edad;
-    List<String> historialMedico;
+    String imagen;
 
     //constructores
-    public Mascota(String nombre, String tipo, String raza, int edad, List<String> historialMedico) {
+    public Mascota(String nombre, String tipo, String raza, int edad, String imagen) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.raza = raza;
         this.edad = edad;
-        this.historialMedico = historialMedico;
+        this.imagen = imagen;
     }
 
     //getters y setters
@@ -52,13 +52,12 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public List<String> getHistorialMedico() {
-        return historialMedico;
+    public int getimagen() {
+        return edad;
     }
 
-    public void setHistorialMedico(List<String> historialMedico) {
-        this.historialMedico = historialMedico;
+    public void setimagen(String imagen) {
+        this.imagen = imagen;
     }
-    
     
 }

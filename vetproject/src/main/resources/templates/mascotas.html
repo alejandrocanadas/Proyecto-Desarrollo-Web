@@ -32,9 +32,38 @@
         </nav>
     </header>
     
-    <main>
-        
-    </main>
+   
+
+
+
+
+
+
+
+
+        <main>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Raza</th>
+                        <th>Edad</th>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="mascota : ${mascotas}">
+                        <td><img th:src="${mascota.imagen}" alt="Imagen de mascota" width="100"></td>
+                        <td th:text="${mascota.nombre}"></td>
+                        <td th:text="${mascota.tipo}"></td>
+                        <td th:text="${mascota.raza}"></td>
+                        <td th:text="${mascota.edad}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
 
     <footer>
         <div class="contenedor-footer">
