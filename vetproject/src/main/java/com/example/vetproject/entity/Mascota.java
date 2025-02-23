@@ -7,17 +7,24 @@ public class Mascota {
     String tipo;
     String raza;
     int edad;
-    String imagen;
+    String imagenUrl;
 
     //constructores
-    public Mascota(String nombre, String tipo, String raza, int edad, String imagen) {
+    public Mascota(String nombre, String tipo, String raza, int edad, String imagenUrl) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.raza = raza;
         this.edad = edad;
-        this.imagen = imagen;
+        this.imagenUrl = imagenUrl; // Asegura que la URL esté bien
     }
 
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl; // Agregar la ruta correctamente
+    }
     //getters y setters
 
     public String getNombre() {
@@ -52,12 +59,6 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public String getimagen() {
-        return imagen;
-    }
-
-    public void setimagen(String imagen) {
-        this.imagen = imagen;
-    }
+ 
     
 }
