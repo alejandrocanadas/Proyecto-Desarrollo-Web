@@ -8,6 +8,7 @@
     <!-- Estilos personalizados (Header y Footer) -->
     <link rel="stylesheet" th:href="@{/styles/header.css}">
     <link rel="stylesheet" th:href="@{/styles/footer.css}">
+    <link rel="stylesheet" th:href="@{/styles/mascota/mascota.css}">
 
     <!-- Bootstrap CSS solo para la tabla -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,11 +58,23 @@
                     <td th:text="${mascota.raza}"></td>
                     <td th:text="${mascota.edad}"></td>
                     <td class="align-middle">
-                        <img th:src="${mascota.imagenUrl}" alt="Imagen de mascota" class="img-fluid rounded mx-auto d-block" width="100">
+                        <img th:src="${mascota.imagenUrl}" alt="mascota" class="img-fluid rounded mx-auto d-block" width="100">
                     </td>
                 </tr>
             </tbody>
         </table>
+        <section class="marquesina-petsupplies">
+            <div class="marquesina-contenedor">
+              <span>🐶 Labrador Retriever 🐶</span>
+              <span>🐕 Golden Retriever 🐕</span>
+              <span>🐾 Bulldog Francés 🐾</span>
+              <span>🦴 Pastor Alemán 🦴</span>
+              <span>🐕‍🦺 Border Collie 🐕‍🦺</span>
+              <span>🐾 Husky Siberiano 🐾</span>
+              <span>🏆 Rottweiler 🏆</span>
+              <span>🦮 Beagle 🦮</span>
+            </div>
+        </section>
     </main>
     
 
@@ -109,17 +122,21 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
                 <div class="redes-sociales">
-                    <a href="#"><img th:src="@{/resources/1298738_facebook.png}" alt="Facebook"></a>
-                    <a href="#"><img th:src="@{/resources/1298747_instagram.png}" alt="Instagram"></a>
-                    <a href="#"><img th:src="@{/resources/3225179_whatsapp.png}" alt="Whatsapp"></a>
-                    <a href="#"><img th:src="@{/resources/3225183_twitter.png}" alt="Twitter"></a>
+                    <a href="#">
+                    <img src="Resources/1298738_facebook_brand_fb_logo_social media_icon.png" alt="Facebook">
+                </a>
+                <a href="#">
+                    <img src="Resources/1298747_instagram_brand_logo_social media_icon.png" alt="Instagram">
+                </a>
+                <a href="#">
+                    <img src="Resources/3225179_app_logo_media_popular_social_icon.png" alt="Whatsapp">
+                </a>
+                <a href="#">
+                    <img src="Resources/3225183_app_logo_media_popular_social_icon.png" alt="Twitter">
+                </a>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Bootstrap JS solo al final -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

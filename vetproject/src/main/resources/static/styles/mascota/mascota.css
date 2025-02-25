@@ -1,0 +1,69 @@
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+.table thead {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.table-bordered {
+    border-radius: 15px;
+    overflow: hidden;
+}
+.table thead tr:first-child th:first-child {
+    border-top-left-radius: 15px;
+}
+.table thead tr:first-child th:last-child {
+    border-top-right-radius: 15px;
+}
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+h2{
+    color: #122732;
+    background: #C9DCE8;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    margin: 0 auto;
+}
+a{
+    color: #122732 !important;
+    text-decoration: none !important;
+}
+.items-interes a{
+    color: #C9DCE8 !important;
+}
+.marquesina-petsupplies {
+    background-color: #C9DCE8;
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #122732;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.marquesina-contenedor {
+    display: flex;
+    gap: 32px;
+    animation: scrollText 20s linear infinite;
+    width: 100%;
+    white-space: nowrap;
+}
+/* Animación de desplazamiento */
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
