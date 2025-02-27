@@ -1,9 +1,14 @@
 .table {
     border-collapse: separate;
     border-spacing: 0;
+    border: none !important;
     border-radius: 15px;
     overflow: hidden;
     padding-bottom: 20px;
+}
+table th, table td {
+    border: none; /* Elimina los bordes de cada celda */
+    padding: 12px; /* Espaciado interno */
 }
 .table thead {
     border-top-left-radius: 15px;
@@ -34,6 +39,7 @@ h2{
     margin: 0 auto;
     font-weight: 900 !important;
     border-radius: 15px;
+    margin-top: -30px !important;
 }
 a{
     color: #122732 !important;
@@ -51,6 +57,7 @@ a{
     color: #122732;
     font-weight: bold;
     font-size: 20px;
+    margin-left: -20px;
 }
 
 .marquesina-contenedor {

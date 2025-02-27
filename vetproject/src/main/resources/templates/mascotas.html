@@ -53,12 +53,12 @@
             </thead>
             <tbody>
                 <tr th:each="mascota : ${mascotas}">
-                    <td>
+                    <td class="align-middle">
                         <a th:href="@{/mascota/find/{id}(id=${mascota.id})}" th:text="${mascota.nombre}"></a>
                     </td>
-                    <td th:text="${mascota.tipo}"></td>
-                    <td th:text="${mascota.raza}"></td>
-                    <td th:text="${mascota.edad}"></td>
+                    <td class="align-middle" th:text="${mascota.tipo}"></td>
+                    <td class="align-middle" th:text="${mascota.raza}"></td>
+                    <td class="align-middle" th:text="${mascota.edad}"></td>
                     <td class="align-middle">
                         <img th:src="${mascota.imagenUrl}" alt="mascota" class="img-fluid rounded mx-auto d-block" width="100">
                     </td>
