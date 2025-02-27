@@ -18,7 +18,6 @@ public class MascotaRepository {
         mascotas.put(3, new Mascota("Bella", "Perro", "Bulldog Francés", 2, "https://www.zooplus.es/magazine/wp-content/uploads/2019/06/franz%C3%B6sische-bulldogge-1024x683.jpg" ));
         mascotas.put(4, new Mascota("Rocky", "Perro", "Pastor Alemán", 5, "https://www.zooplus.es/magazine/wp-content/uploads/2019/03/deutscher-sch%C3%A4ferhund.jpg" ));
         mascotas.put(5, new Mascota("Toby", "Perro", "Beagle", 1, "https://www.zooplus.es/magazine/wp-content/uploads/2017/10/Beagle-1.jpg" ));
-
         mascotas.put(6, new Mascota("Milo", "Gato", "Persa", 3, "https://cdn.wamiz.fr/cdn-cgi/image/format=auto,quality=80,width=1200,height=900,fit=cover/article/main-picture/60479ae773a23365656927.jpg" ));
         mascotas.put(7, new Mascota("Simba", "Gato", "Siamés", 4, "https://www.purina.es/sites/default/files/styles/ttt_image_510/public/2024-02/sitesdefaultfilesstylessquare_medium_440x440public2022-06Siamese201.jpg?itok=j9A2IvjN" ));
         mascotas.put(8, new Mascota("Oliver", "Gato", "Maine Coon", 2, "https://www.zooplus.es/magazine/wp-content/uploads/2018/08/maine-coon-3.jpg" ));

@@ -29,9 +29,11 @@ h2{
     color: #122732;
     background: #C9DCE8;
     padding: 20px;
-    max-width: 300px;
+    max-width: 400px;
     text-align: center;
     margin: 0 auto;
+    font-weight: 900 !important;
+    border-radius: 15px;
 }
 a{
     color: #122732 !important;
