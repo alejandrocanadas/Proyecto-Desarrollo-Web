@@ -1,0 +1,35 @@
+.container{
+    margin-bottom: 60px;
+    top: 0;
+    border: 5px solid #FBBC08;
+    border-radius: 15px;
+    padding: 15px;
+    width: 600px;
+}
+.card{
+    border: 5px solid #122732;
+}
+.text-center{
+    font-size: 50px;
+    font-weight: 900;
+}
+.card-title{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+.card-text{
+    background-color: #C9DCE8;
+    padding: 10px;
+    border-radius: 15px;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}
+.btn:hover{
+    transform: scale(1.1);
+}
+span{
+    font-style: italic;
+}

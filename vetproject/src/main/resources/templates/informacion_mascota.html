@@ -20,20 +20,20 @@
                 <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
                 <span class="subtitulo">Jurassic Bark Vet</span>
             </div>
-            <a th:href="@{/}" class="contacto-btn">Volver a Inicio</a>
+            <a th:href="@{/mascotas}" class="contacto-btn">Volver</a>
         </nav>
     </header>
 
     <main class="container mt-5">
         <h2 class="text-center mb-4">Detalles de Mascota</h2>
 
-        <div class="card mx-auto" style="width: 24rem;">
+        <div class="card mx-auto card-body" style="width: 24rem;">
             <img th:src="${mascota.imagenUrl}" class="card-img-top" alt="Imagen de mascota">
             <div class="card-body">
                 <h5 class="card-title" th:text="${mascota.nombre}"></h5>
                 <p class="card-text"><strong>Tipo:</strong> <span th:text="${mascota.tipo}"></span></p>
                 <p class="card-text"><strong>Raza:</strong> <span th:text="${mascota.raza}"></span></p>
-                <p class="card-text"><strong>Edad:</strong> <span th:text="${mascota.edad}"></span> años</p>
+                <p class="card-text"><strong>Edad:</strong> <span th:text="${mascota.edad}"></span> <i>años</i></p>
                 <a th:href="@{/mascota/all}" class="btn btn-primary">Volver a la lista</a>
             </div>
         </div>
