@@ -54,7 +54,7 @@
             <tbody>
                 <tr th:each="mascota : ${mascotas}">
                     <td>
-                         <a th:href="@{find/${myMap[id]}}" th:text="${mascota.nombre}"></a>
+                        <a th:href="@{/mascota/find/{id}(id=${mascota.id})}" th:text="${mascota.nombre}"></a>
                     </td>
                     <td th:text="${mascota.tipo}"></td>
                     <td th:text="${mascota.raza}"></td>

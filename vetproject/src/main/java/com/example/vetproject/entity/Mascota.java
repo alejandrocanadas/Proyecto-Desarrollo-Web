@@ -3,6 +3,7 @@ package com.example.vetproject.entity;
 import java.util.List;
 
 public class Mascota {
+    int id;
     String nombre;
     String tipo;
     String raza;
@@ -10,7 +11,8 @@ public class Mascota {
     String imagenUrl;
 
     //constructores
-    public Mascota(String nombre, String tipo, String raza, int edad, String imagenUrl) {
+    public Mascota(int id, String nombre, String tipo, String raza, int edad, String imagenUrl) {
+        this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.raza = raza;
@@ -38,7 +40,9 @@ public class Mascota {
     public String getTipo() {
         return tipo;
     }
-
+    public int getId() {
+        return id;
+    }
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
