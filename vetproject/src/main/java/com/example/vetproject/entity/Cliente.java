@@ -9,12 +9,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 
 @Entity
 @Table(name = "CLIENT_TABLE")
 public class Cliente {
     @OneToMany(mappedBy = "cliente")
-    private List<Mascota> mascotas = new ArrayList<Mascota>(); 
+    private List<Mascota> mascotas; 
 
     @Id
     @GeneratedValue
@@ -26,14 +28,15 @@ public class Cliente {
     private String email;
     private String contrasena;
 
-    public Cliente(String id, String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
-        this.id = Long.parseLong(id);
+    public Cliente(Long id, String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
+        this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
         this.contrasena = contrasena;
+        this.mascotas = new ArrayList<>();
     }
 
     public Cliente (String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
@@ -43,6 +46,7 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
         this.contrasena = contrasena;
+        this.mascotas = new ArrayList<>();
         // Constructor sin id
     }
 
@@ -110,6 +114,7 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    
-
+    public void addMascota(Mascota mascota) {
+        this.mascotas.add(mascota);
+    }
 }
