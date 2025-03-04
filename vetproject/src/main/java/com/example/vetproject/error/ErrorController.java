@@ -1,4 +1,4 @@
-package com.example.vetproject.error;
+/* package com.example.vetproject.error;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,3 +13,4 @@ public class ErrorController {
         return "error.html";
     }
 }
+*/

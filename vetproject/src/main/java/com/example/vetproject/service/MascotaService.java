@@ -9,8 +9,14 @@ import com.example.vetproject.entity.Mascota;
 @Service
 public interface MascotaService {
 
-    public Mascota SearchById(int id);
+    public Mascota SearchById(Long id);
 
     public Collection<Mascota> SeachAll();
+
+    public void deleteById(Long id);
+
+    public void update(Mascota mascota);
+
+    public void add(Mascota mascota);
     
 } 

@@ -1,17 +1,17 @@
-package com.example.vetproject.error;
+/*package com.example.vetproject.error;
 
 public class NotFoundException extends RuntimeException {
-    private int id;
+    private Long id;
 
-    public NotFoundException(int id) {
+    public NotFoundException(Long id) {
         this.id = id;
     }   
 
-    int getId() {
+    Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-}
+}*/

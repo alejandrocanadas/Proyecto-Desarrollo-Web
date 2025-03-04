@@ -21,15 +21,39 @@ public class MascotaController {
     MascotaService mascotaService;
 
     @GetMapping("/find/{id}")
-    public String InformacionMascota(Model model, @PathVariable("id") int id) {
-         model.addAttribute("mascota", mascotaService.SearchById(id));
-         return "informacion_mascota.html";
+    public String InformacionMascota(Model model, @PathVariable("id") Long id) {       
+        model.addAttribute("mascota", mascotaService.SearchById(id));
+        return "informacion_mascota.html";
     }
 
     @GetMapping("/all")
     public String MostrarMascotas(Model model) {
         model.addAttribute("mascotas", mascotaService.SeachAll());
         return "mascotas.html";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String EliminarMascota(@PathVariable("id") Long id) {
+        mascotaService.deleteById(id);
+        return "redirect:/mascota/all";
+    }
+
+    @GetMapping("/update/{id}")
+    public String ActualizarMascota(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("mascota", mascotaService.SearchById(id));
+        return "mascota_forms.html";
+    }
+
+    @GetMapping("/update")
+    public String ActualizarMascota(Mascota mascota) {
+        mascotaService.update(mascota);
+        return "redirect:/mascota/all";
+    }
+
+    @GetMapping("/add")
+    public String AgregarMascota(Model model) {
+        model.addAttribute("mascota", new Mascota());
+        return "mascota_forms.html";
     }
     
 }

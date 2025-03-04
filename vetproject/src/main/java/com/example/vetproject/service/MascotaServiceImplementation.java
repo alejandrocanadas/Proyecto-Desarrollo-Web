@@ -14,13 +14,28 @@ public class MascotaServiceImplementation implements MascotaService{
     MascotaRepository mascotaRepository;    
 
     @Override
-    public Mascota SearchById(int id) {
-        return mascotaRepository.findById(id);
+    public Mascota SearchById(Long id) {
+        return mascotaRepository.findById(id).get();
     }
 
     @Override
     public Collection<Mascota> SeachAll() {
         return mascotaRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        mascotaRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(Mascota mascota) {
+        mascotaRepository.save(mascota);
+    }
+
+    @Override
+    public void add(Mascota mascota) {
+        mascotaRepository.save(mascota);
     }
     
 }

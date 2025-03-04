@@ -1,0 +1,32 @@
+2025-03-03 14:35:58.627215-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create global temporary table HTE_client_table(rn_ integer not null, id bigint, apellido varchar(255), email varchar(255), nombre varchar(255), password varchar(255), telefono varchar(255), [*]user varchar(255), primary key (rn_)) TRANSACTIONAL"; expected "identifier"; SQL statement:
+create global temporary table HTE_client_table(rn_ integer not null, id bigint, apellido varchar(255), email varchar(255), nombre varchar(255), password varchar(255), telefono varchar(255), user varchar(255), primary key (rn_)) TRANSACTIONAL [42001-232]
+2025-03-03 14:35:59.126826-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table client_table (\000d\000a        id bigint not null,\000d\000a        apellido varchar(255),\000d\000a        email varchar(255),\000d\000a        nombre varchar(255),\000d\000a        password varchar(255),\000d\000a        telefono varchar(255),\000d\000a        [*]user varchar(255),\000d\000a        primary key (id)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table client_table (
+        id bigint not null,
+        apellido varchar(255),
+        email varchar(255),
+        nombre varchar(255),
+        password varchar(255),
+        telefono varchar(255),
+        user varchar(255),
+        primary key (id)
+    ) [42001-232]
+2025-03-03 14:35:59.160019-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CLIENT_TABLE" not found; SQL statement:
+
+    alter table if exists pets_table 
+       add constraint FKevt3v0i33pqi7reiembnl5j6o 
+       foreign key (cliente_id) 
+       references client [42102-232]
+2025-03-03 14:36:03.032889-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CLIENT_TABLE" not found; SQL statement:
+insert into client_table (apellido,email,nombre,password,telefono,user,id) values (?,?,?,?,?,?,?) [42102-232]
+2025-03-03 14:41:05.345844-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CLIENT_TABLE CLIENT_TABLE [*]CLIENT_TABLE"; SQL statement:
+SELECT * FROM CLIENT_TABLE CLIENT_TABLE CLIENT_TABLE [42000-232]
+2025-03-03 14:43:13.023024-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CLIENTE" not found; SQL statement:
+SELECT * FROM cliente WHERE LOWER(nombre) LIKE '%m%' [42102-232]
