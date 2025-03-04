@@ -39,12 +39,13 @@ public class Mascota {
     }
 
     //constructor sin id
-    public Mascota(String nombre, String tipo, String raza, int edad, String imagenUrl) {
+    public Mascota(String nombre, String tipo, String raza, int edad, String imagenUrl, Cliente cliente) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.raza = raza;
         this.edad = edad;
-        this.imagenUrl = imagenUrl; 
+        this.imagenUrl = imagenUrl;
+        this.cliente = cliente;
     }
 
     //constructor vacío
