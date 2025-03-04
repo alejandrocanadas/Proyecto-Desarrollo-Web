@@ -30,9 +30,9 @@
         <div class="card mx-auto card-body" style="width: 24rem;">
             <div class="card-body">
                 <h5 class="card-title" th:text="${cliente.nombre}"></h5>
-                <p class="card-text"><strong>Apellido:</strong> <span th:text="${cliente.apellidp}"></span></p>
+                <p class="card-text"><strong>Apellido:</strong> <span th:text="${cliente.apellido}"></span></p>
                 <p class="card-text"><strong>email:</strong> <span th:text="${cliente.email}"></span></p>
-                <p class="card-text"><strong>telefono:</strong> <span th:text="${cliente.telefono}"></span> <strong>años</strong></p>
+                <p class="card-text"><strong>telefono:</strong> <span th:text="${cliente.telefono}"></span></p>
                 <a th:href="@{/cliente/all}" class="btn btn-primary">Volver a la lista</a>
             </div>
         </div>

@@ -1,0 +1,6 @@
+2025-03-03 20:37:07.657570-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CLIENTS_TABLE" not found; SQL statement:
+SELECT * FROM CLIENTS_TABLE [42102-232]
+2025-03-03 20:39:56.629358-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PET_TABLE" not found; SQL statement:
+SELECT * FROM PET_TABLE [42102-232]

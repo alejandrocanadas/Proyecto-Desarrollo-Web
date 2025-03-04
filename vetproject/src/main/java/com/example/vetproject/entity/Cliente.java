@@ -19,7 +19,6 @@ public class Cliente {
     @Id
     @GeneratedValue
     private Long id;
-
     private String nombre;
     private String usuario;
     private String apellido;
@@ -49,6 +48,10 @@ public class Cliente {
 
     public Cliente(){
         // Constructor vacío
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public List<Mascota> getMascotas() {

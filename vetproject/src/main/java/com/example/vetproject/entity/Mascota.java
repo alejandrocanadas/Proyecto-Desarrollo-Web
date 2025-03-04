@@ -2,6 +2,9 @@ package com.example.vetproject.entity;
 
 import java.util.List;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,6 +25,7 @@ public class Mascota {
     private String imagenUrl;
 
     @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     //constructores
