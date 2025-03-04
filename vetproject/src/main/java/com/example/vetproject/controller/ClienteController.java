@@ -51,9 +51,10 @@ public class ClienteController {
         return "cliente_forms.html";
     }
 
-    @PostMapping("/cliente-form")
-    public String crearCliente(@ModelAttribute("cliente") Cliente cliente) {
-        clienteService.add(cliente);
+    @PostMapping("/add")
+    public String GuardarCliente(@ModelAttribute Cliente cliente) {
+        System.out.println("Intentando guardar cliente...");
+        clienteService.add(cliente); 
         return "redirect:/clientes/all";
     }
 }
