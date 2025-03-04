@@ -22,16 +22,16 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Cliente juan = clienteRepository.save(new Cliente("Juan", "juan123", "Pérez", "3001234567", "juan.perez@example.com", "password123"));
-        Cliente maria = clienteRepository.save(new Cliente("María", "maria99", "Gómez", "3107654321", "maria.gomez@example.com", "mariaPass99"));
-        Cliente carlos = clienteRepository.save(new Cliente("Carlos", "carlosx", "Rodríguez", "3209876543", "carlos.rod@example.com", "carlitos2023"));
-        Cliente ana = clienteRepository.save(new Cliente("Ana", "anita20", "López", "3015678901", "ana.lopez@example.com", "anaSuperPwd"));
-        Cliente luis = clienteRepository.save(new Cliente("Luis", "luisito", "Martínez", "3154321098", "luis.mtz@example.com", "luisPass321"));
-        Cliente elena = clienteRepository.save(new Cliente("Elena", "elenaQ", "Quintero", "3056789123", "elena.quintero@example.com", "elenaSegura"));
-        Cliente ricardo = clienteRepository.save(new Cliente("Ricardo", "ricko", "Fernández", "3123456789", "ricardo.fernandez@example.com", "rickPass123"));
-        Cliente sofia = clienteRepository.save(new Cliente("Sofía", "sofycool", "Ramírez", "3221098765", "sofia.ram@example.com", "sof123456"));
-        Cliente fernando = clienteRepository.save(new Cliente("Fernando", "fercho", "Castro", "3045678912", "fernando.castro@example.com", "ferPassword"));
-        Cliente gabriela = clienteRepository.save(new Cliente("Gabriela", "gabi99", "Mendoza", "3112233445", "gabriela.mendoza@example.com", "gabiPass123"));
+        Cliente juan = new Cliente("Juan", "juan123", "Pérez", "3001234567", "juan.perez@example.com", "password123");
+        Cliente maria = new Cliente("María", "maria99", "Gómez", "3107654321", "maria.gomez@example.com", "mariaPass99");
+        Cliente carlos = new Cliente("Carlos", "carlosx", "Rodríguez", "3209876543", "carlos.rod@example.com", "carlitos2023");
+        Cliente ana = new Cliente("Ana", "anita20", "López", "3015678901", "ana.lopez@example.com", "anaSuperPwd");
+        Cliente luis = new Cliente("Luis", "luisito", "Martínez", "3154321098", "luis.mtz@example.com", "luisPass321");
+        Cliente elena = new Cliente("Elena", "elenaQ", "Quintero", "3056789123", "elena.quintero@example.com", "elenaSegura");
+        Cliente ricardo = new Cliente("Ricardo", "ricko", "Fernández", "3123456789", "ricardo.fernandez@example.com", "rickPass123");
+        Cliente sofia = new Cliente("Sofía", "sofycool", "Ramírez", "3221098765", "sofia.ram@example.com", "sof123456");
+        Cliente fernando = new Cliente("Fernando", "fercho", "Castro", "3045678912", "fernando.castro@example.com", "ferPassword");
+        Cliente gabriela = new Cliente("Gabriela", "gabi99", "Mendoza", "3112233445", "gabriela.mendoza@example.com", "gabiPass123");
         
         clienteRepository.save(juan);
         clienteRepository.save(maria);
