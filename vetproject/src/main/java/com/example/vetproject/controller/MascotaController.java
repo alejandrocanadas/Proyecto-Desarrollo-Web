@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.vetproject.entity.Mascota;
+import com.example.vetproject.error.NotFoundException;
 import com.example.vetproject.service.MascotaService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,15 @@ public class MascotaController {
     MascotaService mascotaService;
 
     @GetMapping("/find/{id}")
-    public String InformacionMascota(Model model, @PathVariable("id") Long id) {       
-        model.addAttribute("mascota", mascotaService.SearchById(id));
+    public String InformacionMascota(Model model, @PathVariable("id") Long id) {   
+        Mascota mascota = mascotaService.SearchById(id);   
+        if (mascota != null) {
+            model.addAttribute("mascota", mascotaService.SearchById(id));
+        }
+        else
+        {
+            throw new NotFoundException(id);
+        }
         return "informacion_mascota.html";
     }
 

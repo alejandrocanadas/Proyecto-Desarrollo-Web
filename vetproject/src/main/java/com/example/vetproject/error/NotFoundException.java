@@ -1,4 +1,4 @@
-/*package com.example.vetproject.error;
+package com.example.vetproject.error;
 
 public class NotFoundException extends RuntimeException {
     private Long id;
@@ -14,4 +14,4 @@ public class NotFoundException extends RuntimeException {
     public void setId(Long id) {
         this.id = id;
     }
-}*/
+}
