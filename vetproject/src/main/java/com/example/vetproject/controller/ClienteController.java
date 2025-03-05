@@ -45,6 +45,12 @@ public class ClienteController {
         return "cliente_forms.html";
     }
 
+    @PostMapping("/update/{id}")
+    public String ActualizarCliente(@ModelAttribute Cliente cliente) {
+        clienteService.update(cliente);
+        return "redirect:/clientes/all";
+    }
+
     @GetMapping("/add")
     public String AgregarCliente(Model model) {
         model.addAttribute("cliente", new Cliente());

@@ -4,49 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <link rel="stylesheet" th:href="@{/styles/header.css}">
-    <link rel="stylesheet" th:href="@{/styles/footer.css}">
-    <link rel="stylesheet" th:href="@{/styles/forms/formularios.css}">
 </head>
 <header>
     <nav id="menu">
         <div class="logo">
             <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
             <span class="subtitulo">Jurassic Bark Vet</span>
+            <link rel="stylesheet" th:href="@{/styles/header.css}">
+            <link rel="stylesheet" th:href="@{/styles/footer.css}">
+            <link rel="stylesheet" th:href="@{/styles/forms/formularios.css}">
         </div>
         <a th:href="@{/mascotas}" class="contacto-btn">Volver</a>
     </nav>
 </header>
 <body>
     <main>
-        <section id="RegistrarCliente">
-            <div id="formularioCliente">
-                <form th:object="${cliente}" th:action="@{/clientes/add}" method="post">
+        <section id="ActualizarMascota">
+            <div id="formularioMascota">
+                <form th:object="${mascota}" th:action="@{/mascota/update}" method="post">
+                    <input type="hidden" th:field="*{id}">
                     <fieldset>
-                        <legend class="titulo">Registrar Cliente</legend>
-    
-                        <label for="nombre" class="subtitulo">Nombre</label>
-                        <input th:field="*{nombre}" type="text" placeholder="Nombre" class="input" id="nombre" required>
-    
-                        <label for="apellido" class="subtitulo">Apellido</label>
-                        <input th:field="*{apellido}" type="text" placeholder="Apellido" class="input" id="apellido" required>
-    
-                        <label for="usuario" class="subtitulo">Usuario</label>
-                        <input th:field="*{usuario}" type="text" placeholder="Usuario" class="input" id="usuario" required>
-    
-                        <label for="telefono" class="subtitulo">Teléfono</label>
-                        <input th:field="*{telefono}" type="tel" placeholder="Teléfono" class="input" id="telefono" required>
-    
-                        <label for="email" class="subtitulo">Correo Electrónico</label>
-                        <input th:field="*{email}" type="email" placeholder="Correo" class="input" id="email" required>
-    
-                        <label for="contrasena" class="subtitulo">Contraseña</label>
-                        <input th:field="*{contrasena}" type="password" placeholder="Contraseña" class="input" id="contrasena" required>
-    
-                        <button id="enviarCliente" type="submit">Registrar Cliente</button>
+                        <legend class="titulo">Actualizar Mascota</legend>
+                
+                        <label for="nombreMascota" class="subtitulo">Nombre</label>
+                        <input th:field="*{nombre}" type="text" placeholder="Nombre" class="input" id="nombreMascota" required>
+                
+                        <label for="tipo" class="subtitulo">Tipo</label>
+                        <select th:field="*{tipo}" class="input" id="tipo" required>
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                        </select>
+                
+                        <label for="raza" class="subtitulo">Raza</label>
+                        <input th:field="*{raza}" type="text" placeholder="Raza" class="input" id="raza" required>
+                
+                        <label for="edad" class="subtitulo">Edad</label>
+                        <input th:field="*{edad}" type="number" placeholder="Edad" class="input" id="edad" required>
+                
+                        <label for="imagenUrl" class="subtitulo">URL de la Imagen</label>
+                        <input th:field="*{imagenUrl}" type="url" placeholder="Imagen URL" class="input" id="imagenUrl">
+                
+                        <button id="enviarMascota" type="submit">Actualizar Mascota</button>
                     </fieldset>
-                </form>
+                </form>                
             </div>
         </section>
     </main>

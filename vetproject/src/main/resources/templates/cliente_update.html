@@ -23,8 +23,9 @@
         <section id="RegistrarCliente">
             <div id="formularioCliente">
                 <form th:object="${cliente}" th:action="@{/clientes/add}" method="post">
+                    <input type="hidden" th:field="*{id}">
                     <fieldset>
-                        <legend class="titulo">Registrar Cliente</legend>
+                        <legend class="titulo">Actualizar Cliente</legend>
     
                         <label for="nombre" class="subtitulo">Nombre</label>
                         <input th:field="*{nombre}" type="text" placeholder="Nombre" class="input" id="nombre" required>
@@ -44,7 +45,7 @@
                         <label for="contrasena" class="subtitulo">Contraseña</label>
                         <input th:field="*{contrasena}" type="password" placeholder="Contraseña" class="input" id="contrasena" required>
     
-                        <button id="enviarCliente" type="submit">Registrar Cliente</button>
+                        <button id="enviarCliente" type="submit">Actualizar Cliente</button>
                     </fieldset>
                 </form>
             </div>

@@ -5,30 +5,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Mascota;
 import com.example.vetproject.error.NotFoundException;
 import com.example.vetproject.service.MascotaService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 @RequestMapping("/mascota")
 public class MascotaController {
-    
+
     @Autowired
     MascotaService mascotaService;
 
     @GetMapping("/find/{id}")
-    public String InformacionMascota(Model model, @PathVariable("id") Long id) {   
-        Mascota mascota = mascotaService.SearchById(id);   
+    public String InformacionMascota(Model model, @PathVariable("id") Long id) {
+        Mascota mascota = mascotaService.SearchById(id);
         if (mascota != null) {
             model.addAttribute("mascota", mascotaService.SearchById(id));
-        }
-        else
-        {
+        } else {
             throw new NotFoundException(id);
         }
         return "informacion_mascota.html";
@@ -48,12 +48,16 @@ public class MascotaController {
 
     @GetMapping("/update/{id}")
     public String ActualizarMascota(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("mascota", mascotaService.SearchById(id));
-        return "mascota_forms.html";
+        Mascota mascota = mascotaService.SearchById(id);
+        if (mascota == null) {
+            throw new NotFoundException(id);
+        }
+        model.addAttribute("mascota", mascota);
+        return "mascota_update.html";
     }
 
-    @GetMapping("/update")
-    public String ActualizarMascota(Mascota mascota) {
+    @PostMapping("/update")
+    public String ActualizarMascota(@ModelAttribute Mascota mascota) {
         mascotaService.update(mascota);
         return "redirect:/mascota/all";
     }
@@ -63,5 +67,11 @@ public class MascotaController {
         model.addAttribute("mascota", new Mascota());
         return "mascota_forms.html";
     }
-    
+
+    @PostMapping("/add")
+    public String GuardarMascota(@ModelAttribute Mascota mascota) {
+        System.out.println("Intentando guardar cliente...");
+        mascotaService.add(mascota);
+        return "redirect:/mascota/all";
+    }
 }

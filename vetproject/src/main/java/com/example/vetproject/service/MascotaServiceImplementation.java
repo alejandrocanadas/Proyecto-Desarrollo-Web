@@ -30,6 +30,9 @@ public class MascotaServiceImplementation implements MascotaService{
 
     @Override
     public void update(Mascota mascota) {
+        if (mascota.getId() == null || !mascotaRepository.existsById(mascota.getId())) {
+            throw new IllegalArgumentException("La mascota con ID " + mascota.getId() + " no existe y no puede ser actualizada.");
+        }
         mascotaRepository.save(mascota);
     }
 
