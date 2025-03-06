@@ -75,5 +75,6 @@ public class DataBaseInit implements ApplicationRunner {
         mascotaRepository.save(nala);
         mascotaRepository.save(felix);
         
+
     }
 }

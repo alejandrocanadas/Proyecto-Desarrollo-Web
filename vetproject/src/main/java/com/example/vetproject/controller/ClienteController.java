@@ -1,5 +1,7 @@
 package com.example.vetproject.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,5 +64,24 @@ public class ClienteController {
         System.out.println("Intentando guardar cliente...");
         clienteService.add(cliente); 
         return "redirect:/clientes/all";
+    }
+
+    @GetMapping("/login")
+    public String MostrarLogin(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "login.html";
+    }
+    
+
+    @PostMapping("/login")
+    public String Login(@RequestParam("usuario") String usuario, @RequestParam("contrasena") String password, Model model) {
+        Cliente cliente = clienteService.authenticate(usuario, password);
+        if (cliente != null) {
+            model.addAttribute("cliente", cliente);
+            return "mascotas_usuario.html";
+        }
+        else {
+            return "redirect:/clientes/login";
+        }
     }
 }

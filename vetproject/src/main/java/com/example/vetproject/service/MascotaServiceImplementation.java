@@ -1,6 +1,7 @@
 package com.example.vetproject.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,11 @@ public class MascotaServiceImplementation implements MascotaService{
     @Override
     public void add(Mascota mascota) {
         mascotaRepository.save(mascota);
+    }
+
+    @Override
+    public List<Mascota> obtenerMascotasPorCliente(Long clienteId) {
+        return mascotaRepository.findByClienteId(clienteId);
     }
     
 }

@@ -12,5 +12,5 @@ import com.example.vetproject.entity.Mascota;
 
 @Repository
 public interface MascotaRepository extends JpaRepository<Mascota, Long> { 
-
+    List<Mascota> findByClienteId(Long clienteId);
 } 

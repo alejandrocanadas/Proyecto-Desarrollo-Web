@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurassic Bark Vet</title>
+
+    <!-- Estilos personalizados (Header y Footer) -->
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/footer.css}">
+    <link rel="stylesheet" th:href="@{/styles/mascota/mascota.css}">
+
+    <!-- Bootstrap CSS solo para la tabla -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Script personalizado -->
+    <script th:src="@{/functions/header/header.js}" defer></script>
+</head>
+<body>
+
+    <!-- Header con tu CSS personalizado -->
+    <header>
+        <nav id="menu">
+            <div class="logo">
+                <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
+                <span class="subtitulo">Jurassic Bark Vet</span>
+            </div>
+            <button class="menu-hamburguesa">&#9776;</button>
+            <ul class="items-navegacion">
+                <li><a class="items" th:href="@{/}">Inicio</a></li>
+                <li><a class="items" th:href="@{/sobre-nosotros}">Sobre Nosotros</a></li>
+                <li><a class="items" th:href="@{/servicios}">Servicios</a></li>
+                <li><a class="items" th:href="@{/reserva}">Reserva online</a></li>
+            </ul>
+            <a th:href="@{/}" class="contacto-btn">Volver a Inicio</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container mt-5">
+        <h2 class="text-center mb-4">Mis Mascotas</h2>
+    
+        <!-- Tabla con Bootstrap -->
+        <table class="table table-striped table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="mascota : ${mascotas}">
+                    <td class="align-middle">
+                        <a th:href="@{/mascota/find/{id}(id=${mascota.getCliente().getId()})}" th:text="${mascota.nombre}"></a>
+                    </td>
+                    <td class="align-middle" th:text="${mascota.tipo}"></td>
+                    <td class="align-middle" th:text="${mascota.raza}"></td>
+                    <td class="align-middle" th:text="${mascota.edad}"></td>
+                    <td class="align-middle">
+                        <img th:src="${mascota.imagenUrl}" alt="mascota" class="img-fluid rounded mx-auto d-block" width="100">
+                    </td>
+                    <td class="align-middle">
+                        <a th:href="@{/mascota/update/{id}(id=${mascota.id})}" class="btn btn-primary btn-sm">
+                            📝 Editar
+                        </a>
+                        <a th:href="@{/mascota/delete/{id}(id=${mascota.id})}" class="btn btn-danger btn-sm" 
+                            onclick="return confirm('¿Seguro que deseas eliminar esta mascota?');">
+                            🗑️ Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>            
+        </table>
+    </main>
+    
+    
+
+    <!-- Footer con tu CSS personalizado -->
+    <footer>
+        <div class="contenedor-footer">
+            <div class="footer-top">
+                <div class="logo-footer">
+                    <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
+                    <h1 class="titulo">Jurassic Bark</h1>
+                </div>
+    
+                <div class="menu-footer">
+                    <div class="items-interes">
+                        <h3>Company</h3>
+                        <a href="#">About us</a>
+                        <a href="#">Our Team</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press</a>
+                    </div>
+                    <div class="items-interes">
+                        <h3>Services</h3>
+                        <a href="#">Pet Care</a>
+                        <a href="#">Vaccinations</a>
+                        <a href="#">Emergency</a>
+                        <a href="#">Wellness Plans</a>
+                    </div>
+                    <div class="items-interes">
+                        <h3>Resources</h3>
+                        <a href="#">Blog</a>
+                        <a href="#">FAQs</a>
+                        <a href="#">Pet Adoption</a>
+                        <a href="#">Insurance</a>
+                    </div>
+                    <div class="items-interes">
+                        <h3>Contact</h3>
+                        <a href="#">Help Center</a>
+                        <a href="#">Support</a>
+                        <a href="#">Appointments</a>
+                        <a href="#">Location</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
+                <div class="redes-sociales">
+                    <a href="#">
+                    <img src="Resources/1298738_facebook_brand_fb_logo_social media_icon.png" alt="Facebook">
+                </a>
+                <a href="#">
+                    <img src="Resources/1298747_instagram_brand_logo_social media_icon.png" alt="Instagram">
+                </a>
+                <a href="#">
+                    <img src="Resources/3225179_app_logo_media_popular_social_icon.png" alt="Whatsapp">
+                </a>
+                <a href="#">
+                    <img src="Resources/3225183_app_logo_media_popular_social_icon.png" alt="Twitter">
+                </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,11 +1,14 @@
 package com.example.vetproject.service;
 
+import java.lang.classfile.ClassFile.Option;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.vetproject.entity.Cliente;
+import com.example.vetproject.entity.Mascota;
 import com.example.vetproject.repository.ClienteRepository;
 
 @Service
@@ -36,6 +39,12 @@ public class ClienteServiceImplementation implements ClienteService {
     @Override
     public void add(Cliente cliente) {
         clienteRepository.save(cliente);
+    }
+    
+    @Override
+    public Cliente authenticate(String usuario, String contrasena) {
+        Optional<Cliente> cliente = clienteRepository.findByUsuarioAndContrasena(usuario, contrasena);
+        return cliente.orElse(null);
     }
     
 }

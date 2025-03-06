@@ -19,4 +19,6 @@ public interface ClienteService {
 
     public void add(Cliente cliente);
 
+    public Cliente authenticate(String username, String password);
+
 }

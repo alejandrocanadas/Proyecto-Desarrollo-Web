@@ -100,5 +100,9 @@ public class Mascota {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
     
 }   
