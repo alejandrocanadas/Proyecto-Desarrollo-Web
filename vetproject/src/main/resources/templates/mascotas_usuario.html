@@ -63,15 +63,6 @@
                     <td class="align-middle">
                         <img th:src="${mascota.imagenUrl}" alt="mascota" class="img-fluid rounded mx-auto d-block" width="100">
                     </td>
-                    <td class="align-middle">
-                        <a th:href="@{/mascota/update/{id}(id=${mascota.id})}" class="btn btn-primary btn-sm">
-                            📝 Editar
-                        </a>
-                        <a th:href="@{/mascota/delete/{id}(id=${mascota.id})}" class="btn btn-danger btn-sm" 
-                            onclick="return confirm('¿Seguro que deseas eliminar esta mascota?');">
-                            🗑️ Eliminar
-                        </a>
-                    </td>
                 </tr>
             </tbody>            
         </table>

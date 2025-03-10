@@ -78,10 +78,9 @@ public class ClienteController {
         Cliente cliente = clienteService.authenticate(usuario, password);
         if (cliente != null) {
             model.addAttribute("cliente", cliente);
+            model.addAttribute("mascotas", cliente.getMascotas()); // Enviamos la lista de mascotas
             return "mascotas_usuario.html";
         }
-        else {
-            return "redirect:/clientes/login";
-        }
+        return "redirect:/clientes/login";
     }
 }
