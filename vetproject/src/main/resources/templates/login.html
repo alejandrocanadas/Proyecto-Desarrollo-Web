@@ -3,93 +3,123 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Iniciar Sesión - Jurassic Bark Vet</title>
 
+    <!-- Enlaces a CSS -->
     <link rel="stylesheet" th:href="@{/styles/header.css}" />
     <link rel="stylesheet" th:href="@{/styles/footer.css}" />
-    <link rel="stylesheet" th:href="@{/styles/forms/formularios.css}" />
+    <link rel="stylesheet" th:href="@{/styles/forms/login.css}" />
   </head>
-  <header>
-    <nav id="menu">
-      <div class="logo">
-        <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark" />
-        <span class="subtitulo">Jurassic Bark Vet</span>
-      </div>
-      <a th:href="@{/mascotas}" class="contacto-btn">Volver</a>
-    </nav>
-  </header>
+
   <body>
-    <h2>Iniciar Sesión</h2>
+    <!-- Header con logo y botón de regreso -->
+    <header>
+      <nav id="menu">
+        <div class="logo">
+          <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark" />
+          <span class="subtitulo">Jurassic Bark Vet</span>
+        </div>
+        <a th:href="@{/mascotas}" class="contacto-btn">Volver</a>
+      </nav>
+    </header>
 
-    <form th:action="@{/clientes/login}" method="post" th:object="${cliente}">
-      <label for="usuario">Usuario:</label>
-      <input type="text" id="usuario" th:field="*{usuario}" required/>
+    <!-- Contenedor del formulario de login -->
+    <main class="login-container">
+      <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark" />
+      <h2>Iniciar Sesión</h2>
 
-      <label for="password">Contraseña:</label>
-      <input type="password" id="contrasena" th:field="*{contrasena}" required />
+      <form th:action="@{/clientes/login}" method="post" th:object="${cliente}">
+        <div class="input-group">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="usuario" th:field="*{usuario}" required />
+        </div>
 
-      <button type="submit">Ingresar</button>
-    </form>
+        <div class="input-group">
+          <label for="contrasena">Contraseña:</label>
+          <input
+            type="password"
+            id="contrasena"
+            th:field="*{contrasena}"
+            required
+          />
+        </div>
 
-    <p th:if="${error}" th:text="${error}" style="color: red"></p>
+        <button type="submit">Ingresar</button>
+
+        <!-- Mensaje de error si las credenciales son incorrectas -->
+        <p class="error-message" th:if="${error}" th:text="${error}"></p>
+      </form>
+    </main>
   </body>
   <footer>
     <div class="contenedor-footer">
-        <div class="footer-top">
-            <div class="logo-footer">
-                <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
-                <h1 class="titulo">Jurassic Bark</h1>
-            </div>
-
-            <div class="menu-footer">
-                <div class="items-interes">
-                    <h3>Company</h3>
-                    <a href="#">About us</a>
-                    <a href="#">Our Team</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Press</a>
-                </div>
-                <div class="items-interes">
-                    <h3>Services</h3>
-                    <a href="#">Pet Care</a>
-                    <a href="#">Vaccinations</a>
-                    <a href="#">Emergency</a>
-                    <a href="#">Wellness Plans</a>
-                </div>
-                <div class="items-interes">
-                    <h3>Resources</h3>
-                    <a href="#">Blog</a>
-                    <a href="#">FAQs</a>
-                    <a href="#">Pet Adoption</a>
-                    <a href="#">Insurance</a>
-                </div>
-                <div class="items-interes">
-                    <h3>Contact</h3>
-                    <a href="#">Help Center</a>
-                    <a href="#">Support</a>
-                    <a href="#">Appointments</a>
-                    <a href="#">Location</a>
-                </div>
-            </div>
+      <div class="footer-top">
+        <div class="logo-footer">
+          <img src="Resources/logo.jpg" alt="Logo Jurassic Bark" />
+          <h1 class="titulo">Jurassic Bark</h1>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
-            <div class="redes-sociales">
-                <a href="#">
-                <img src="Resources/1298738_facebook_brand_fb_logo_social media_icon.png" alt="Facebook">
-            </a>
-            <a href="#">
-                <img src="Resources/1298747_instagram_brand_logo_social media_icon.png" alt="Instagram">
-            </a>
-            <a href="#">
-                <img src="Resources/3225179_app_logo_media_popular_social_icon.png" alt="Whatsapp">
-            </a>
-            <a href="#">
-                <img src="Resources/3225183_app_logo_media_popular_social_icon.png" alt="Twitter">
-            </a>
-            </div>
+        <div class="menu-footer">
+          <div class="items-interes">
+            <h3>Company</h3>
+            <a href="#">About us</a>
+            <a href="#">Our Team</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+          </div>
+          <div class="items-interes">
+            <h3>Services</h3>
+            <a href="#">Pet Care</a>
+            <a href="#">Vaccinations</a>
+            <a href="#">Emergency</a>
+            <a href="#">Wellness Plans</a>
+          </div>
+          <div class="items-interes">
+            <h3>Resources</h3>
+            <a href="#">Blog</a>
+            <a href="#">FAQs</a>
+            <a href="#">Pet Adoption</a>
+            <a href="#">Insurance</a>
+          </div>
+          <div class="items-interes">
+            <h3>Contact</h3>
+            <a href="#">Help Center</a>
+            <a href="#">Support</a>
+            <a href="#">Appointments</a>
+            <a href="#">Location</a>
+          </div>
         </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
+        <div class="redes-sociales">
+          <a href="#">
+            <img
+              src="Resources/1298738_facebook_brand_fb_logo_social media_icon.png"
+              alt="Facebook"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="Resources/1298747_instagram_brand_logo_social media_icon.png"
+              alt="Instagram"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="Resources/3225179_app_logo_media_popular_social_icon.png"
+              alt="Whatsapp"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="Resources/3225183_app_logo_media_popular_social_icon.png"
+              alt="Twitter"
+            />
+          </a>
+        </div>
+      </div>
     </div>
-</footer>
+  </footer>
 </html>
