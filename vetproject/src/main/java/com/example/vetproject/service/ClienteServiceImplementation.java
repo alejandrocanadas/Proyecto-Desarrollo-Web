@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.lang.classfile.ClassFile.Option;
 import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Mascota;
 import com.example.vetproject.repository.ClienteRepository;
