@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error - Mascota no encontrada</title>
+    <title>Error - Cliente no encontrada</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
                 <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
                 <span class="subtitulo">Jurassic Bark Vet</span>
             </div>
-            <a th:href="@{/mascotas}" class="contacto-btn">Volver</a>
+            <a th:href="@{/clientes/all}" class="contacto-btn">Volver</a>
         </nav>
     </header>
 
@@ -28,9 +28,9 @@
         <div class="card mx-auto card-body" style="width: 24rem;">
             <img src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png" class="card-img-top" alt="Error icon">
             <div class="card-body">
-                <h5 class="card-title">Mascota no encontrada</h5>
-                <p class="card-text">Lo sentimos, pero no se encontró una mascota con el ID <span th:text="${id}"></span>. Verifica el ID e intenta nuevamente.</p>
-                <a th:href="@{/mascota/all}" class="btn">Volver a la lista</a>
+                <h5 class="card-title">Cliente no encontrada</h5>
+                <p class="card-text">Lo sentimos, pero no se encontró uncliente con el ID <span th:text="${id}"></span>. Verifica el ID e intenta nuevamente.</p>
+                <a th:href="@{/clientes/all}" class="btn">Volver a la lista</a>
             </div>
         </div>
     </main>

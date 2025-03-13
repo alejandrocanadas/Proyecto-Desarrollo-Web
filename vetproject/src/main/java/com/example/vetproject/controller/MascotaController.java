@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Mascota;
-import com.example.vetproject.error.NotFoundException;
+import com.example.vetproject.error.NotFoundMascotException;
 import com.example.vetproject.service.MascotaService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class MascotaController {
         if (mascota != null) {
             model.addAttribute("mascota", mascotaService.SearchById(id));
         } else {
-            throw new NotFoundException(id);
+            throw new NotFoundMascotException(id);
         }
         return "informacion_mascota.html";
     }
@@ -42,6 +42,10 @@ public class MascotaController {
 
     @GetMapping("/delete/{id}")
     public String EliminarMascota(@PathVariable("id") Long id) {
+        Mascota mascota = mascotaService.SearchById(id);
+        if (mascota == null) {
+            throw new NotFoundMascotException(id);
+        }
         mascotaService.deleteById(id);
         return "redirect:/mascota/all";
     }
@@ -50,7 +54,7 @@ public class MascotaController {
     public String ActualizarMascota(Model model, @PathVariable("id") Long id) {
         Mascota mascota = mascotaService.SearchById(id);
         if (mascota == null) {
-            throw new NotFoundException(id);
+            throw new NotFoundMascotException(id);
         }
         model.addAttribute("mascota", mascota);
         return "mascota_update.html";
@@ -58,6 +62,9 @@ public class MascotaController {
 
     @PostMapping("/update")
     public String ActualizarMascota(@ModelAttribute Mascota mascota) {
+        Mascota anterior = mascotaService.SearchById(mascota.getId());
+        mascota.setCliente(anterior.getCliente());
+
         mascotaService.update(mascota);
         return "redirect:/mascota/all";
     }

@@ -2,12 +2,16 @@ package com.example.vetproject.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.example.vetproject.entity.Cliente;
+import com.example.vetproject.entity.Mascota;
+import com.example.vetproject.error.NotFoundClientException;
+import com.example.vetproject.error.NotFoundMascotException;
 import com.example.vetproject.service.ClienteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,11 +27,17 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @GetMapping("find/{id}")
+    @GetMapping("/find/{id}")
     public String InformacionCliente(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("cliente", clienteService.SearchById(id));
-        return "informacion_cliente";
+        Cliente cliente = clienteService.SearchById(id);
+        if (cliente != null) {
+            model.addAttribute("cliente", cliente);
+        } else {
+            throw new NotFoundClientException(id);
+        }
+        return "informacion_cliente.html";
     }
+
 
     @GetMapping("/all")
     public String MostrarClientes(Model model) {
@@ -37,18 +47,35 @@ public class ClienteController {
 
     @GetMapping("/delete/{id}")
     public String EliminarCliente(@PathVariable("id") Long id) {
+        Cliente cliente = clienteService.SearchById(id);
+        if (cliente == null) {
+            throw new NotFoundClientException(id);
+        }
         clienteService.deleteById(id);
         return "redirect:/clientes/all";
     }
 
     @GetMapping("/update/{id}")
-    public String ActualizarCliente(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("cliente", clienteService.SearchById(id));
-        return "cliente_forms.html";
+    public String ActualizarCliente(Model model, @PathVariable("id") Long id) {
+        Cliente cliente = clienteService.SearchById(id);
+        if (id == null) {
+            throw new NotFoundClientException(id);
+        }
+        model.addAttribute("cliente", cliente);
+        return "cliente_update";
     }
+    
 
     @PostMapping("/update/{id}")
-    public String ActualizarCliente(@ModelAttribute Cliente cliente) {
+    public String ActualizarCliente(@PathVariable("id") Long id, @Valid @ModelAttribute Cliente cliente, Model model) {
+        Cliente clienteExistente = clienteService.SearchById(id);
+        if (clienteExistente == null) {
+            throw new NotFoundClientException(id);
+        }
+        
+        cliente.setId(id);  // Establecemos explícitamente el ID
+        cliente.setMascotas(clienteExistente.getMascotas());  // Mantenemos las mascotas existentes
+        
         clienteService.update(cliente);
         return "redirect:/clientes/all";
     }
@@ -78,7 +105,7 @@ public class ClienteController {
         Cliente cliente = clienteService.authenticate(usuario, password);
         if (cliente != null) {
             model.addAttribute("cliente", cliente);
-            model.addAttribute("mascotas", cliente.getMascotas()); // Enviamos la lista de mascotas
+            model.addAttribute("mascotas", cliente.getMascotas()); 
             return "mascotas_usuario.html";
         }
         return "redirect:/clientes/login";

@@ -1,13 +1,13 @@
 package com.example.vetproject.error;
 
-public class NotFoundException extends RuntimeException {
+public class NotFoundClientException extends RuntimeException {
     private Long id;
 
-    public NotFoundException(Long id) {
+    public NotFoundClientException(Long id) {
         this.id = id;
     }   
 
-    Long getId() {
+    public Long getId() {
         return id;
     }
 

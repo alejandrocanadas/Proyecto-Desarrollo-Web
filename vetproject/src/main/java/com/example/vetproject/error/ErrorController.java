@@ -7,9 +7,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ErrorController {
-    @ExceptionHandler(NotFoundException.class)
-    public String handleNotFoundException(Model model, NotFoundException ex) {
+    @ExceptionHandler(NotFoundMascotException.class)
+    public String handleNotFoundExceptionMascota(Model model, NotFoundMascotException ex) {
         model.addAttribute("id", ex.getId());
-        return "error.html";
+        return "errorMascota";
     }
+
+    @ExceptionHandler(NotFoundClientException.class)
+    public String handleNotFoundExceptionCliente(Model model, NotFoundClientException ex) {
+        model.addAttribute("id", ex.getId());
+        return "errorCliente";
+    }
+
 }

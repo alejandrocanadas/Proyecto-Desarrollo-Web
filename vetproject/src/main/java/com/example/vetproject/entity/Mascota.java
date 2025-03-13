@@ -104,5 +104,9 @@ public class Mascota {
     public Cliente getCliente() {
         return cliente;
     }
+    //revisar
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
 }   

@@ -22,8 +22,9 @@
     <main>
         <section id="RegistrarCliente">
             <div id="formularioCliente">
-                <form th:object="${cliente}" th:action="@{/clientes/add}" method="post">
+                <form th:object="${cliente}" th:action="@{/clientes/update/{id}(id=${cliente.id})}" method="post">
                     <input type="hidden" th:field="*{id}">
+
                     <fieldset>
                         <legend class="titulo">Actualizar Cliente</legend>
     

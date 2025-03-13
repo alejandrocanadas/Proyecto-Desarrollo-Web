@@ -32,6 +32,9 @@ public class ClienteServiceImplementation implements ClienteService {
 
     @Override
     public void update(Cliente cliente) {
+        if (cliente.getId() == null || !clienteRepository.existsById(cliente.getId())) {
+            throw new IllegalArgumentException("el cliente con ID " + cliente.getId() + " no existe y no puede ser actualizada.");
+        }
         clienteRepository.save(cliente);
     }
 

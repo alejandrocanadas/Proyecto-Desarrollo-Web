@@ -22,22 +22,22 @@ public class DataBaseInit implements ApplicationRunner {
     ClienteRepository clienteRepository;
 
     private static final String[] NOMBRES_CLIENTES = {
-        "Juan", "María", "Carlos", "Ana", "Luis", "Elena", "Ricardo", "Sofía", "Fernando", "Gabriela",
-        "Pedro", "Lucía", "Andrés", "Camila", "Miguel", "Valentina", "David", "Isabela", "José", "Diana",
-        "Daniel", "Paula", "Javier", "Sandra", "Hugo", "Raquel", "Emilio", "Verónica", "Manuel", "Laura",
-        "Diego", "Carmen", "Alberto", "Beatriz", "Gustavo", "Irene", "Raúl", "Silvia", "Francisco", "Patricia",
-        "Sebastián", "Elisa", "Federico", "Noelia", "Álvaro", "Natalia", "Santiago", "Julia", "Víctor", "Rosa"
+        "Juan", "Maria", "Carlos", "Ana", "Luis", "Elena", "Ricardo", "Sofia", "Fernando", "Gabriela",
+        "Pedro", "Lucia", "Andres", "Camila", "Miguel", "Valentina", "David", "Isabela", "Jose", "Diana",
+        "Daniel", "Paula", "Javier", "Sandra", "Hugo", "Raquel", "Emilio", "Veronica", "Manuel", "Laura",
+        "Diego", "Carmen", "Alberto", "Beatriz", "Gustavo", "Irene", "Raul", "Silvia", "Francisco", "Patricia",
+        "Sebastian", "Elisa", "Federico", "Noelia", "Alvaro", "Natalia", "Santiago", "Julia", "Victor", "Rosa"
     };
 
     private static final String[] APELLIDOS = {
-        "Pérez", "Gómez", "Rodríguez", "López", "Martínez", "Quintero", "Fernández", "Ramírez", "Castro", "Mendoza",
-        "Ortega", "Herrera", "Jiménez", "Morales", "Santos", "Rubio", "Vargas", "Suárez", "Navarro", "Reyes"
+        "Perez", "Gomez", "Rodriguez", "Lopez", "Martinez", "Quintero", "Fernandez", "Ramirez", "Castro", "Mendoza",
+        "Ortega", "Herrera", "Jimenez", "Morales", "Santos", "Rubio", "Vargas", "Suarez", "Navarro", "Reyes"
     };
 
     private static final String[] TIPOS_MASCOTA = {"Perro", "Gato"};
 
-    private static final String[] RAZAS_PERROS = {"Labrador", "Bulldog", "Beagle", "Pastor Alemán", "Golden Retriever"};
-    private static final String[] RAZAS_GATOS = {"Siamés", "Persa", "Maine Coon", "Bengalí", "Siberiano"};
+    private static final String[] RAZAS_PERROS = {"Labrador", "Bulldog", "Beagle", "Pastor Aleman", "Golden Retriever"};
+    private static final String[] RAZAS_GATOS = {"Siames", "Persa", "Maine Coon", "Bengali", "Siberiano"};
 
     private static final String[] IMAGENES = {
         "https://www.costaartabra.es/wp-content/uploads/2021/08/leo1-web.jpg",
@@ -52,7 +52,6 @@ public class DataBaseInit implements ApplicationRunner {
         Random rand = new Random();
         List<Cliente> clientes = new ArrayList<>();
 
-        // Crear 50 clientes
         for (int i = 0; i < 50; i++) {
             String nombre = NOMBRES_CLIENTES[rand.nextInt(NOMBRES_CLIENTES.length)];
             String apellido = APELLIDOS[rand.nextInt(APELLIDOS.length)];
@@ -65,9 +64,8 @@ public class DataBaseInit implements ApplicationRunner {
             clientes.add(cliente);
         }
 
-        clienteRepository.saveAll(clientes); // Guardar clientes en la BD
+        clienteRepository.saveAll(clientes); 
 
-        // Crear 100 mascotas (2 por cliente)
         List<Mascota> mascotas = new ArrayList<>();
         for (Cliente cliente : clientes) {
             for (int j = 0; j < 2; j++) {
@@ -84,6 +82,6 @@ public class DataBaseInit implements ApplicationRunner {
             }
         }
 
-        mascotaRepository.saveAll(mascotas); // Guardar mascotas en la BD
+        mascotaRepository.saveAll(mascotas); 
     }
 }
