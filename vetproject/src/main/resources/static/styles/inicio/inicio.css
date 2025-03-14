@@ -237,7 +237,7 @@ body {
 
 .imagen-metricas img {
     width: 2000px;
-    height: 800px;
+    height: 600px;
     max-width: 100%;
     border-radius: 30px;
     object-fit: cover;
@@ -386,15 +386,19 @@ body {
     object-fit: cover;
     align-items: center;
     margin: 0 auto;
+    border-radius: 15px;
     margin-left: 20px;
 }
 
 
 .card .subtitulo {
-    font-size: 22px; 
+    font-size: 24px; 
     font-weight: bold;
     color: #122732;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .card .parrafo {
@@ -417,7 +421,7 @@ body {
     display: flex;
     align-items: center;
     background-color: #F8FAFC;
-    padding: 60px; 
+    padding: 40px; 
     border-radius: 25px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
     max-width: 1800px;
@@ -434,8 +438,10 @@ body {
 }
 
 .imagen-servicio img {
-    width: 450px; 
+    width: 400px; 
+    height: 500px;
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .descripcion-imagen {
@@ -459,6 +465,7 @@ body {
     font-weight: bold;
     color: #122732;
     margin-bottom: 30px;
+    margin-top: -50px;
 }
 
 .lista-servicios {
@@ -472,7 +479,7 @@ body {
     background-color: #C9DCE8;
     display: flex;
     align-items: center;
-    padding: 25px; 
+    padding: 10px; 
     border-radius: 20px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -582,7 +589,7 @@ body {
 
 .planes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Se ajusta automáticamente */
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Se ajusta automáticamente */
     gap: 20px;
     width: 100%;
 }
