@@ -1,29 +1,23 @@
 package com.example.vetproject.entity;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.annotation.Generated;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "CLIENT_TABLE")
 public class Cliente {
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Mascota> mascotas; 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Mascota> mascotas;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cita> citas;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Servicio> servicios;
     
     private String nombre;
     private String usuario;
@@ -32,6 +26,7 @@ public class Cliente {
     private String email;
     private String contrasena;
 
+    // Constructores
     public Cliente(Long id, String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
         this.id = id;
         this.nombre = nombre;
@@ -40,24 +35,22 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
         this.contrasena = contrasena;
-        this.mascotas = new ArrayList<>();
     }
 
-    public Cliente (String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
+    public Cliente(String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
         this.contrasena = contrasena;
-        this.mascotas = new ArrayList<>();
-        // Constructor sin id
     }
 
-    public Cliente(){
+    public Cliente() {
         // Constructor vacío
     }
 
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -122,7 +115,41 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
+    public List<Cita> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(List<Cita> citas) {
+        this.citas = citas;
+    }
+
+    public List<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(List<Servicio> servicios) {
+        this.servicios = servicios;
+    }
+
+    // Métodos para añadir elementos a las listas, inicializándolas solo cuando sea necesario
     public void addMascota(Mascota mascota) {
+        if (this.mascotas == null) {
+            this.mascotas = new java.util.ArrayList<>();
+        }
         this.mascotas.add(mascota);
+    }
+
+    public void addCita(Cita cita) {
+        if (this.citas == null) {
+            this.citas = new java.util.ArrayList<>();
+        }
+        this.citas.add(cita);
+    }
+
+    public void addServicio(Servicio servicio) {
+        if (this.servicios == null) {
+            this.servicios = new java.util.ArrayList<>();
+        }
+        this.servicios.add(servicio);
     }
 }

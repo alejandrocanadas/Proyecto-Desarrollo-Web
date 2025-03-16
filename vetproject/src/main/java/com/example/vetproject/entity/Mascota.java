@@ -1,43 +1,45 @@
 package com.example.vetproject.entity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PETS_TABLE")
 public class Mascota {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "veterinario_id", nullable = true) 
+    private Veterinario veterinario;
+
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Medicamento> medicamentos;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false) // Cada mascota tiene un dueño
+    private Cliente cliente;
+
     private String nombre;
     private String tipo;
     private String raza;
     private int edad;
     private String imagenUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
-
-    //constructores
-    public Mascota(Long id, String nombre, String tipo, String raza, int edad, String imagenUrl) {
+    // Constructores
+    public Mascota(Long id, String nombre, String tipo, String raza, int edad, String imagenUrl, Cliente cliente) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.raza = raza;
         this.edad = edad;
-        this.imagenUrl = imagenUrl; 
+        this.imagenUrl = imagenUrl;
+        this.cliente = cliente;
     }
 
-    //constructor sin id
+    // Constructor sin ID
     public Mascota(String nombre, String tipo, String raza, int edad, String imagenUrl, Cliente cliente) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -47,20 +49,12 @@ public class Mascota {
         this.cliente = cliente;
     }
 
-    //constructor vacío
+    // Constructor vacío
     public Mascota() {
-        
+        this.medicamentos = new ArrayList<>();
     }
 
-    public String getImagenUrl() {
-        return imagenUrl;
-    }
-
-    public void setImagenUrl(String imagenUrl) {
-        this.imagenUrl = imagenUrl; 
-    }
-    //getters y setters
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -101,12 +95,43 @@ public class Mascota {
         this.edad = edad;
     }
 
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
-    //revisar
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-}   
+
+    public Veterinario getVeterinario() {
+        return veterinario;
+    }
+
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
+    }
+
+    public List<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+
+    // Métodos para añadir elementos
+    public void addMedicamento(Medicamento medicamento) {
+        if (this.medicamentos == null) {
+            this.medicamentos = new ArrayList<>();
+        }
+        this.medicamentos.add(medicamento);
+    }
+}
