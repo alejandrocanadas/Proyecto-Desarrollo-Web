@@ -2,6 +2,11 @@ package com.example.vetproject.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,10 +17,25 @@ public class Veterinario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String nombre;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String telefono;
+
+    @NotNull
+    @Email(message = "Debe ingresar un email válido")
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String usuario;
+
+    @NotNull
+    @Column(nullable = false)
     private String contrasena;
 
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)

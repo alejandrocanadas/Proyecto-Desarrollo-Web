@@ -8,7 +8,6 @@ import com.example.vetproject.repository.ClienteRepository;
 import com.example.vetproject.repository.MascotaRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
-import java.util.Random;
 import java.util.ArrayList;
 
 @Controller
@@ -30,11 +29,8 @@ public class DataBaseInit implements ApplicationRunner {
     };
 
     private static final String[] APELLIDOS = {
-        "Perez", "Gomez", "Rodriguez", "Lopez", "Martinez", "Quintero", "Fernandez", "Ramirez", "Castro", "Mendoza",
-        "Ortega", "Herrera", "Jimenez", "Morales", "Santos", "Rubio", "Vargas", "Suarez", "Navarro", "Reyes"
+        "Perez", "Gomez", "Rodriguez", "Lopez", "Martinez", "Quintero", "Fernandez", "Ramirez", "Castro", "Mendoza"
     };
-
-    private static final String[] TIPOS_MASCOTA = {"Perro", "Gato"};
 
     private static final String[] RAZAS_PERROS = {"Labrador", "Bulldog", "Beagle", "Pastor Aleman", "Golden Retriever"};
     private static final String[] RAZAS_GATOS = {"Siames", "Persa", "Maine Coon", "Bengali", "Siberiano"};
@@ -49,39 +45,95 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Random rand = new Random();
         List<Cliente> clientes = new ArrayList<>();
 
-        for (int i = 0; i < 50; i++) {
-            String nombre = NOMBRES_CLIENTES[rand.nextInt(NOMBRES_CLIENTES.length)];
-            String apellido = APELLIDOS[rand.nextInt(APELLIDOS.length)];
-            String usuario = nombre.toLowerCase() + apellido.toLowerCase();
-            String telefono = "3" + (rand.nextInt(100000000) + 100000000);
-            String email = usuario + "@example.com";
+        // Lista manual de usuarios y correos
+        String[][] datosClientes = {
+            {"Juan", "Perez", "juanp", "juanp@example.com"},
+            {"Maria", "Gomez", "mariag", "mariag@example.com"},
+            {"Carlos", "Rodriguez", "carlosr", "carlosr@example.com"},
+            {"Ana", "Lopez", "anal", "anal@example.com"},
+            {"Luis", "Martinez", "luism", "luism@example.com"},
+            {"Elena", "Quintero", "elenaq", "elenaq@example.com"},
+            {"Ricardo", "Fernandez", "ricardof", "ricardof@example.com"},
+            {"Sofia", "Ramirez", "sofiar", "sofiar@example.com"},
+            {"Fernando", "Castro", "fernandoc", "fernandoc@example.com"},
+            {"Gabriela", "Mendoza", "gabrielam", "gabrielam@example.com"},
+            {"Pedro", "Ortega", "pedroo", "pedroo@example.com"},
+            {"Lucia", "Herrera", "luciah", "luciah@example.com"},
+            {"Andres", "Jimenez", "andresj", "andresj@example.com"},
+            {"Camila", "Morales", "camilam", "camilam@example.com"},
+            {"Miguel", "Santos", "miguels", "miguels@example.com"},
+            {"Valentina", "Rubio", "valentinar", "valentinar@example.com"},
+            {"David", "Vargas", "davidv", "davidv@example.com"},
+            {"Isabela", "Suarez", "isabelas", "isabelas@example.com"},
+            {"Jose", "Navarro", "josen", "josen@example.com"},
+            {"Diana", "Reyes", "dianar", "dianar@example.com"},
+            {"Daniel", "Perez", "danielp", "danielp@example.com"},
+            {"Paula", "Gomez", "paulag", "paulag@example.com"},
+            {"Javier", "Rodriguez", "javierr", "javierr@example.com"},
+            {"Sandra", "Lopez", "sandral", "sandral@example.com"},
+            {"Hugo", "Martinez", "hugom", "hugom@example.com"},
+            {"Raquel", "Quintero", "raquelq", "raquelq@example.com"},
+            {"Emilio", "Fernandez", "emiliof", "emiliof@example.com"},
+            {"Veronica", "Ramirez", "veronicar", "veronicar@example.com"},
+            {"Manuel", "Castro", "manuelc", "manuelc@example.com"},
+            {"Laura", "Mendoza", "lauram", "lauram@example.com"},
+            {"Diego", "Ortega", "diegog", "diegog@example.com"},
+            {"Carmen", "Herrera", "carmenh", "carmenh@example.com"},
+            {"Alberto", "Jimenez", "albertoj", "albertoj@example.com"},
+            {"Beatriz", "Morales", "beatrizm", "beatrizm@example.com"},
+            {"Gustavo", "Santos", "gustavos", "gustavos@example.com"},
+            {"Irene", "Rubio", "irener", "irener@example.com"},
+            {"Raul", "Vargas", "raulv", "raulv@example.com"},
+            {"Silvia", "Suarez", "silvias", "silvias@example.com"},
+            {"Francisco", "Navarro", "franciscon", "franciscon@example.com"},
+            {"Patricia", "Reyes", "patriciar", "patriciar@example.com"},
+            {"Sebastian", "Perez", "sebastianp", "sebastianp@example.com"},
+            {"Elisa", "Gomez", "elisag", "elisag@example.com"},
+            {"Federico", "Rodriguez", "federicor", "federicor@example.com"},
+            {"Noelia", "Lopez", "noelial", "noelial@example.com"},
+            {"Alvaro", "Martinez", "alvarom", "alvarom@example.com"},
+            {"Natalia", "Quintero", "nataliaq", "nataliaq@example.com"},
+            {"Santiago", "Fernandez", "santiagof", "santiagof@example.com"},
+            {"Julia", "Ramirez", "juliar", "juliar@example.com"},
+            {"Victor", "Castro", "victorc", "victorc@example.com"},
+            {"Rosa", "Mendoza", "rosam", "rosam@example.com"}
+        };
+
+        // Crear usuarios manualmente
+        for (String[] datos : datosClientes) {
+            String nombre = datos[0];
+            String apellido = datos[1];
+            String usuario = datos[2];
+            String email = datos[3];
+            String telefono = "3" + (100000000 + (int) (Math.random() * 90000000));
             String contrasena = "password";
 
             Cliente cliente = new Cliente(nombre, usuario, apellido, telefono, email, contrasena);
             clientes.add(cliente);
         }
 
-        clienteRepository.saveAll(clientes); 
+        clienteRepository.saveAll(clientes); // Guardar clientes en la BD
 
+        // Crear y asignar mascotas (1 perro y 1 gato por usuario)
         List<Mascota> mascotas = new ArrayList<>();
-        for (Cliente cliente : clientes) {
-            for (int j = 0; j < 2; j++) {
-                String tipo = TIPOS_MASCOTA[rand.nextInt(TIPOS_MASCOTA.length)];
-                String raza = tipo.equals("Perro") ? RAZAS_PERROS[rand.nextInt(RAZAS_PERROS.length)]
-                        : RAZAS_GATOS[rand.nextInt(RAZAS_GATOS.length)];
-                String nombreMascota = tipo.equals("Perro") ? "Firulais" + j : "Mish" + j;
-                int edad = rand.nextInt(10) + 1;
-                String imagenUrl = IMAGENES[rand.nextInt(IMAGENES.length)];
+        for (int i = 0; i < clientes.size(); i++) {
+            Cliente cliente = clientes.get(i);
 
-                Mascota mascota = new Mascota(nombreMascota, tipo, raza, edad, imagenUrl, cliente);
-                cliente.addMascota(mascota);
-                mascotas.add(mascota);
-            }
+            Mascota perro = new Mascota("Firulais" + i, "Perro",
+                    RAZAS_PERROS[i % RAZAS_PERROS.length], 2 + (i % 8),
+                    IMAGENES[i % IMAGENES.length], cliente);
+
+            Mascota gato = new Mascota("Mish" + i, "Gato",
+                    RAZAS_GATOS[i % RAZAS_GATOS.length], 1 + (i % 10),
+                    IMAGENES[(i + 1) % IMAGENES.length], cliente);
+
+            mascotas.add(perro);
+            mascotas.add(gato);
         }
 
-        mascotaRepository.saveAll(mascotas); 
+        mascotaRepository.saveAll(mascotas);
+        System.out.println("50 usuarios creados y 100 mascotas asignadas.");
     }
 }

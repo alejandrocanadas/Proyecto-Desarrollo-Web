@@ -2,7 +2,11 @@ package com.example.vetproject.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "PETS_TABLE")
@@ -22,11 +26,22 @@ public class Mascota {
     @JoinColumn(name = "cliente_id", nullable = false) // Cada mascota tiene un dueño
     private Cliente cliente;
 
+   
+    @NotNull
+    @Column(nullable = false)
     private String nombre;
+
+    @NotNull
+    @Column(nullable = false)
     private String tipo;
+
+    @NotNull
+    @Column(nullable = false)
     private String raza;
-    private int edad;
-    private String imagenUrl;
+
+    private Integer edad; // Se mantiene como Integer para permitir valores nulos
+
+    private String imagenUrl; // Permite valores nulos
 
     // Constructores
     public Mascota(Long id, String nombre, String tipo, String raza, int edad, String imagenUrl, Cliente cliente) {
@@ -135,3 +150,6 @@ public class Mascota {
         this.medicamentos.add(medicamento);
     }
 }
+
+
+

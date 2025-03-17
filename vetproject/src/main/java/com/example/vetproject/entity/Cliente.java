@@ -1,6 +1,11 @@
 package com.example.vetproject.entity;
 
 import java.util.List;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,12 +24,30 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Servicio> servicios;
     
+    @NotNull
+    @Column(nullable = false)
     private String nombre;
-    private String usuario;
+
+    @NotNull
+    @Column(nullable = false, unique=true)
+    private String usuario; // Asegurar que no haya dos usuarios iguales
+
+    @NotNull
+    @Column(nullable = false)
     private String apellido;
-    private String telefono;
-    private String email;
+
+    @NotNull
+    @Column(nullable = false)
     private String contrasena;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String telefono;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
+    @Email(message = "Debe ingresar un email válido")
+    private String email;
 
     // Constructores
     public Cliente(Long id, String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {

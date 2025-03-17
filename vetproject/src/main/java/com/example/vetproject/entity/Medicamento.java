@@ -1,5 +1,8 @@
 package com.example.vetproject.entity;
 
+import javax.validation.constraints.NotNull;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,10 +21,21 @@ public class Medicamento {
     @JoinColumn(name = "mascota_id", nullable = true)
     private Mascota mascota;
     
+    @NotNull
+    @Column(nullable = false)
     private String nombre;
+
+    @NotNull
+    @Column(nullable = false)
     private String descripcion;
+
+    @NotNull
+    @Column(nullable = false)
     private String dosis;
-    private int precio;
+
+    @NotNull
+    @Column(nullable = false)
+    private int precio; // Como es un int, no puede ser null por defecto.
 
     public Medicamento(Long id, String nombre, String descripcion, String dosis, int precio) {
         this.id = id;

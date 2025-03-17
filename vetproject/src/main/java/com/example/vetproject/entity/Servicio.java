@@ -1,5 +1,7 @@
 package com.example.vetproject.entity;
 
+import javax.validation.constraints.NotNull;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,8 +16,16 @@ public class Servicio {
     @JoinColumn(name = "cliente_id", nullable = true)
     private Cliente cliente;
 
+    @NotNull
+    @Column(nullable = false)
     private String nombre;
+
+    @NotNull
+    @Column(nullable = false)
     private Double costo;
+
+    @NotNull
+    @Column(nullable = false)
     private String descripcion;
 
     // Constructor vacío
