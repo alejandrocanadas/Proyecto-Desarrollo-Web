@@ -386,11 +386,12 @@
       </div>
     </main>
 
-    <footer>
+     <!-- Footer con tu CSS personalizado -->
+     <footer>
       <div class="contenedor-footer">
           <div class="footer-top">
               <div class="logo-footer">
-                  <img src="Resources/logo.jpg" alt="Logo Jurassic Bark" />
+                  <img th:src="@{/resources/logo.jpg}" alt="Logo Jurassic Bark">
                   <h1 class="titulo">Jurassic Bark</h1>
               </div>
   
@@ -427,24 +428,25 @@
           </div>
   
           <div class="footer-bottom">
-            <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
-            <div class="redes-sociales">
-                <a href="#">
-                    <img src="Resources/1298738_facebook_brand_fb_logo_social media_icon.png" alt="Facebook">
-                </a>
-                <a href="#">
-                    <img src="Resources/1298747_instagram_brand_logo_social media_icon.png" alt="Instagram">
-                </a>
-                <a href="#">
-                    <img src="Resources/3225179_app_logo_media_popular_social_icon.png" alt="Whatsapp">
-                </a>
-                <a href="#">
-                    <img src="Resources/3225183_app_logo_media_popular_social_icon.png" alt="Twitter">
-                </a>
-            </div>
-        </div>
-    </div>
-</footer>
+              <p>&copy; 2025 Jurassic Bark Vet, All rights reserved</p>
+              <div class="redes-sociales">
+                  <a href="#">
+                  <img src="Resources/Facebook.png" alt="Facebook">
+              </a>
+              <a href="#">
+                  <img src="Resources/Instagram.png" alt="Instagram">
+              </a>
+              <a href="#">
+                  <img src="Resources/Whatsapp.png" alt="Whatsapp">
+              </a>
+              <a href="#">
+                  <img src="Resources/Twitter.png" alt="Twitter">
+              </a>
+              </div>
+          </div>
+      </div>
+  </footer>
+
     
   
   </body>
