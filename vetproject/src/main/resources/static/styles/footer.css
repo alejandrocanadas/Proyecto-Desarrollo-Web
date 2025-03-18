@@ -1,8 +1,11 @@
+
 footer {
     background-color: #122732;
     color: white;
     padding: 50px;
     font-family: 'Inter', sans-serif;
+    bottom: auto;
+    margin-bottom: 0;
 }
 
 /* Contenedor principal */

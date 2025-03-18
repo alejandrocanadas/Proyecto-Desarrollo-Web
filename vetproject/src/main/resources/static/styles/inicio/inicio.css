@@ -404,6 +404,8 @@ body {
 .card .parrafo {
     font-size: 16px; 
     color: #122732;
+    text-align: center;
+    margin: 0 auto;
 }
 
 

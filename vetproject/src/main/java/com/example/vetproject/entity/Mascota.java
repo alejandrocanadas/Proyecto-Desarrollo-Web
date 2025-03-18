@@ -102,9 +102,10 @@ public class Mascota {
         this.raza = raza;
     }
 
-    public int getEdad() {
-        return edad;
+    public Integer getEdad() {
+        return edad != null ? edad : 0;  // Devuelve 0 si es null
     }
+    
 
     public void setEdad(int edad) {
         this.edad = edad;

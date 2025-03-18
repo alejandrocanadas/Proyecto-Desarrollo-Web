@@ -1,4 +1,14 @@
 /* Estilos generales */
+html {
+    scroll-behavior: smooth;
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: linear-gradient(135deg, #122732 50%, #F8FAFC 50%);
     font-family: 'Poppins', sans-serif;
@@ -41,7 +51,7 @@ fieldset {
     gap: 20px;
 }
 
-.titulo {
+.titulo1 {
     font-size: 26px;
     font-weight: bold;
     color: #FBBC08;
@@ -57,7 +67,7 @@ fieldset {
     max-width: 600px;
 }
 
-.subtitulo {
+.subtitulo1 {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -101,4 +111,7 @@ button:hover {
     color: #F8FAFC;
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+footer{
+    width: 100%;
 }
