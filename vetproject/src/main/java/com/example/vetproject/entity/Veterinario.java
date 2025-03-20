@@ -39,7 +39,7 @@ public class Veterinario {
     private String contrasena;
 
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Mascota> mascotas;
+    private List<Tratamiento> tratamientos;
 
     // Constructor vacío
     public Veterinario() {
@@ -53,7 +53,7 @@ public class Veterinario {
         this.email = email;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.mascotas = new ArrayList<>();
+        this.tratamientos = new ArrayList<>();
     }
 
     // Constructor con ID
@@ -64,7 +64,7 @@ public class Veterinario {
         this.email = email;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.mascotas = new ArrayList<>();
+        this.tratamientos = new ArrayList<>();
     }
 
     // Getters y Setters
@@ -86,15 +86,15 @@ public class Veterinario {
     public String getContrasena() { return contrasena; }
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
 
-    public List<Mascota> getMascotas() { return mascotas; }
-    public void setMascotas(List<Mascota> mascotas) { this.mascotas = mascotas; }
+    public List<Tratamiento> getTratamientos() { return tratamientos; }
+    public void setTratamientos(List<Tratamiento> tratamientos) { this.tratamientos = tratamientos; }
 
-    // Método para añadir mascotas
-    public void addMascota(Mascota mascota) {
-        if (this.mascotas == null) {
-            this.mascotas = new ArrayList<>();
+    // Método para añadir tratamientos
+    public void addTratamiento(Tratamiento tratamiento) {
+        if (this.tratamientos == null) {
+            this.tratamientos = new ArrayList<>();
         }
-        this.mascotas.add(mascota);
-        mascota.setVeterinario(this); // Relación bidireccional
+        this.tratamientos.add(tratamiento);
+        tratamiento.setVeterinario(this); // Relación bidireccional
     }
 }

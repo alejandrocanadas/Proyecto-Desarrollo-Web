@@ -20,10 +20,6 @@ public class Cita {
     private Mascota mascota;
 
     @ManyToOne
-    @JoinColumn(name = "servicio_id", nullable = false)
-    private Servicio servicio;
-
-    @ManyToOne
     @JoinColumn(name = "veterinario_id", nullable = false)
     private Veterinario veterinario;
 
@@ -34,20 +30,18 @@ public class Cita {
     public Cita() {}
 
     // Constructor sin ID
-    public Cita(Cliente cliente, Mascota mascota, Servicio servicio, Veterinario veterinario, Date fecha) {
+    public Cita(Cliente cliente, Mascota mascota, Veterinario veterinario, Date fecha) {
         this.cliente = cliente;
         this.mascota = mascota;
-        this.servicio = servicio;
         this.veterinario = veterinario;
         this.fecha = fecha;
     }
 
     // Constructor con ID
-    public Cita(Long id, Cliente cliente, Mascota mascota, Servicio servicio, Veterinario veterinario, Date fecha) {
+    public Cita(Long id, Cliente cliente, Mascota mascota, Veterinario veterinario, Date fecha) {
         this.id = id;
         this.cliente = cliente;
         this.mascota = mascota;
-        this.servicio = servicio;
         this.veterinario = veterinario;
         this.fecha = fecha;
     }
@@ -61,9 +55,6 @@ public class Cita {
 
     public Mascota getMascota() { return mascota; }
     public void setMascota(Mascota mascota) { this.mascota = mascota; }
-
-    public Servicio getServicio() { return servicio; }
-    public void setServicio(Servicio servicio) { this.servicio = servicio; }
 
     public Veterinario getVeterinario() { return veterinario; }
     public void setVeterinario(Veterinario veterinario) { this.veterinario = veterinario; }

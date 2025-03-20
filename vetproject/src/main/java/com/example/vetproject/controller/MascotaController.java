@@ -74,20 +74,20 @@ public class MascotaController {
     }
 
     @GetMapping("/add")
-    public String AgregarMascota(Model model) {
+    public String AgregarMascota(Model model, @RequestParam Long cliente_id) {
         model.addAttribute("mascota", new Mascota());
+        model.addAttribute("cliente_id", cliente_id);
         return "mascota_forms.html";
     }
 
     @PostMapping("/add")
-    public String GuardarMascota(@ModelAttribute Mascota mascota, @RequestParam String clienteEmail) {
-        Cliente cliente = clienteService.findByEmail(clienteEmail);
-        
+    public String GuardarMascota(@ModelAttribute Mascota mascota, @RequestParam Long cliente_id) {
+        Cliente cliente = clienteService.SearchById(cliente_id);
         if (cliente != null) {
             mascota.setCliente(cliente);
             mascotaService.add(mascota);
             return "redirect:/mascota/all";
         }
-        return "redirect:/mascota/add?error=emailnotfound";
+        return "redirect:/error";
     }
 }

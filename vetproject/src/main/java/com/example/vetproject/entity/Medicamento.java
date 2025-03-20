@@ -16,10 +16,6 @@ public class Medicamento {
     @Id
     @GeneratedValue
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "mascota_id", nullable = true)
-    private Mascota mascota;
     
     @NotNull
     @Column(nullable = false)
@@ -36,6 +32,12 @@ public class Medicamento {
     @NotNull
     @Column(nullable = false)
     private int precio; // Como es un int, no puede ser null por defecto.
+
+    @ManyToOne
+    @JoinColumn(name = "tratamiento_id", nullable = false)
+    private Tratamiento tratamiento;
+
+
 
     public Medicamento(Long id, String nombre, String descripcion, String dosis, int precio) {
         this.id = id;
@@ -62,13 +64,7 @@ public class Medicamento {
         this.id = id;
     }
 
-    public Mascota getMascota() {
-        return mascota;
-    }
-
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
-    }
+    
 
     public String getNombre() {
         return nombre;

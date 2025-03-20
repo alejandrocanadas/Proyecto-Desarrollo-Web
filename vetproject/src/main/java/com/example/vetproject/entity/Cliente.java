@@ -20,9 +20,6 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cita> citas;
-
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Servicio> servicios;
     
     @NotNull
     @Column(nullable = false)
@@ -146,14 +143,6 @@ public class Cliente {
         this.citas = citas;
     }
 
-    public List<Servicio> getServicios() {
-        return servicios;
-    }
-
-    public void setServicios(List<Servicio> servicios) {
-        this.servicios = servicios;
-    }
-
     // Métodos para añadir elementos a las listas, inicializándolas solo cuando sea necesario
     public void addMascota(Mascota mascota) {
         if (this.mascotas == null) {
@@ -169,10 +158,5 @@ public class Cliente {
         this.citas.add(cita);
     }
 
-    public void addServicio(Servicio servicio) {
-        if (this.servicios == null) {
-            this.servicios = new java.util.ArrayList<>();
-        }
-        this.servicios.add(servicio);
-    }
+    
 }

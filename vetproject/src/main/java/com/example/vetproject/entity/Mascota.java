@@ -15,15 +15,12 @@ public class Mascota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "veterinario_id", nullable = true) 
-    private Veterinario veterinario;
-
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Medicamento> medicamentos;
+    private List<Tratamiento> tratamientos;
+
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id") // Cada mascota tiene un dueño
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
    
@@ -66,7 +63,7 @@ public class Mascota {
 
     // Constructor vacío
     public Mascota() {
-        this.medicamentos = new ArrayList<>();
+        this.tratamientos = new ArrayList<>();
     }
 
     // Getters y Setters
@@ -127,28 +124,20 @@ public class Mascota {
         this.cliente = cliente;
     }
 
-    public Veterinario getVeterinario() {
-        return veterinario;
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
     }
 
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
-    }
-
-    public List<Medicamento> getMedicamentos() {
-        return medicamentos;
-    }
-
-    public void setMedicamentos(List<Medicamento> medicamentos) {
-        this.medicamentos = medicamentos;
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 
     // Métodos para añadir elementos
-    public void addMedicamento(Medicamento medicamento) {
-        if (this.medicamentos == null) {
-            this.medicamentos = new ArrayList<>();
+    public void addTratamiento(Tratamiento tratamiento) {
+        if (this.tratamientos == null) {
+            this.tratamientos = new ArrayList<>();
         }
-        this.medicamentos.add(medicamento);
+        this.tratamientos.add(tratamiento);
     }
 }
 
