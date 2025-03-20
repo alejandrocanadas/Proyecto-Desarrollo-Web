@@ -30,6 +30,7 @@
         <section id="RegistrarMascota">
             <div id="formularioMascota">
                 <form th:object="${mascota}" th:action="@{/mascota/add}" method="post">
+                    <input type="hidden" name="cliente_id" th:value="${cliente_id}">
                     <fieldset>
                         <legend class="titulo">Registrar Mascota</legend>
                 

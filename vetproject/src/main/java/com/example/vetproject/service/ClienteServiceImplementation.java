@@ -49,4 +49,8 @@ public class ClienteServiceImplementation implements ClienteService {
         return cliente.orElse(null);
     }
     
+    @Override
+    public Cliente findByEmail(String email) {
+        return clienteRepository.findByEmail(email);
+    }
 }

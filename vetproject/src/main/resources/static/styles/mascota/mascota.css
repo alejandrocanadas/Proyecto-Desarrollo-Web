@@ -6,6 +6,13 @@
     overflow: hidden;
     padding-bottom: 20px;
 }
+.table img {
+    width: 100px;  /* Ajusta el ancho según lo que necesites */
+    height: 100px; /* Mantén la altura uniforme */
+    object-fit: cover; /* Recorta la imagen si es necesario para mantener la proporción */
+    border-radius: 10px; /* Opcional: para dar bordes redondeados */
+}
+
 table th, table td {
     border: none; /* Elimina los bordes de cada celda */
     padding: 12px; /* Espaciado interno */
@@ -70,6 +77,22 @@ a{
     width: 100%;
     white-space: nowrap;
 }
+
+.btn-agregar {
+    background-color: #C9DCE8;
+    color: #122732;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
 /* Animación de desplazamiento */
 @keyframes scrollText {
     from {
@@ -79,3 +102,4 @@ a{
         transform: translateX(-100%);
     }
 }
+

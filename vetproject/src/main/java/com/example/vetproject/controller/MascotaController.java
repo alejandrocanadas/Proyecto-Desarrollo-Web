@@ -9,6 +9,7 @@ import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Mascota;
 import com.example.vetproject.error.NotFoundMascotException;
 import com.example.vetproject.service.MascotaService;
+import com.example.vetproject.service.ClienteService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,9 @@ public class MascotaController {
 
     @Autowired
     MascotaService mascotaService;
+
+    @Autowired
+    ClienteService clienteService;
 
     @GetMapping("/find/{id}")
     public String InformacionMascota(Model model, @PathVariable("id") Long id) {
@@ -76,9 +80,14 @@ public class MascotaController {
     }
 
     @PostMapping("/add")
-    public String GuardarMascota(@ModelAttribute Mascota mascota) {
-        System.out.println("Intentando guardar cliente...");
-        mascotaService.add(mascota);
-        return "redirect:/mascota/all";
+    public String GuardarMascota(@ModelAttribute Mascota mascota, @RequestParam String clienteEmail) {
+        Cliente cliente = clienteService.findByEmail(clienteEmail);
+        
+        if (cliente != null) {
+            mascota.setCliente(cliente);
+            mascotaService.add(mascota);
+            return "redirect:/mascota/all";
+        }
+        return "redirect:/mascota/add?error=emailnotfound";
     }
 }

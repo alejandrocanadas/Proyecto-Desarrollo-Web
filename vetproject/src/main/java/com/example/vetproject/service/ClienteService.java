@@ -21,4 +21,5 @@ public interface ClienteService {
 
     public Cliente authenticate(String username, String password);
 
+    public Cliente findByEmail(String email);
 }

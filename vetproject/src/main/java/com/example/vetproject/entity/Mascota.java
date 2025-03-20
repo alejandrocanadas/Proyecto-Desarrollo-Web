@@ -23,7 +23,7 @@ public class Mascota {
     private List<Medicamento> medicamentos;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false) // Cada mascota tiene un dueño
+    @JoinColumn(name = "cliente_id") // Cada mascota tiene un dueño
     private Cliente cliente;
 
    

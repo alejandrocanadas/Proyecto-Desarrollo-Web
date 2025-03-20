@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleccionamos el modal de suscripción y sus botones
-    const modalSuscribir = document.getElementById("modal-suscribir");
-    const botonesSuscribir = document.querySelectorAll(".btn-suscribir, .btn-comunidad, .agendar");
-    const botonCerrar = document.querySelector("#modal-suscribir .cerrar");
-
     // Imagen principal y tarjetas de servicio
     const imagenPrincipal = document.getElementById("imagen-principal");
     const descripcionImagen = document.getElementById("descripcion-imagen");
@@ -17,97 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const descripcionOpcion = document.getElementById("descripcion-opcion");
     const botonCerrarModal = document.querySelector("#modal-opcion .cerrar");
 
-    // Formularios
-    const formularioSuscripcion = document.getElementById("form-suscribir");
-    const mensajeConfirmacionSuscripcion = document.getElementById("mensaje-registro");
-
-    // Clase Cliente
-    class Cliente {
-        constructor(nombre, email, password, telefono) {
-            this.nombre = nombre;
-            this.email = email;
-            this.password = password;
-            this.telefono = telefono;
-        }
-
-        imprimirDatos() {
-            console.log(`Nuevo Cliente Registrado`);
-            console.log(`Nombre: ${this.nombre}`);
-            console.log(`Email: ${this.email}`);
-            console.log(`Contraseña: ${this.password}`);
-            console.log(`Teléfono: ${this.telefono}`);
-        }
-    }
-
-    // Asegurar que los modales estén ocultos al cargar la página
-    modalSuscribir.style.display = "none";
+    // Ocultar el modal al cargar la página
     modalOpcion.style.display = "none";
-
-    // Función para mostrar el modal de suscripción
-    function mostrarModal() {
-        modalSuscribir.style.display = "flex";
-    }
-
-    // Función para cerrar el modal de suscripción
-    function cerrarModal() {
-        modalSuscribir.style.display = "none";
-    }
-
-    // Event Listener para abrir el modal cuando se haga clic en los botones de suscripción
-    botonesSuscribir.forEach(boton => {
-        boton.addEventListener("click", function (event) {
-            event.preventDefault();
-            mostrarModal();
-        });
-    });
-
-    // Event Listener para cerrar el modal de suscripción al hacer clic en la "X"
-    if (botonCerrar) {
-        botonCerrar.addEventListener("click", cerrarModal);
-    }
-
-    // Event Listener para cerrar el modal de suscripción al hacer clic fuera de él
-    window.addEventListener("click", function (event) {
-        if (event.target === modalSuscribir) {
-            cerrarModal();
-        }
-    });
-
-    // Manejo del formulario de suscripción
-    if (formularioSuscripcion) {
-        formularioSuscripcion.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            // Obtener los valores del formulario
-            const nombre = document.getElementById("nombre-suscripcion").value;
-            const email = document.getElementById("email-suscripcion").value;
-            const password = document.getElementById("password-suscripcion").value;
-            const telefono = document.getElementById("telefono-suscripcion").value;
-
-            // Crear una nueva instancia de Cliente
-            const nuevoCliente = new Cliente(nombre, email, password, telefono);
-
-            // Imprimir datos del cliente en la consola
-            nuevoCliente.imprimirDatos();
-
-            // Mostrar mensaje de confirmación temporalmente
-            mensajeConfirmacionSuscripcion.style.display = "block";
-
-            // Limpiar formulario después de enviar
-            formularioSuscripcion.reset();
-        });
-    }
-
-    // Eventos de click en tarjetas de servicio (cambiar imagen y descripción)
-    tarjetasServicio.forEach(tarjeta => {
-        tarjeta.addEventListener("click", function () {
-            const nuevaImagen = tarjeta.getAttribute("data-imagen");
-            const nuevaDescripcion = tarjeta.getAttribute("data-descripcion");
-
-            imagenPrincipal.src = nuevaImagen;
-            descripcionImagen.textContent = nuevaDescripcion;
-        });
-    });
 
     // Lista de opciones personalizadas para cada botón
     const opcionesServicios = {
@@ -149,6 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    // Eventos de click en tarjetas de servicio (cambiar imagen y descripción)
+    tarjetasServicio.forEach(tarjeta => {
+        tarjeta.addEventListener("click", function () {
+            const nuevaImagen = tarjeta.getAttribute("data-imagen");
+            const nuevaDescripcion = tarjeta.getAttribute("data-descripcion");
+
+            if (nuevaImagen) {
+                imagenPrincipal.src = nuevaImagen;
+                descripcionImagen.textContent = nuevaDescripcion;
+            }
+        });
+    });
+
     // Mostrar el popup con la descripción al hacer clic en un botón dentro de la tarjeta
     botonesPopup.forEach(boton => {
         boton.addEventListener("click", function (event) {
@@ -157,16 +76,25 @@ document.addEventListener("DOMContentLoaded", function () {
             // Obtiene el nombre del botón
             const opcionSeleccionada = boton.textContent.trim();
 
-            // Busca en el objeto de opciones
-            if (opcionesServicios[opcionSeleccionada]) {
+            // Verifica que la opción existe y la imagen no es nula
+            if (opcionesServicios[opcionSeleccionada] && opcionesServicios[opcionSeleccionada].imagen) {
                 tituloOpcion.textContent = opcionSeleccionada;
                 imagenOpcion.src = opcionesServicios[opcionSeleccionada].imagen;
                 descripcionOpcion.textContent = opcionesServicios[opcionSeleccionada].descripcion;
 
-                // Muestra el modal
-                modalOpcion.style.display = "flex";
+                // Solo muestra el modal si la imagen es válida
+                imagenOpcion.onload = function () {
+                    modalOpcion.style.display = "flex";
+                };
+
+                // Manejo de error si la imagen no se puede cargar
+                imagenOpcion.onerror = function () {
+                    console.error("No se pudo cargar la imagen para:", opcionSeleccionada);
+                    modalOpcion.style.display = "none";
+                };
             } else {
-                console.error("Opción no encontrada:", opcionSeleccionada);
+                console.error("Opción no encontrada o sin imagen válida:", opcionSeleccionada);
+                modalOpcion.style.display = "none"; // Evitar que el modal aparezca vacío
             }
         });
     });
