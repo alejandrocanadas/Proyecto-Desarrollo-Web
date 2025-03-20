@@ -94,20 +94,31 @@ public class ClienteController {
     }
 
     @GetMapping("/login")
-    public String MostrarLogin(Model model) {
-        model.addAttribute("cliente", new Cliente());
-        return "login.html";
+public String MostrarLogin(Model model, @RequestParam(value = "error", required = false) String error) {
+    model.addAttribute("cliente", new Cliente());
+    
+    if (error != null) {
+        model.addAttribute("error", "Usuario no registrado o contraseña incorrecta.");
     }
     
+    return "login.html";
+}
 
-    @PostMapping("/login")
-    public String Login(@RequestParam("usuario") String usuario, @RequestParam("contrasena") String password, Model model) {
-        Cliente cliente = clienteService.authenticate(usuario, password);
-        if (cliente != null) {
-            model.addAttribute("cliente", cliente);
-            model.addAttribute("mascotas", cliente.getMascotas()); 
-            return "mascotas_usuario.html";
-        }
-        return "redirect:/clientes/login";
+    
+
+@PostMapping("/login")
+public String Login(@RequestParam("usuario") String usuario, @RequestParam("contrasena") String password, Model model) {
+    Cliente cliente = clienteService.authenticate(usuario, password);
+    if (cliente != null) {
+        model.addAttribute("cliente", cliente);
+        model.addAttribute("mascotas", cliente.getMascotas()); 
+        return "mascotas_usuario.html";
     }
+
+    model.addAttribute("error", "Usuario no registrado o contraseña incorrecta.");
+    model.addAttribute("cliente", new Cliente()); // Aseguramos que 'cliente' esté en el modelo
+    return "login.html";
+}
+
+
 }

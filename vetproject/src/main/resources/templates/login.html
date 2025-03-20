@@ -30,24 +30,24 @@
 
       <form th:action="@{/clientes/login}" method="post" th:object="${cliente}">
         <div class="input-group">
-          <label for="usuario">Usuario:</label>
-          <input type="text" id="usuario" th:field="*{usuario}" required />
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" th:field="*{usuario}" required />
         </div>
-
+    
         <div class="input-group">
-          <label for="contrasena">Contraseña:</label>
-          <input
-            type="password"
-            id="contrasena"
-            th:field="*{contrasena}"
-            required
-          />
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" th:field="*{contrasena}" required />
         </div>
-
+    
         <button type="submit">Ingresar</button>
-
+    
         <!-- Mensaje de error si las credenciales son incorrectas -->
         <p class="error-message" th:if="${error}" th:text="${error}"></p>
+    </form>
+    
+    
+    
+
       </form>
     </main>
   </body>
