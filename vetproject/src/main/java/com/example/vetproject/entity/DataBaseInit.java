@@ -6,6 +6,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 import com.example.vetproject.repository.ClienteRepository;
 import com.example.vetproject.repository.MascotaRepository;
+import com.example.vetproject.repository.VeterinarioRepository;
+
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Autowired
     ClienteRepository clienteRepository;
+
+     @Autowired
+    VeterinarioRepository veterinarioRepository; 
 
     private static final String[] NOMBRES_CLIENTES = {
         "Juan", "Maria", "Carlos", "Ana", "Luis", "Elena", "Ricardo", "Sofia", "Fernando", "Gabriela",
@@ -90,6 +95,24 @@ public class DataBaseInit implements ApplicationRunner {
         "https://cdn.pixabay.com/photo/2021/10/27/19/09/cat-6748193_1280.jpg", "https://cdn.pixabay.com/photo/2015/11/15/20/21/cat-1044750_1280.jpg",
         "https://cdn.pixabay.com/photo/2023/03/09/20/02/cat-7840767_1280.jpg", "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_1280.jpg"
     };
+
+    private static final String[] NOMBRES_VETERINARIOS = {
+        "Dr. Juan", "Dra. Maria", "Dr. Carlos", "Dra. Ana", "Dr. Luis"
+    };
+
+    private static final String[] TELEFONOS_VETERINARIOS = {
+        "3001234567", "3002345678", "3003456789", "3004567890", "3005678901"
+    };
+
+    private static final String[] CORREOS_VETERINARIOS = {
+        "juanv@vet.com", "mariav@vet.com", "carlosv@vet.com", "anav@vet.com", "luisv@vet.com"
+    };
+
+    private static final String[] USUARIOS_VETERINARIOS = {
+        "juanvet", "mariavet", "carlosvet", "anavet", "luisvet"
+    };
+
+    private static final String CONTRASENA_VETERINARIO = "password"; 
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -183,5 +206,23 @@ public class DataBaseInit implements ApplicationRunner {
 
         mascotaRepository.saveAll(mascotas);
         System.out.println("50 usuarios creados y 100 mascotas asignadas.");
+
+
+        // Crear veterinarios
+        List<Veterinario> veterinarios = new ArrayList<>();
+        for (int i = 0; i < NOMBRES_VETERINARIOS.length; i++) {
+            String nombre = NOMBRES_VETERINARIOS[i];
+            String telefono = TELEFONOS_VETERINARIOS[i];
+            String email = CORREOS_VETERINARIOS[i];
+            String usuario = USUARIOS_VETERINARIOS[i];
+
+            Veterinario veterinario = new Veterinario(nombre, telefono, email, usuario, CONTRASENA_VETERINARIO);
+            veterinarios.add(veterinario);
+        }
+
+        veterinarioRepository.saveAll(veterinarios);  // Guardar veterinarios en la BD
+
+        System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
     }
+    
 }
