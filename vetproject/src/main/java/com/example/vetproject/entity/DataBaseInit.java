@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 import com.example.vetproject.repository.ClienteRepository;
 import com.example.vetproject.repository.MascotaRepository;
+import com.example.vetproject.repository.TratamientoRepository;
 import com.example.vetproject.repository.VeterinarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 @Transactional
 public class DataBaseInit implements ApplicationRunner {
 
+    @Autowired
+    TratamientoRepository tratamientoRepository;
+    
     @Autowired
     MascotaRepository mascotaRepository;
 
@@ -221,6 +225,25 @@ public class DataBaseInit implements ApplicationRunner {
         }
 
         veterinarioRepository.saveAll(veterinarios);  // Guardar veterinarios en la BD
+
+        List<Tratamiento> tratamientos = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            Tratamiento tratamiento = new Tratamiento();
+            tratamiento.setNombre("Tratamiento " + (i + 1));
+            tratamiento.setMascota(mascotas.get(i)); // Asignar a la mascota i
+            tratamiento.setVeterinario(veterinarios.get(i % veterinarios.size())); // Asignar a un veterinario de forma cíclica
+
+            // Los siguientes campos pueden ser omitidos si no son necesarios
+            tratamiento.setIdMascota("M" + mascotas.get(i).getId());
+            tratamiento.setIdTratamiento("T" + (i + 1));
+            tratamiento.setIdMedicamento("Med" + (i + 1));
+
+            tratamientos.add(tratamiento);
+        }
+
+        tratamientoRepository.saveAll(tratamientos);
+        System.out.println("10 tratamientos añadidos.");
 
         System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
     }
