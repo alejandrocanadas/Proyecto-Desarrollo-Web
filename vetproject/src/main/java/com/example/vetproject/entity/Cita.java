@@ -1,6 +1,9 @@
 package com.example.vetproject.entity;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,14 +14,17 @@ public class Cita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "mascota_id", nullable = false)
     private Mascota mascota;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "veterinario_id", nullable = false)
     private Veterinario veterinario;

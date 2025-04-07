@@ -20,7 +20,7 @@ public class MascotaServiceImplementation implements MascotaService{
     }
 
     @Override
-    public Collection<Mascota> SeachAll() {
+    public List<Mascota> SeachAll() {
         return mascotaRepository.findAll();
     }
 

@@ -13,7 +13,7 @@ public interface MascotaService {
 
     public Mascota SearchById(Long id);
 
-    public Collection<Mascota> SeachAll();
+    public List<Mascota> SeachAll();
 
     public void deleteById(Long id);
 

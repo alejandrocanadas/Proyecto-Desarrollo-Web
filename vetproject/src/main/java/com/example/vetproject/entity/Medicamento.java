@@ -2,6 +2,8 @@ package com.example.vetproject.entity;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,7 @@ public class Medicamento {
     @Column(nullable = false)
     private int precio; // Como es un int, no puede ser null por defecto.
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tratamiento_id", nullable = false)
     private Tratamiento tratamiento;

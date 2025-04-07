@@ -1,24 +1,22 @@
 package com.example.vetproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Mascota;
 import com.example.vetproject.error.NotFoundMascotException;
 import com.example.vetproject.service.MascotaService;
+
+import io.swagger.v3.oas.annotations.Operation;
+
 import com.example.vetproject.service.ClienteService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
 
-@Controller
-@RequestMapping("/mascota")
+@RestController
+@RequestMapping("/mascotas")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MascotaController {
 
     @Autowired
@@ -28,66 +26,56 @@ public class MascotaController {
     ClienteService clienteService;
 
     @GetMapping("/find/{id}")
-    public String InformacionMascota(Model model, @PathVariable("id") Long id) {
+    @Operation(summary = "Obtiene una mascota por su ID")
+    public Mascota obtenerMascota(@PathVariable("id") Long id) {
         Mascota mascota = mascotaService.SearchById(id);
-        if (mascota != null) {
-            model.addAttribute("mascota", mascotaService.SearchById(id));
-        } else {
+        if (mascota == null) {
             throw new NotFoundMascotException(id);
         }
-        return "informacion_mascota.html";
+        return mascota;
     }
 
     @GetMapping("/all")
-    public String MostrarMascotas(Model model) {
-        model.addAttribute("mascotas", mascotaService.SeachAll());
-        return "mascotas.html";
+    @Operation(summary = "Obtiene todas las mascotas")
+    public List<Mascota> obtenerTodasLasMascotas() {
+        return mascotaService.SeachAll();
     }
 
-    @GetMapping("/delete/{id}")
-    public String EliminarMascota(@PathVariable("id") Long id) {
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Elimina una mascota por su ID")
+    public void eliminarMascota(@PathVariable("id") Long id) {
         Mascota mascota = mascotaService.SearchById(id);
         if (mascota == null) {
             throw new NotFoundMascotException(id);
         }
         mascotaService.deleteById(id);
-        return "redirect:/mascota/all";
-    }
-
-    @GetMapping("/update/{id}")
-    public String ActualizarMascota(Model model, @PathVariable("id") Long id) {
-        Mascota mascota = mascotaService.SearchById(id);
-        if (mascota == null) {
-            throw new NotFoundMascotException(id);
-        }
-        model.addAttribute("mascota", mascota);
-        return "mascota_update.html";
     }
 
     @PostMapping("/update")
-    public String ActualizarMascota(@ModelAttribute Mascota mascota) {
+    @Operation(summary = "Actualiza una mascota")
+    public void actualizarMascota(@RequestBody Mascota mascota) {
         Mascota anterior = mascotaService.SearchById(mascota.getId());
+        if (anterior == null) {
+            throw new NotFoundMascotException(mascota.getId());
+        }
         mascota.setCliente(anterior.getCliente());
-
         mascotaService.update(mascota);
-        return "redirect:/mascota/all";
-    }
-
-    @GetMapping("/add")
-    public String AgregarMascota(Model model, @RequestParam Long cliente_id) {
-        model.addAttribute("mascota", new Mascota());
-        model.addAttribute("cliente_id", cliente_id);
-        return "mascota_forms.html";
     }
 
     @PostMapping("/add")
-    public String GuardarMascota(@ModelAttribute Mascota mascota, @RequestParam Long cliente_id) {
+    @Operation(summary = "Guarda una nueva mascota")
+    public void guardarMascota(@RequestBody Mascota mascota, @RequestParam Long cliente_id) {
         Cliente cliente = clienteService.SearchById(cliente_id);
-        if (cliente != null) {
-            mascota.setCliente(cliente);
-            mascotaService.add(mascota);
-            return "redirect:/mascota/all";
+        if (cliente == null) {
+            throw new RuntimeException("Cliente no encontrado con ID: " + cliente_id);
         }
-        return "redirect:/error";
+        mascota.setCliente(cliente);
+        mascotaService.add(mascota);
+    }
+
+    @GetMapping("/cliente/{id}")
+    @Operation(summary = "Obtiene todas las mascotas de un cliente")
+    public List<Mascota> obtenerMascotasPorCliente(@PathVariable("id") Long id) {
+        return mascotaService.obtenerMascotasPorCliente(id);
     }
 }

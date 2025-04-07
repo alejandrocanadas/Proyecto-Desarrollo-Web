@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -38,6 +39,7 @@ public class Veterinario {
     @Column(nullable = false)
     private String contrasena;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tratamiento> tratamientos;
 

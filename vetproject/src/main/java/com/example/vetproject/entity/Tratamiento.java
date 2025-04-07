@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TRATAMIENTO_TABLE")
 public class Tratamiento {
@@ -26,13 +28,16 @@ public class Tratamiento {
     @NotNull
     private String idMedicamento;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Medicamento> medicamentos;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "mascota_id", nullable = false)
     private Mascota mascota;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "veterinario_id", nullable = false)
     private Veterinario veterinario;

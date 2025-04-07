@@ -1,6 +1,7 @@
 package com.example.vetproject.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import com.example.vetproject.entity.Mascota;
 public interface ClienteService {
     public Cliente SearchById(Long id);
 
-    public Collection<Cliente> SearchAll();
+    public List<Cliente> SearchAll();
 
     public void deleteById(Long id);
 
