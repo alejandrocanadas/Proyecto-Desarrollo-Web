@@ -326,7 +326,7 @@ public class DataBaseInit implements ApplicationRunner {
 
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                FileInputStream file = new FileInputStream(new File("/Users/simonmarquez/Dropbox/Simon/UNIVERSIDAD/SEXTO SEMESTRE/DESARROLLO_WEB/PROYECTO/Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx"));
+                FileInputStream file = new FileInputStream(new File("vetproject\\src\\main\\resources\\static\\Resources\\MEDICAMENTOS_VETERINARIA.xlsx"));
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
                 int rowCount = sheet.getPhysicalNumberOfRows(); 
