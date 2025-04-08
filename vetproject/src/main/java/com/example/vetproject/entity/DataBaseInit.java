@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.util.Random;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -337,6 +338,8 @@ public class DataBaseInit implements ApplicationRunner {
                         int stock = 0;
                         int uvendidas = 0;
                         Row row = sheet.getRow(i);
+                        Random random = new Random();
+                        int randomNumber = random.nextInt(10); 
                         if (row != null) {
                                 if(row.getRowNum() == 0){
                                         continue;
@@ -354,7 +357,7 @@ public class DataBaseInit implements ApplicationRunner {
                                         stock = (int) cell.getNumericCellValue();
                                         cell = row.getCell(5);
                                         uvendidas = (int) cell.getNumericCellValue();
-                                        Medicamento medicamento = new Medicamento(id, nombre, preciocompra, precioventa, stock, uvendidas);
+                                        Medicamento medicamento = new Medicamento(id, nombre, preciocompra, precioventa, stock, uvendidas, tratamientos.get(randomNumber));
                                         System.out.println(medicamento.getId());
                                         System.out.println(medicamento.getNombre());
                                         System.out.println(medicamento.getPrecioVenta());
@@ -381,6 +384,4 @@ public class DataBaseInit implements ApplicationRunner {
 
         System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
     }
-
-
 }

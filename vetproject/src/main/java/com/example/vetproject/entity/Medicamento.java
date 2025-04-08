@@ -18,7 +18,6 @@ import jakarta.persistence.Version;
 @Table(name = "MED_TABLE")
 public class Medicamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotNull
@@ -49,13 +48,14 @@ public class Medicamento {
 
 
 
-    public Medicamento(Long id, String nombre, double preciocompra, double precioventa, int stock, int uvendidas) {
+    public Medicamento(Long id, String nombre, double preciocompra, double precioventa, int stock, int uvendidas, Tratamiento tratamiento) {
         this.id = id;
         this.nombre = nombre;
         this.preciocompra = preciocompra;
         this.precioventa = precioventa;
         this.stock = stock;
         this.uvendidas = uvendidas;
+        this.tratamiento = tratamiento;
     }
 
     public Medicamento(String nombre, double preciocompra, double precioventa, int stock, int uvendidas) {
