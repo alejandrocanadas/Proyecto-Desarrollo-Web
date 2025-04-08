@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.util.Random;
-
+import java.nio.file.Paths;
+import java.io.FileInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -326,7 +327,8 @@ public class DataBaseInit implements ApplicationRunner {
 
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                FileInputStream file = new FileInputStream(new File("vetproject\\src\\main\\resources\\static\\Resources\\MEDICAMENTOS_VETERINARIA.xlsx"));
+                String filePath = "Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
+                FileInputStream file = new FileInputStream(filePath);
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
                 int rowCount = sheet.getPhysicalNumberOfRows(); 
