@@ -6,12 +6,19 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 import com.example.vetproject.repository.ClienteRepository;
 import com.example.vetproject.repository.MascotaRepository;
+import com.example.vetproject.repository.MedicamentoRepository;
 import com.example.vetproject.repository.TratamientoRepository;
 import com.example.vetproject.repository.VeterinarioRepository;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.ArrayList;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @Controller
 @Transactional
@@ -28,6 +35,9 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Autowired
     VeterinarioRepository veterinarioRepository;
+
+    @Autowired
+    MedicamentoRepository medicamentoRepository;
 
     private static final String[] NOMBRES_CLIENTES = {
             "Juan", "Maria", "Carlos", "Ana", "Luis", "Elena", "Ricardo", "Sofia", "Fernando", "Gabriela",
@@ -312,9 +322,65 @@ public class DataBaseInit implements ApplicationRunner {
         }
 
         tratamientoRepository.saveAll(tratamientos);
+
+        List<Medicamento> medicamentos = new ArrayList<>();
+        try {
+                FileInputStream file = new FileInputStream(new File("Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx"));
+                Workbook workbook = new XSSFWorkbook(file);
+                Sheet sheet = workbook.getSheetAt(0);
+                int rowCount = sheet.getPhysicalNumberOfRows(); 
+                for (int i = 0; i < rowCount; i++) {
+                        long id = 0;
+                        String nombre = "";
+                        double preciocompra = 0;
+                        double precioventa = 0;
+                        int stock = 0;
+                        int uvendidas = 0;
+                        Row row = sheet.getRow(i);
+                        if (row != null) {
+                                if(row.getRowNum() == 0){
+                                        continue;
+                                }
+                                else{
+                                        Cell cell = row.getCell(0);
+                                        id = (long) cell.getNumericCellValue();
+                                        cell = row.getCell(1);
+                                        nombre = cell.getStringCellValue();
+                                        cell = row.getCell(2);
+                                        precioventa = cell.getNumericCellValue();
+                                        cell = row.getCell(3);
+                                        preciocompra = cell.getNumericCellValue();
+                                        cell = row.getCell(4);
+                                        stock = (int) cell.getNumericCellValue();
+                                        cell = row.getCell(5);
+                                        uvendidas = (int) cell.getNumericCellValue();
+                                        Medicamento medicamento = new Medicamento(id, nombre, preciocompra, precioventa, stock, uvendidas);
+                                        System.out.println(medicamento.getId());
+                                        System.out.println(medicamento.getNombre());
+                                        System.out.println(medicamento.getPrecioVenta());
+                                        System.out.println(medicamento.getPrecioCompra());
+                                        System.out.println(medicamento.getSotck());
+                                        System.out.println(medicamento.getUvendidas());
+                                        medicamentos.add(medicamento);
+
+                                }
+                        }
+                }
+                workbook.close();
+                file.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+        medicamentoRepository.saveAll(medicamentos);
+
+
         System.out.println("10 tratamientos añadidos.");
 
         System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
     }
+
 
 }
