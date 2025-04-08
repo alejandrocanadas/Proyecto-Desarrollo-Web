@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.vetproject.entity.Cliente;
+import com.example.vetproject.entity.LoginRequest;
 import com.example.vetproject.error.NotFoundClientException;
 import com.example.vetproject.service.ClienteService;
 
@@ -61,8 +62,8 @@ public class ClienteController {
     
     @PostMapping("/login")
     @Operation(summary = "Inicia sesion")
-    public Cliente login(@RequestParam String usuario, @RequestParam String contrasena) {
-        Cliente cliente = clienteService.authenticate(usuario, contrasena);
+    public Cliente login(@RequestBody LoginRequest loginRequest) {
+        Cliente cliente = clienteService.authenticate(loginRequest.getUsuario(), loginRequest.getContrasena());
         if (cliente == null) {
             throw new RuntimeException("Usuario o contraseña incorrecta");
         }
