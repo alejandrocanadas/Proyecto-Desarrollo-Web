@@ -18,11 +18,11 @@ public class Cliente {
     private Long id;
     
     @JsonIgnore // lo usamos para que el Json no tenga que retornar la lista de mascotas anidadas al cliente ya que se genera un bulce en donde el cliente tiene mascotas pero las mascotas tambien tienen un cliente
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Mascota> mascotas;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Cita> citas;
     
     @NotNull

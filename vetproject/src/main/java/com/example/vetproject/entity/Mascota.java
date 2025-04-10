@@ -18,7 +18,7 @@ public class Mascota {
     private Long id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
     private List<Tratamiento> tratamientos;
 
     @JsonIgnore
