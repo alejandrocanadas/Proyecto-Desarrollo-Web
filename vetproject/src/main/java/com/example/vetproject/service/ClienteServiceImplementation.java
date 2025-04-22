@@ -54,4 +54,8 @@ public class ClienteServiceImplementation implements ClienteService {
     public Cliente findByEmail(String email) {
         return clienteRepository.findByEmail(email);
     }
+
+    public int obtenerTotalClientes() {
+        return (int) clienteRepository.count();
+    }
 }

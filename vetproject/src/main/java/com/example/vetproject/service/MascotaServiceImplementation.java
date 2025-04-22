@@ -47,4 +47,7 @@ public class MascotaServiceImplementation implements MascotaService{
         return mascotaRepository.findByClienteId(clienteId);
     }
     
+    public int obtenerTotalMascotas() {
+        return (int) mascotaRepository.count();
+    }
 }
