@@ -3,6 +3,7 @@ package com.example.vetproject.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Veterinario;
@@ -13,10 +14,19 @@ public class VeterinarioServiceImplementation implements VeterinarioService{
     
     @Autowired
     private VeterinarioRepository veterinarioRepository;
+
+    @Override
+    public Veterinario SearchById(Long id) {
+        return veterinarioRepository.findById(id).get();
+    }
     
     @Override
     public Veterinario authenticate(String usuario, String contrasena) {
         Optional<Veterinario> veterinario = veterinarioRepository.findByUsuarioAndContrasena(usuario, contrasena);
+        if (!veterinario.isPresent()) {
+            System.out.println("Usuario o contraseña incorrectos");
+        }
         return veterinario.orElse(null);
     }
+
 }
