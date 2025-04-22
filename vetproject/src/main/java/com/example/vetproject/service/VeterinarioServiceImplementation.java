@@ -14,10 +14,19 @@ public class VeterinarioServiceImplementation implements VeterinarioService{
     
     @Autowired
     private VeterinarioRepository veterinarioRepository;
+
+    @Override
+    public Veterinario SearchById(Long id) {
+        return veterinarioRepository.findById(id).get();
+    }
     
     @Override
     public Veterinario authenticate(String usuario, String contrasena) {
         Optional<Veterinario> veterinario = veterinarioRepository.findByUsuarioAndContrasena(usuario, contrasena);
+        if (!veterinario.isPresent()) {
+            System.out.println("Usuario o contraseña incorrectos");
+        }
         return veterinario.orElse(null);
     }
+
 }
