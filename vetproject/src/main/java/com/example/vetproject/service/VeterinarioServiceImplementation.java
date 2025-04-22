@@ -8,6 +8,7 @@ import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Veterinario;
 import com.example.vetproject.repository.VeterinarioRepository;
 
+@Service
 public class VeterinarioServiceImplementation implements VeterinarioService{
     
     @Autowired
