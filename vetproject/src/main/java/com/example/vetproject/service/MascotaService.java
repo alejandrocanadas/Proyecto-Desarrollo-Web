@@ -24,4 +24,6 @@ public interface MascotaService {
     public List<Mascota> obtenerMascotasPorCliente(Long clienteId);
 
     public int obtenerTotalMascotas();
+
+    public Mascota save(Mascota mascota);
 } 

@@ -18,13 +18,6 @@ public class Tratamiento {
     @NotNull
     private String nombre;
     
-
-    @NotNull
-    private String idMascota;
-    
-    @NotNull
-    private String idTratamiento;
-    
     @NotNull
     private String idMedicamento;
 
@@ -34,7 +27,7 @@ public class Tratamiento {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "mascota_id", nullable = false)
+    @JoinColumn(name = "mascota_id", nullable = true)
     private Mascota mascota;
 
     @JsonIgnore
@@ -51,12 +44,6 @@ public class Tratamiento {
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getIdMascota() { return idMascota; }
-    public void setIdMascota(String idMascota) { this.idMascota = idMascota; }
-
-    public String getIdTratamiento() { return idTratamiento; }
-    public void setIdTratamiento(String idTratamiento) { this.idTratamiento = idTratamiento; }
 
     public String getIdMedicamento() { return idMedicamento; }
     public void setIdMedicamento(String idMedicamento) { this.idMedicamento = idMedicamento; }

@@ -33,7 +33,6 @@ public class DashboardController {
         Map<String, Integer> estadisticas = new HashMap<>();
         estadisticas.put("totalMascotas", mascotaService.obtenerTotalMascotas());
         estadisticas.put("totalClientes", clienteService.obtenerTotalClientes());
-        estadisticas.put("totalTratamientos", tratamientoService.obtenerTotalTratamientos());
         return ResponseEntity.ok(estadisticas);
     }
     

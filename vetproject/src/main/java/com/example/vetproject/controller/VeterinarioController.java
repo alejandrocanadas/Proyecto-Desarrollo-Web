@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.LoginRequest;
+import com.example.vetproject.entity.Tratamiento;
 import com.example.vetproject.entity.Veterinario;
 import com.example.vetproject.error.NotFoundClientException;
 import com.example.vetproject.service.VeterinarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import java.util.List;
 
 @RestController
 @RequestMapping("/veterinario")
@@ -34,6 +36,17 @@ public class VeterinarioController {
             throw new NotFoundClientException(id);
         }
         return veterinario;
+    }
+
+    @GetMapping("tratamientos/{id}")
+    @Operation(summary = "Obtiene todos los tratamientos asignados a un veterinario")
+    public ResponseEntity<List<Tratamiento>> getTratamientosVeterinario(@PathVariable Long id) {
+        Veterinario veterinario = veterinarioService.SearchById(id);
+        if (veterinario == null) {
+            throw new NotFoundClientException(id);
+        }
+        List<Tratamiento> tratamientos = veterinario.getTratamientos();
+        return new ResponseEntity<>(tratamientos, HttpStatus.OK);
     }
 
     @PostMapping("/login")

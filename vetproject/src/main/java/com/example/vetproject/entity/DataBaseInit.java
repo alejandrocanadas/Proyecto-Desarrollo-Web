@@ -181,6 +181,24 @@ public class DataBaseInit implements ApplicationRunner {
 
     private static final String CONTRASENA_VETERINARIO = "password";
 
+    private static final String[] NOMBRES_TRATAMIENTOS = {
+        "Vacunación anual",
+        "Desparasitación",
+        "Limpieza dental",
+        "Control de peso",
+        "Revisión general",
+        "Tratamiento antipulgas",
+        "Esterilización",
+        "Control de vacunas",
+        "Revisión post-operatoria",
+        "Tratamiento de heridas",
+        "Control de diabetes",
+        "Tratamiento de artritis",
+        "Control de alergias",
+        "Revisión cardíaca",
+        "Tratamiento de infección"
+    };
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         List<Cliente> clientes = new ArrayList<>();
@@ -306,24 +324,25 @@ public class DataBaseInit implements ApplicationRunner {
 
         veterinarioRepository.saveAll(veterinarios); // Guardar veterinarios en la BD
 
+        // Crear tratamientos
         List<Tratamiento> tratamientos = new ArrayList<>();
+        Random random1 = new Random();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             Tratamiento tratamiento = new Tratamiento();
-            tratamiento.setNombre("Tratamiento " + (i + 1));
-            tratamiento.setMascota(mascotas.get(i)); // Asignar a la mascota i
-            tratamiento.setVeterinario(veterinarios.get(i % veterinarios.size())); // Asignar a un veterinario de forma
-                                                                                   // cíclica
-
-            // Los siguientes campos pueden ser omitidos si no son necesarios
-            tratamiento.setIdMascota("M" + mascotas.get(i).getId());
-            tratamiento.setIdTratamiento("T" + (i + 1));
-            tratamiento.setIdMedicamento("Med" + (i + 1));
+            tratamiento.setNombre(NOMBRES_TRATAMIENTOS[i % NOMBRES_TRATAMIENTOS.length]);
+            
+            // Asignar un veterinario aleatorio
+            tratamiento.setVeterinario(veterinarios.get(random1.nextInt(veterinarios.size())));
+            
+            // Generar ID de medicamento aleatorio
+            tratamiento.setIdMedicamento("MED-" + String.format("%04d", random1.nextInt(20) + 1));
 
             tratamientos.add(tratamiento);
         }
 
         tratamientoRepository.saveAll(tratamientos);
+        System.out.println("50 tratamientos creados y guardados en la base de datos.");
 
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
@@ -382,7 +401,7 @@ public class DataBaseInit implements ApplicationRunner {
         medicamentoRepository.saveAll(medicamentos);
 
 
-        System.out.println("10 tratamientos añadidos.");
+        System.out.println("50 tratamientos añadidos.");
 
         System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
     }

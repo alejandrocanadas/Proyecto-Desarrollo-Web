@@ -50,4 +50,9 @@ public class MascotaServiceImplementation implements MascotaService{
     public int obtenerTotalMascotas() {
         return (int) mascotaRepository.count();
     }
+
+    @Override
+    public Mascota save(Mascota mascota) {
+        return mascotaRepository.save(mascota);
+    }
 }

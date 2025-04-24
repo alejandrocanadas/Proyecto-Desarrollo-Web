@@ -1,9 +1,11 @@
 package com.example.vetproject.service;
 
-import org.springframework.stereotype.Service;
+import com.example.vetproject.entity.Tratamiento;
+import java.util.List;
 
-@Service
 public interface TratamientoService {
-    public int obtenerTotalTratamientos();
-    
+    Tratamiento findById(Long id);
+    List<Tratamiento> findAll();
+    Tratamiento save(Tratamiento tratamiento);
+    void deleteById(Long id);
 } 
