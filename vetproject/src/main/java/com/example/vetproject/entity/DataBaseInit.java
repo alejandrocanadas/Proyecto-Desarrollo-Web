@@ -324,29 +324,10 @@ public class DataBaseInit implements ApplicationRunner {
 
         veterinarioRepository.saveAll(veterinarios); // Guardar veterinarios en la BD
 
-        // Crear tratamientos
-        List<Tratamiento> tratamientos = new ArrayList<>();
-        Random random1 = new Random();
-
-        for (int i = 0; i < 50; i++) {
-            Tratamiento tratamiento = new Tratamiento();
-            tratamiento.setNombre(NOMBRES_TRATAMIENTOS[i % NOMBRES_TRATAMIENTOS.length]);
-            
-            // Asignar un veterinario aleatorio
-            tratamiento.setVeterinario(veterinarios.get(random1.nextInt(veterinarios.size())));
-            
-            // Generar ID de medicamento aleatorio
-            tratamiento.setIdMedicamento("MED-" + String.format("%04d", random1.nextInt(20) + 1));
-
-            tratamientos.add(tratamiento);
-        }
-
-        tratamientoRepository.saveAll(tratamientos);
-        System.out.println("50 tratamientos creados y guardados en la base de datos.");
-
+        // Crear medicamentos
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                String filePath = "Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
+                String filePath = "ProyectoWeb/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
                 FileInputStream file = new FileInputStream(filePath);
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
@@ -359,8 +340,6 @@ public class DataBaseInit implements ApplicationRunner {
                         int stock = 0;
                         int uvendidas = 0;
                         Row row = sheet.getRow(i);
-                        Random random = new Random();
-                        int randomNumber = random.nextInt(10); 
                         if (row != null) {
                                 if(row.getRowNum() == 0){
                                         continue;
@@ -378,15 +357,8 @@ public class DataBaseInit implements ApplicationRunner {
                                         stock = (int) cell.getNumericCellValue();
                                         cell = row.getCell(5);
                                         uvendidas = (int) cell.getNumericCellValue();
-                                        Medicamento medicamento = new Medicamento(id, nombre, preciocompra, precioventa, stock, uvendidas, tratamientos.get(randomNumber));
-                                        System.out.println(medicamento.getId());
-                                        System.out.println(medicamento.getNombre());
-                                        System.out.println(medicamento.getPrecioVenta());
-                                        System.out.println(medicamento.getPrecioCompra());
-                                        System.out.println(medicamento.getSotck());
-                                        System.out.println(medicamento.getUvendidas());
+                                        Medicamento medicamento = new Medicamento(id, nombre, preciocompra, precioventa, stock, uvendidas, null);
                                         medicamentos.add(medicamento);
-
                                 }
                         }
                 }
@@ -396,12 +368,8 @@ public class DataBaseInit implements ApplicationRunner {
                 e.printStackTrace();
             }
 
-
-
         medicamentoRepository.saveAll(medicamentos);
-
-
-        System.out.println("50 tratamientos añadidos.");
+        System.out.println("Medicamentos añadidos correctamente.");
 
         System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
     }

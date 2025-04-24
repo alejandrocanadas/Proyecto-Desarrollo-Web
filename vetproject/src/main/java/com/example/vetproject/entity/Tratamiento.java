@@ -2,6 +2,7 @@ package com.example.vetproject.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -17,15 +18,12 @@ public class Tratamiento {
 
     @NotNull
     private String nombre;
+
     
-    @NotNull
-    private String idMedicamento;
-
-    @JsonIgnore
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Medicamento> medicamentos;
+    private List<Medicamento> medicamentos=new ArrayList<>();
 
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "mascota_id", nullable = true)
     private Mascota mascota;
@@ -44,10 +42,6 @@ public class Tratamiento {
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getIdMedicamento() { return idMedicamento; }
-    public void setIdMedicamento(String idMedicamento) { this.idMedicamento = idMedicamento; }
-
 
     public List<Medicamento> getMedicamentos() {
         return medicamentos;

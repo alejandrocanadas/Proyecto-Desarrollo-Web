@@ -43,7 +43,7 @@ public class Medicamento {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "tratamiento_id", nullable = false)
+    @JoinColumn(name = "tratamiento_id", nullable = true)
     private Tratamiento tratamiento;
 
 

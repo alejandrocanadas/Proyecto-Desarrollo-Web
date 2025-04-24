@@ -39,7 +39,6 @@ public class Veterinario {
     @Column(nullable = false)
     private String contrasena;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tratamiento> tratamientos;
 
