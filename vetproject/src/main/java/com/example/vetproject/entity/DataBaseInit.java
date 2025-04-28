@@ -9,6 +9,7 @@ import com.example.vetproject.repository.MascotaRepository;
 import com.example.vetproject.repository.MedicamentoRepository;
 import com.example.vetproject.repository.TratamientoRepository;
 import com.example.vetproject.repository.VeterinarioRepository;
+import com.example.vetproject.repository.AdminRepository;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -40,6 +41,9 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Autowired
     MedicamentoRepository medicamentoRepository;
+
+    @Autowired
+    AdminRepository adminRepository;
 
     private static final String[] NOMBRES_CLIENTES = {
             "Juan", "Maria", "Carlos", "Ana", "Luis", "Elena", "Ricardo", "Sofia", "Fernando", "Gabriela",
@@ -167,18 +171,31 @@ public class DataBaseInit implements ApplicationRunner {
             "Dr. Juan", "Dra. Maria", "Dr. Carlos", "Dra. Ana", "Dr. Luis"
     };
 
+    private static final String[] NOMBRES_ADMIN = {
+        "Alex", "Claudia", "Simon", "Samuel", "Gabriela"
+    };
     private static final String[] TELEFONOS_VETERINARIOS = {
             "3001234567", "3002345678", "3003456789", "3004567890", "3005678901"
+    };
+
+    private static final String[] TELEFONOS_ADMIN = {
+        "3001234567", "3002345678", "3003456789", "3004567890", "3005678901"
     };
 
     private static final String[] CORREOS_VETERINARIOS = {
             "juanv@vet.com", "mariav@vet.com", "carlosv@vet.com", "anav@vet.com", "luisv@vet.com"
     };
 
+    private static final String[] CORREOS_ADMIN = {
+        "alex@vet.com", "claudia@vet.com", "simon@vet.com", "samuel@vet.com", "gabriela@vet.com"
+    };
+
     private static final String[] USUARIOS_VETERINARIOS = {
             "juanvet", "mariavet", "carlosvet", "anavet", "luisvet"
     };
-
+    private static final String[] USUARIOS_ADMIN = {
+        "alexvet", "claudiavet", "simonvet", "samuelvet", "gabrielavet"
+};
     private static final String CONTRASENA_VETERINARIO = "password";
 
     private static final String[] NOMBRES_TRATAMIENTOS = {
@@ -323,6 +340,21 @@ public class DataBaseInit implements ApplicationRunner {
         }
 
         veterinarioRepository.saveAll(veterinarios); // Guardar veterinarios en la BD
+
+        // Crear veterinarios
+        List<Admin> administradores = new ArrayList<>();
+        for (int i = 0; i < NOMBRES_ADMIN.length; i++) {
+            String nombre = NOMBRES_ADMIN[i];
+            String telefono = TELEFONOS_ADMIN[i];
+            String email = CORREOS_ADMIN[i];
+            String usuario = USUARIOS_ADMIN[i];
+
+            Admin administrador = new Admin(nombre, telefono, email, usuario, CONTRASENA_VETERINARIO);
+            administradores.add(administrador);
+        }
+
+        adminRepository.saveAll(administradores); 
+
 
         // Crear medicamentos
         List<Medicamento> medicamentos = new ArrayList<>();
