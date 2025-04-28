@@ -53,12 +53,10 @@ public class AdminController {
     public ResponseEntity<Map<String, Object>> getAdminDashboardStats() {
         Map<String, Object> stats = new HashMap<>();
 
+        List<Map<String, Object>> tratamientos = tratamientoRepository.findTratamientosConMascotaVeterinarioYMedicamento();
+        System.out.println("Tratamientos obtenidos: " + tratamientos);
         // Número total de tratamientos administrados
         long totalTratamientos = tratamientoRepository.count();
-
-        // Número de tratamientos por tipo de medicamento
-        List<Map<String, Object>> tratamientosPorMedicamento = tratamientoRepository.findTratamientosPorMedicamento(); // Crear este método en el repositorio
-
         // Número de veterinarios activos e inactivos
         long veterinariosActivos = veterinarioRepository.count();
         long clientesActivos = clienteRepository.count();
@@ -67,11 +65,11 @@ public class AdminController {
         long mascotasInactivas = mascotaRepository.countByEstado("Inactivo");
 
         stats.put("totalTratamientos", totalTratamientos);
-        stats.put("tratamientosPorMedicamento", tratamientosPorMedicamento);
         stats.put("veterinariosActivos", veterinariosActivos);
         stats.put("mascotasActivas", mascotasActivas);
         stats.put("mascotasInactivas", mascotasInactivas);
         stats.put("clientesActivos", clientesActivos);
+        stats.put("tratamientos", tratamientos);
 
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }

@@ -13,8 +13,13 @@ import java.util.Map;
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long>{
     List<Tratamiento> findByMascotaId(Long mascotaId);
     List<Tratamiento> findByVeterinarioId(Long veterinarioId);
-    @Query("SELECT NEW MAP(m.nombre AS nombre, COUNT(t) AS cantidad) FROM Tratamiento t JOIN t.medicamentos m GROUP BY m.nombre")
-    List<Map<String, Object>> findTratamientosPorMedicamento();
+    long count();
+    @Query("SELECT NEW MAP(p.nombre AS mascota, v.nombre AS veterinario, t.nombre AS medicamento, m.precioventa AS precio) " +
+       "FROM Tratamiento t " +
+       "JOIN t.mascota p " +
+       "JOIN t.veterinario v " +
+       "JOIN t.medicamentos m")
+    List<Map<String, Object>> findTratamientosConMascotaVeterinarioYMedicamento();
 
     
 } 

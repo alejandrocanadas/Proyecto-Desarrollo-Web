@@ -36,6 +36,12 @@ public class Tratamiento {
     // Constructor vacío
     public Tratamiento() {}
 
+    public Tratamiento(String nombre, Veterinario veterinario, Mascota mascota, List<Medicamento> medicamentos) {        
+        this.medicamentos = medicamentos;
+        this.veterinario = veterinario;
+        this.mascota = mascota;
+        this.nombre = nombre;
+    }
     // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

@@ -288,7 +288,7 @@ public class DataBaseInit implements ApplicationRunner {
         }
 
         clienteRepository.saveAll(clientes); // Guardar clientes en la BD
-
+        
         // Crear y asignar mascotas (1 perro y 1 gato por usuario)
         List<Mascota> mascotas = new ArrayList<>();
         for (int i = 0; i < clientes.size(); i++) {
@@ -338,7 +338,6 @@ public class DataBaseInit implements ApplicationRunner {
             Veterinario veterinario = new Veterinario(nombre, telefono, email, usuario, CONTRASENA_VETERINARIO);
             veterinarios.add(veterinario);
         }
-
         veterinarioRepository.saveAll(veterinarios); // Guardar veterinarios en la BD
 
         // Crear veterinarios
@@ -401,6 +400,7 @@ public class DataBaseInit implements ApplicationRunner {
             }
 
         medicamentoRepository.saveAll(medicamentos);
+        
         System.out.println("Medicamentos añadidos correctamente.");
 
         System.out.println("50 usuarios creados, 100 mascotas asignadas y 5 veterinarios creados.");
