@@ -359,7 +359,7 @@ public class DataBaseInit implements ApplicationRunner {
         // Crear medicamentos
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                String filePath = "ProyectoWeb/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
+                String filePath = "/Users/simonmarquez/Dropbox/Simon/UNIVERSIDAD/SEXTO SEMESTRE/DESARROLLO_WEB/PROYECTO/Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
                 FileInputStream file = new FileInputStream(filePath);
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
