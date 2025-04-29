@@ -187,14 +187,14 @@ public class DataBaseInit implements ApplicationRunner {
     };
 
     private static final String[] CORREOS_ADMIN = {
-        "alex@vet.com", "claudia@vet.com", "simon@vet.com", "samuel@vet.com", "gabriela@vet.com"
+        "alex@admin.com", "claudia@admin.com", "simon@admin.com", "samuel@admin.com", "gabriela@admin.com"
     };
 
     private static final String[] USUARIOS_VETERINARIOS = {
             "juanvet", "mariavet", "carlosvet", "anavet", "luisvet"
     };
     private static final String[] USUARIOS_ADMIN = {
-        "alexvet", "claudiavet", "simonvet", "samuelvet", "gabrielavet"
+        "alexadmin", "claudiaadmin", "simonadmin", "samueladmin", "gabrielaadmin"
 };
     private static final String CONTRASENA_VETERINARIO = "password";
 
@@ -322,7 +322,7 @@ public class DataBaseInit implements ApplicationRunner {
         }
         veterinarioRepository.saveAll(veterinarios); // Guardar veterinarios en la BD
 
-        // Crear veterinarios
+        // Crear administradores
         List<Admin> administradores = new ArrayList<>();
         for (int i = 0; i < NOMBRES_ADMIN.length; i++) {
             String nombre = NOMBRES_ADMIN[i];
@@ -340,7 +340,7 @@ public class DataBaseInit implements ApplicationRunner {
         // Crear medicamentos
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                String filePath = "/Users/simonmarquez/Dropbox/Simon/UNIVERSIDAD/SEXTO SEMESTRE/DESARROLLO_WEB/PROYECTO/Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
+                String filePath = "ProyectoWeb/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
                 FileInputStream file = new FileInputStream(filePath);
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
