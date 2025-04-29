@@ -37,6 +37,10 @@ public class Veterinario {
 
     @NotNull
     @Column(nullable = false)
+    private String estado;
+
+    @NotNull
+    @Column(nullable = false)
     private String contrasena;
 
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,17 +52,18 @@ public class Veterinario {
     }
 
     // Constructor sin ID
-    public Veterinario(String nombre, String telefono, String email, String usuario, String contrasena) {
+    public Veterinario(String nombre, String telefono, String email, String usuario, String contrasena, String estado) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.tratamientos = new ArrayList<>();
+        this.estado = estado;
     }
 
     // Constructor con ID
-    public Veterinario(Long id, String nombre, String telefono, String email, String usuario, String contrasena) {
+    public Veterinario(Long id, String nombre, String telefono, String email, String usuario, String contrasena, String estado) {   
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -66,6 +71,7 @@ public class Veterinario {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.tratamientos = new ArrayList<>();
+        this.estado = estado;
     }
 
     // Getters y Setters
@@ -74,6 +80,9 @@ public class Veterinario {
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
