@@ -54,7 +54,7 @@ public class AdminController {
         Map<String, Object> stats = new HashMap<>();
 
         List<Map<String, Object>> tratamientos = tratamientoRepository.findTratamientosConMascotaVeterinarioYMedicamento();
-        System.out.println("Tratamientos obtenidos: " + tratamientos);
+        System.out.println(tratamientos);
         // Número total de tratamientos administrados
         long totalTratamientos = tratamientoRepository.count();
         // Número de veterinarios activos e inactivos
@@ -70,7 +70,7 @@ public class AdminController {
         stats.put("mascotasInactivas", mascotasInactivas);
         stats.put("clientesActivos", clientesActivos);
         stats.put("tratamientos", tratamientos);
-
+        
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }
 

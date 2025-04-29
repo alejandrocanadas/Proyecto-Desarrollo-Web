@@ -198,24 +198,6 @@ public class DataBaseInit implements ApplicationRunner {
 };
     private static final String CONTRASENA_VETERINARIO = "password";
 
-    private static final String[] NOMBRES_TRATAMIENTOS = {
-        "Vacunación anual",
-        "Desparasitación",
-        "Limpieza dental",
-        "Control de peso",
-        "Revisión general",
-        "Tratamiento antipulgas",
-        "Esterilización",
-        "Control de vacunas",
-        "Revisión post-operatoria",
-        "Tratamiento de heridas",
-        "Control de diabetes",
-        "Tratamiento de artritis",
-        "Control de alergias",
-        "Revisión cardíaca",
-        "Tratamiento de infección"
-    };
-
     @Override
     public void run(ApplicationArguments args) throws Exception {
         List<Cliente> clientes = new ArrayList<>();
