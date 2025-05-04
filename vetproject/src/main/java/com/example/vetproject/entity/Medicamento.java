@@ -18,6 +18,7 @@ import jakarta.persistence.Version;
 @Table(name = "MED_TABLE")
 public class Medicamento {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotNull
