@@ -18,7 +18,6 @@ import jakarta.persistence.Version;
 @Table(name = "MED_TABLE")
 public class Medicamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotNull
@@ -68,6 +67,11 @@ public class Medicamento {
     }
 
     public Medicamento() {}
+
+    public Medicamento(String nombre2, double preciocompra2, double precioventa2, int stock2, int uvendidas2,
+            Object object) {
+        //TODO Auto-generated constructor stub
+    }
 
     public Long getId() {
         return id;
