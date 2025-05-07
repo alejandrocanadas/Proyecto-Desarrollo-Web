@@ -65,7 +65,7 @@ public class TratamientoServiceIntegrationTest {
         veterinario = veterinarioRepository.save(veterinario);
         assertNotNull(veterinario.getId(), "El ID del veterinario no debe ser null");
 
-        Medicamento medicamento = new Medicamento("Test Medicamento", 100.0, 150.0, 10, 0);
+        Medicamento medicamento = new Medicamento(1L, "Test Medicamento", 100.0, 150.0, 10, 0, null);
         medicamento = medicamentoRepository.save(medicamento);
         assertNotNull(medicamento.getId(), "El ID del medicamento no debe ser null");
 
@@ -118,7 +118,7 @@ public class TratamientoServiceIntegrationTest {
         veterinario = veterinarioRepository.save(veterinario);
         assertNotNull(veterinario.getId(), "El ID del veterinario no debe ser null");
 
-        Medicamento medicamento = new Medicamento("Test Medicamento", 100.0, 150.0, 10, 0);
+        Medicamento medicamento = new Medicamento(2L, "Test Medicamento", 100.0, 150.0, 10, 0, null);
         medicamento = medicamentoRepository.save(medicamento);
         assertNotNull(medicamento.getId(), "El ID del medicamento no debe ser null");
 

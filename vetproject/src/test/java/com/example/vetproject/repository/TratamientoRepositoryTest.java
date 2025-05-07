@@ -45,7 +45,7 @@ class TratamientoRepositoryTest {
         veterinario = new Veterinario("Dra. Ana", "321654987", "ana@example.com", "anaVet", "clave123", "Activo");
         veterinario = veterinarioRepository.save(veterinario);
 
-        medicamento = new Medicamento("Vacuna Triple", 1000.0, 2000.0, 10, 0);
+        medicamento = new Medicamento(100L, "Vacuna Triple", 1000.0, 2000.0, 10, 0, null);
         medicamento = medicamentoRepository.save(medicamento);
 
         tratamiento = new Tratamiento("Vacunacion anual", veterinario, mascota, List.of(medicamento));
