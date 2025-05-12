@@ -123,4 +123,90 @@ public class RegistroClienteMascotaTest {
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Pepito')]")));
         assert detalleNombre.isDisplayed();
     }
-}
+
+    @Test
+    public void testSuministrarAFirulais1() throws InterruptedException {
+        driver.get("http://localhost:4200/veterinario/login");
+    
+        driver.findElement(By.id("usuario")).sendKeys("juanvet");
+        driver.findElement(By.id("contrasena")).sendKeys("password");
+        driver.findElement(By.id("login-button")).click();
+        cerrarAlerta();
+    
+        WebElement botonTablaMascotas = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Ir a Tabla de Mascotas')]"))
+        );
+        botonTablaMascotas.click();
+    
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//tr[td/a[contains(text(), 'Firulais1')]]")
+        ));
+    
+        WebElement botonSuministrar = wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("//tr[td/a[contains(text(), 'Firulais1')]]//a[contains(text(), 'Suministrar tratamiento')]")
+        ));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", botonSuministrar);
+        Thread.sleep(300);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", botonSuministrar);
+    
+        // Seleccionar el primer medicamento
+        WebElement primerBotonSeleccionar = wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("//tbody/tr[1]//button[contains(text(), 'Seleccionar')]")
+        ));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", primerBotonSeleccionar);
+        Thread.sleep(500);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", primerBotonSeleccionar);
+    
+        // Asignar tratamiento
+        WebElement btnAsignar = wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("//button[contains(text(),'Asignar Tratamiento')]")
+        ));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnAsignar);
+        Thread.sleep(300);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btnAsignar);
+    
+        cerrarAlerta();
+    
+        // Volver al perfil
+        WebElement volverPerfilBtn = wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("//a[contains(text(),'Volver a perfil')]")
+        ));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", volverPerfilBtn);
+        Thread.sleep(300);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", volverPerfilBtn);
+    
+        Thread.sleep(5000);
+            // Login como admin
+        driver.get("http://localhost:4200/admin/login");
+        driver.findElement(By.id("usuario")).sendKeys("simonadmin");
+        driver.findElement(By.id("contrasena")).sendKeys("password");
+        driver.findElement(By.id("btnIniciarSesion")).click();
+        cerrarAlerta();
+    
+        // Ir a la sección de reportes o estadísticas
+        WebElement botonGanancias = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("//a[contains(text(),'Ganancias') or contains(text(),'Estadísticas')]")
+        ));
+        botonGanancias.click();
+    
+        // Esperar que se cargue la tabla o resumen
+        WebElement cantidadTratamientos = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.id("cantidad-tratamientos") // Este ID debe existir en tu componente
+        ));
+        WebElement totalGanancias = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.id("total-ganancias") // Este ID también debe estar presente
+        ));
+    
+        // Validar que las cantidades son mayores a 0
+        int cantidad = Integer.parseInt(cantidadTratamientos.getText());
+        double ganancias = Double.parseDouble(totalGanancias.getText().replace("$", "").replace(",", "").trim());
+    
+        System.out.println("🧪 Cantidad de tratamientos registrados: " + cantidad);
+        System.out.println("🧪 Total ganancias actuales: " + ganancias);
+    
+        assert cantidad > 0 : "La cantidad de tratamientos no aumentó.";
+        assert ganancias > 0 : "Las ganancias no se reflejaron positivamente.";
+    }
+    }
+    
+
