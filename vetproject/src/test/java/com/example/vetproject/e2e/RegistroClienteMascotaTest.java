@@ -71,8 +71,9 @@ public class RegistroClienteMascotaTest {
         driver.findElement(By.id("login-button")).click();
         cerrarAlerta();
 
-        driver.findElement(By.id("clientes-table")).click();
-        driver.findElement(By.linkText("Añadir Cliente")).click();
+        WebElement botonClientes = wait.until(ExpectedConditions.elementToBeClickable(By.id("clientes-table")));
+        botonClientes.click();
+                driver.findElement(By.linkText("Añadir Cliente")).click();
 
         driver.findElement(By.id("nombre")).sendKeys("Anastacia");
         driver.findElement(By.id("apellido")).sendKeys("Rhoades");
@@ -118,10 +119,22 @@ public class RegistroClienteMascotaTest {
         driver.findElement(By.id("login-button")).click();
         cerrarAlerta();
 
-        WebElement botonVerDetalles = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("verDetalles")));
-        WebElement detalleNombre = wait
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Pepito')]")));
-        assert detalleNombre.isDisplayed();
+        // Esperar que se renderice la tarjeta de la mascota "Pepito"
+        WebElement tarjetaPepito = wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("//h5[contains(text(),'Pepito')]/ancestor::div[contains(@class,'card')]")
+        ));
+
+        // Hacer scroll a la tarjeta
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", tarjetaPepito);
+        Thread.sleep(500);
+
+        // Esperar y hacer clic en el botón "Ver Detalles" dentro de la tarjeta de Pepito
+        WebElement botonVerDetalles = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("//h5[contains(text(),'Pepito')]/ancestor::div[contains(@class,'card')]//a[@id='verDetalles']")
+        ));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", botonVerDetalles);
+
+        
     }
 
     @Test
