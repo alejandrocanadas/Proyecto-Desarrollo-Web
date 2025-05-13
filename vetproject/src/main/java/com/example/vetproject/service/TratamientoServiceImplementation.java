@@ -64,13 +64,18 @@ public class TratamientoServiceImplementation implements TratamientoService {
         tratamiento.setNombre(medicamento.getNombre());
         tratamiento.setMascota(mascota);
         tratamiento.setVeterinario(veterinario);
-        tratamiento.getMedicamentos().add(medicamento);
+        tratamiento.setMedicamento(medicamento);
         tratamiento.setFecha(LocalDateTime.now());
+        
+        // Primero guardamos el tratamiento
+        tratamiento = save(tratamiento);
+        
+        // Luego actualizamos el medicamento
         medicamento.setStock(medicamento.getSotck() - 1);
         medicamento.setUvendidas(medicamento.getUvendidas() + 1);
         medicamentoRepository.save(medicamento);
         
-        return save(tratamiento);
+        return tratamiento;
     }
     
     @Override

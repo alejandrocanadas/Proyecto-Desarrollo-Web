@@ -22,8 +22,8 @@ public class Tratamiento {
     private String nombre;
 
     
-    @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Medicamento> medicamentos=new ArrayList<>();
+    @OneToOne(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Medicamento medicamento;
 
     @Column(name = "fecha", nullable = false)
     private LocalDateTime fecha;
@@ -40,8 +40,8 @@ public class Tratamiento {
     // Constructor vacío
     public Tratamiento() {}
 
-    public Tratamiento(String nombre, Veterinario veterinario, Mascota mascota, List<Medicamento> medicamentos) {        
-        this.medicamentos = medicamentos;
+    public Tratamiento(String nombre, Veterinario veterinario, Mascota mascota, Medicamento medicamento) {        
+        this.medicamento = medicamento;
         this.veterinario = veterinario;
         this.mascota = mascota;
         this.nombre = nombre;
@@ -54,23 +54,20 @@ public class Tratamiento {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public List<Medicamento> getMedicamentos() {
-        return medicamentos;
+    public Medicamento getMedicamento() {
+        return medicamento;
     }
 
     public LocalDateTime getFecha() { return fecha; }
     public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
 
-    public void setMedicamentos(List<Medicamento> medicamentos) {
-        this.medicamentos = medicamentos;
+    public void setMedicamento(Medicamento medicamento) {
+        this.medicamento = medicamento;
+        if (medicamento != null) {
+            medicamento.setTratamiento(this);
+        }
     }
 
-    public void addMedicamento(Medicamento medicamento) {
-        if (this.medicamentos == null) {
-            this.medicamentos = new java.util.ArrayList<>();
-        }
-        this.medicamentos.add(medicamento);
-    }
     public Mascota getMascota() { return mascota; }
     public void setMascota(Mascota mascota) { this.mascota = mascota; }
 

@@ -51,7 +51,7 @@ public class AdminController {
     @Operation(summary = "Obtiene estadísticas para el panel de administración")
     public ResponseEntity<Map<String, Object>> getAdminDashboardStats() {
         Map<String, Object> stats = new HashMap<>();
-        LocalDateTime fecha = LocalDateTime.now();
+        LocalDateTime fecha = LocalDateTime.now().minusMonths(1);
         // Tratamientos del último mes
         stats.put("totalTratamientosUltimoMes", tratamientoRepository.countByFechaAfter(LocalDateTime.now().minusMonths(1)));
         
@@ -70,6 +70,7 @@ public class AdminController {
         // Ventas y ganancias (calculadas desde tratamientos)
         stats.put("ventasTotales", tratamientoRepository.sumTotalVentas());
         stats.put("gananciasTotales", tratamientoRepository.sumGanancias());
+        stats.put("totalTratamientos", tratamientoRepository.count());
 
         // Top 3 tratamientos
         List<Map<String, Object>> top3Tratamientos = tratamientoRepository.findTop3Tratamientos();

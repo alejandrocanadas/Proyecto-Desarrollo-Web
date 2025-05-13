@@ -120,6 +120,14 @@ public class Medicamento {
     public void setUvendidas(int uvendidas) {
         this.uvendidas = uvendidas;
     }
+
+    public Tratamiento getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(Tratamiento tratamiento) {
+        this.tratamiento = tratamiento;
+    }
     
     
 }

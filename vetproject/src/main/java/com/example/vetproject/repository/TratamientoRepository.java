@@ -16,11 +16,10 @@ public interface TratamientoRepository extends JpaRepository<Tratamiento, Long>{
     List<Tratamiento> findByVeterinarioId(Long veterinarioId);
     long count();
     int countByFechaAfter(LocalDateTime fecha);
-    @Query("SELECT NEW MAP(p.nombre AS mascota, v.nombre AS veterinario, t.nombre AS medicamento, m.precioventa AS precio) " +
+    @Query("SELECT NEW MAP(p.nombre AS mascota, v.nombre AS veterinario, t.nombre AS medicamento, t.medicamento.precioventa AS precio) " +
        "FROM Tratamiento t " +
        "JOIN t.mascota p " +
-       "JOIN t.veterinario v " +
-       "JOIN t.medicamentos m")
+       "JOIN t.veterinario v")
     List<Map<String, Object>> findTratamientosConMascotaVeterinarioYMedicamento();
 
     @Query("SELECT new map(t.nombre as medicamento, COUNT(t) as cantidad) " +
@@ -35,9 +34,9 @@ public interface TratamientoRepository extends JpaRepository<Tratamiento, Long>{
            "ORDER BY COUNT(t) DESC")
     List<Map<String, Object>> findTop3Tratamientos();
 
-    @Query("SELECT COALESCE(SUM(m.precioventa), 0) FROM Tratamiento t JOIN t.medicamentos m")
+    @Query("SELECT COALESCE(SUM(t.medicamento.precioventa), 0) FROM Tratamiento t")
     double sumTotalVentas();
 
-    @Query("SELECT COALESCE(SUM(m.precioventa - m.preciocompra), 0) FROM Tratamiento t JOIN t.medicamentos m")
+    @Query("SELECT COALESCE(SUM(t.medicamento.precioventa - t.medicamento.preciocompra), 0) FROM Tratamiento t")
     double sumGanancias();
 } 
