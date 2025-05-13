@@ -105,7 +105,7 @@ public class Medicamento {
         this.preciocompra = preciocompra;
     }
 
-    public int getSotck() {
+    public int getStock() {
         return stock;
     }
 

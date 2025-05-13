@@ -71,7 +71,7 @@ public class TratamientoServiceImplementation implements TratamientoService {
         tratamiento = save(tratamiento);
         
         // Luego actualizamos el medicamento
-        medicamento.setStock(medicamento.getSotck() - 1);
+        medicamento.setStock(medicamento.getStock() - 1);
         medicamento.setUvendidas(medicamento.getUvendidas() + 1);
         medicamentoRepository.save(medicamento);
         

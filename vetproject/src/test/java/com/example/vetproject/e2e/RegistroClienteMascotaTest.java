@@ -193,32 +193,31 @@ public class RegistroClienteMascotaTest {
         driver.get("http://localhost:4200/admin/login");
         driver.findElement(By.id("usuario")).sendKeys("simonadmin");
         driver.findElement(By.id("contrasena")).sendKeys("password");
-        driver.findElement(By.id("btnIniciarSesion")).click();
+        driver.findElement(By.id("login-button")).click();
         cerrarAlerta();
     
-        // Ir a la sección de reportes o estadísticas
-        WebElement botonGanancias = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("//a[contains(text(),'Ganancias') or contains(text(),'Estadísticas')]")
-        ));
-        botonGanancias.click();
+            // Esperar a que el div de "Ventas y Ganancias" esté visible
+        WebElement ventasYGananciasCard = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]"))
+        );
+
+        // Localizar los valores de Ventas y Ganancias Totales
+        WebElement ventasTotalesElement = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ventas Totales')]"));
+        WebElement gananciasTotalesElement = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ganancias Totales')]"));
+
+        // Extraer los textos de los elementos
+        String ventasTotalesText = ventasTotalesElement.getText();
+        String gananciasTotalesText = gananciasTotalesElement.getText();
+
+        // Eliminar el símbolo de dólar y las comas, luego convertir a números
+        double ventasTotales = Double.parseDouble(ventasTotalesText.replaceAll("[^\\d.]", ""));
+        double gananciasTotales = Double.parseDouble(gananciasTotalesText.replaceAll("[^\\d.]", ""));
     
-        // Esperar que se cargue la tabla o resumen
-        WebElement cantidadTratamientos = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.id("cantidad-tratamientos") // Este ID debe existir en tu componente
-        ));
-        WebElement totalGanancias = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.id("total-ganancias") // Este ID también debe estar presente
-        ));
+
+        System.out.println("🧪 Total ganancias actuales: " + gananciasTotales);
     
-        // Validar que las cantidades son mayores a 0
-        int cantidad = Integer.parseInt(cantidadTratamientos.getText());
-        double ganancias = Double.parseDouble(totalGanancias.getText().replace("$", "").replace(",", "").trim());
-    
-        System.out.println("🧪 Cantidad de tratamientos registrados: " + cantidad);
-        System.out.println("🧪 Total ganancias actuales: " + ganancias);
-    
-        assert cantidad > 0 : "La cantidad de tratamientos no aumentó.";
-        assert ganancias > 0 : "Las ganancias no se reflejaron positivamente.";
+        assert ventasTotales > 0 : "La cantidad de tratamientos no aumentó.";
+        assert gananciasTotales > 0 : "Las ganancias no se reflejaron positivamente.";
     }
     }
     
