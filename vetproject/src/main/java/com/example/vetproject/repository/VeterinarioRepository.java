@@ -15,4 +15,5 @@ public interface VeterinarioRepository extends JpaRepository<Veterinario, Long> 
     Veterinario findByTelefono(String telefono);
     Veterinario findByUsuario(String usuario);
     long count();
+    int countByEstado(String estado);
 }

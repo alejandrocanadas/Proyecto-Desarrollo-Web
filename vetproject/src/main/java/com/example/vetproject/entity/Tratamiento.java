@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "TRATAMIENTO_TABLE")
 public class Tratamiento {
@@ -23,7 +25,9 @@ public class Tratamiento {
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Medicamento> medicamentos=new ArrayList<>();
 
-    
+    @Column(name = "fecha", nullable = false)
+    private LocalDateTime fecha;
+
     @ManyToOne
     @JoinColumn(name = "mascota_id", nullable = true)
     private Mascota mascota;
@@ -41,6 +45,7 @@ public class Tratamiento {
         this.veterinario = veterinario;
         this.mascota = mascota;
         this.nombre = nombre;
+        this.fecha = LocalDateTime.now();
     }
     // Getters y Setters
     public Long getId() { return id; }
@@ -52,6 +57,9 @@ public class Tratamiento {
     public List<Medicamento> getMedicamentos() {
         return medicamentos;
     }
+
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
 
     public void setMedicamentos(List<Medicamento> medicamentos) {
         this.medicamentos = medicamentos;

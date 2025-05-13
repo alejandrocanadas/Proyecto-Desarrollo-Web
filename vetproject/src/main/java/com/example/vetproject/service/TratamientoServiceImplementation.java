@@ -12,6 +12,7 @@ import com.example.vetproject.repository.MascotaRepository;
 import com.example.vetproject.repository.VeterinarioRepository;
 import com.example.vetproject.repository.MedicamentoRepository;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Service
 public class TratamientoServiceImplementation implements TratamientoService {
@@ -64,7 +65,7 @@ public class TratamientoServiceImplementation implements TratamientoService {
         tratamiento.setMascota(mascota);
         tratamiento.setVeterinario(veterinario);
         tratamiento.getMedicamentos().add(medicamento);
-        
+        tratamiento.setFecha(LocalDateTime.now());
         medicamento.setStock(medicamento.getSotck() - 1);
         medicamento.setUvendidas(medicamento.getUvendidas() + 1);
         medicamentoRepository.save(medicamento);

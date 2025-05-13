@@ -14,4 +14,5 @@ import com.example.vetproject.entity.Mascota;
 public interface MascotaRepository extends JpaRepository<Mascota, Long> { 
     List<Mascota> findByClienteId(Long clienteId);
     long countByEstado(String estado);
+    long count();
 } 

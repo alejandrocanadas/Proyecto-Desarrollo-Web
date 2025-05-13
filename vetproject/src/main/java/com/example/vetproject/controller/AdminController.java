@@ -1,6 +1,8 @@
 package com.example.vetproject.controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,9 @@ import com.example.vetproject.repository.TratamientoRepository;
 import com.example.vetproject.repository.VeterinarioRepository;
 import com.example.vetproject.repository.MascotaRepository;
 import com.example.vetproject.repository.ClienteRepository;
-import java.util.List;
-import java.util.Map;
 
 import io.swagger.v3.oas.annotations.Operation;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/admin")
@@ -36,9 +37,6 @@ public class AdminController {
     @Autowired
     private MascotaRepository mascotaRepository;
 
-    @Autowired
-    private ClienteRepository clienteRepository;
-
     @PostMapping("/login")
     @Operation(summary = "Inicia sesión como administrador")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -48,30 +46,35 @@ public class AdminController {
         }
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }
+
     @GetMapping("/estadisticas")
     @Operation(summary = "Obtiene estadísticas para el panel de administración")
     public ResponseEntity<Map<String, Object>> getAdminDashboardStats() {
         Map<String, Object> stats = new HashMap<>();
-
-        List<Map<String, Object>> tratamientos = tratamientoRepository.findTratamientosConMascotaVeterinarioYMedicamento();
-        System.out.println(tratamientos);
-        // Número total de tratamientos administrados
-        long totalTratamientos = tratamientoRepository.count();
-        // Número de veterinarios activos e inactivos
-        long veterinariosActivos = veterinarioRepository.count();
-        long clientesActivos = clienteRepository.count();
-        // Número de mascotas activas e inactivas
-        long mascotasActivas = mascotaRepository.countByEstado("Activo");
-        long mascotasInactivas = mascotaRepository.countByEstado("Inactivo");
-
-        stats.put("totalTratamientos", totalTratamientos);
-        stats.put("veterinariosActivos", veterinariosActivos);
-        stats.put("mascotasActivas", mascotasActivas);
-        stats.put("mascotasInactivas", mascotasInactivas);
-        stats.put("clientesActivos", clientesActivos);
-        stats.put("tratamientos", tratamientos);
+        LocalDateTime fecha = LocalDateTime.now();
+        // Tratamientos del último mes
+        stats.put("totalTratamientosUltimoMes", tratamientoRepository.countByFechaAfter(LocalDateTime.now().minusMonths(1)));
         
+        // Tratamientos por tipo de medicamento
+        List<Map<String, Object>> tratamientosPorTipo = tratamientoRepository.findTratamientosPorTipo(fecha);
+        stats.put("tratamientosPorTipo", tratamientosPorTipo);
+
+        // Estado de veterinarios
+        stats.put("veterinariosActivos", veterinarioRepository.countByEstado("Activo"));
+        stats.put("veterinariosInactivos", veterinarioRepository.countByEstado("Inactivo"));
+
+        // Estado de mascotas
+        stats.put("totalMascotas", mascotaRepository.count());
+        stats.put("mascotasActivas", mascotaRepository.countByEstado("Activo"));
+
+        // Ventas y ganancias (calculadas desde tratamientos)
+        stats.put("ventasTotales", tratamientoRepository.sumTotalVentas());
+        stats.put("gananciasTotales", tratamientoRepository.sumGanancias());
+
+        // Top 3 tratamientos
+        List<Map<String, Object>> top3Tratamientos = tratamientoRepository.findTop3Tratamientos();
+        stats.put("top3Tratamientos", top3Tratamientos);
+
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }
-
 }
