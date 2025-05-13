@@ -134,34 +134,48 @@ public class RegistroClienteMascotaTest {
         ));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", botonVerDetalles);
 
-        
+        WebElement nombreMascota = driver.findElement(By.xpath("//h5[contains(text(),'Pepito')]"));
+        assert nombreMascota.getText().equals("Pepito") : "El nombre de la mascota no coincide con 'Pepito'";
     }
 
     @Test
     public void testSuministrarAFirulais1() throws InterruptedException {
+        // Obtener valores iniciales como admin
+        driver.get("http://localhost:4200/admin/login");
+        driver.findElement(By.id("usuario")).sendKeys("simonadmin");
+        driver.findElement(By.id("contrasena")).sendKeys("password");
+        driver.findElement(By.id("login-button")).click();
+        cerrarAlerta();
+
+        WebElement ventasTotalesElement = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ventas Totales')]"));
+        WebElement gananciasTotalesElement = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ganancias Totales')]"));
+
+        double initialQuantity = Double.parseDouble(ventasTotalesElement.getText().replaceAll("[^\\d.]", ""));
+        double initialProfit = Double.parseDouble(gananciasTotalesElement.getText().replaceAll("[^\\d.]", ""));
+
+        // Flujo de suministrar tratamiento
         driver.get("http://localhost:4200/veterinario/login");
-    
         driver.findElement(By.id("usuario")).sendKeys("juanvet");
         driver.findElement(By.id("contrasena")).sendKeys("password");
         driver.findElement(By.id("login-button")).click();
         cerrarAlerta();
-    
+
         WebElement botonTablaMascotas = wait.until(
             ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Ir a Tabla de Mascotas')]"))
         );
         botonTablaMascotas.click();
-    
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("//tr[td/a[contains(text(), 'Firulais1')]]")
         ));
-    
+
         WebElement botonSuministrar = wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("//tr[td/a[contains(text(), 'Firulais1')]]//a[contains(text(), 'Suministrar tratamiento')]")
         ));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", botonSuministrar);
         Thread.sleep(300);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", botonSuministrar);
-    
+
         // Seleccionar el primer medicamento
         WebElement primerBotonSeleccionar = wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("//tbody/tr[1]//button[contains(text(), 'Seleccionar')]")
@@ -169,7 +183,7 @@ public class RegistroClienteMascotaTest {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", primerBotonSeleccionar);
         Thread.sleep(500);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", primerBotonSeleccionar);
-    
+
         // Asignar tratamiento
         WebElement btnAsignar = wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("//button[contains(text(),'Asignar Tratamiento')]")
@@ -177,9 +191,9 @@ public class RegistroClienteMascotaTest {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnAsignar);
         Thread.sleep(300);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btnAsignar);
-    
+
         cerrarAlerta();
-    
+
         // Volver al perfil
         WebElement volverPerfilBtn = wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("//a[contains(text(),'Volver a perfil')]")
@@ -187,38 +201,27 @@ public class RegistroClienteMascotaTest {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", volverPerfilBtn);
         Thread.sleep(300);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", volverPerfilBtn);
-    
-        Thread.sleep(5000);
-            // Login como admin
+
+        Thread.sleep(2000);
+        // Volver a consultar como admin los valores finales
         driver.get("http://localhost:4200/admin/login");
         driver.findElement(By.id("usuario")).sendKeys("simonadmin");
         driver.findElement(By.id("contrasena")).sendKeys("password");
         driver.findElement(By.id("login-button")).click();
         cerrarAlerta();
-    
-            // Esperar a que el div de "Ventas y Ganancias" esté visible
-        WebElement ventasYGananciasCard = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]"))
-        );
 
-        // Localizar los valores de Ventas y Ganancias Totales
-        WebElement ventasTotalesElement = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ventas Totales')]"));
-        WebElement gananciasTotalesElement = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ganancias Totales')]"));
+        WebElement ventasTotalesElementFinal = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ventas Totales')]"));
+        WebElement gananciasTotalesElementFinal = driver.findElement(By.xpath("//h3[contains(text(),'Ventas y Ganancias')]/following-sibling::div//div[contains(text(),'Ganancias Totales')]"));
 
-        // Extraer los textos de los elementos
-        String ventasTotalesText = ventasTotalesElement.getText();
-        String gananciasTotalesText = gananciasTotalesElement.getText();
+        double finalQuantity = Double.parseDouble(ventasTotalesElementFinal.getText().replaceAll("[^\\d.]", ""));
+        double finalProfit = Double.parseDouble(gananciasTotalesElementFinal.getText().replaceAll("[^\\d.]", ""));
 
-        // Eliminar el símbolo de dólar y las comas, luego convertir a números
-        double ventasTotales = Double.parseDouble(ventasTotalesText.replaceAll("[^\\d.]", ""));
-        double gananciasTotales = Double.parseDouble(gananciasTotalesText.replaceAll("[^\\d.]", ""));
-    
+        System.out.println("🧪 Initial Quantity: " + initialQuantity + ", Final Quantity: " + finalQuantity);
+        System.out.println("🧪 Initial Profit: " + initialProfit + ", Final Profit: " + finalProfit);
 
-        System.out.println("🧪 Total ganancias actuales: " + gananciasTotales);
-    
-        assert ventasTotales > 0 : "La cantidad de tratamientos no aumentó.";
-        assert gananciasTotales > 0 : "Las ganancias no se reflejaron positivamente.";
+        assert finalQuantity == initialQuantity + 1 : "La cantidad de tratamientos no aumentó en 1.";
+        assert finalProfit > initialProfit : "Las ganancias no aumentaron después de la venta.";
     }
-    }
+}
     
 
