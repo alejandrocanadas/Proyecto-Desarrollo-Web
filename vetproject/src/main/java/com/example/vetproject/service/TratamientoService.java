@@ -1,7 +1,7 @@
 package com.example.vetproject.service;
 
 import com.example.vetproject.entity.Tratamiento;
-import com.example.vetproject.DTO.TratamientoRequest;
+import com.example.vetproject.DTOs.TratamientoRequest;
 import java.util.List;
 
 public interface TratamientoService {

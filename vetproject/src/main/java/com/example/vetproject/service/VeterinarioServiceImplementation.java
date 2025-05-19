@@ -26,14 +26,7 @@ public class VeterinarioServiceImplementation implements VeterinarioService{
         return veterinarioRepository.findById(id).get();
     }
     
-    @Override
-    public Veterinario authenticate(String usuario, String contrasena) {
-        Optional<Veterinario> veterinario = veterinarioRepository.findByUsuarioAndContrasena(usuario, contrasena);
-        if (!veterinario.isPresent()) {
-            System.out.println("Usuario o contraseña incorrectos");
-        }
-        return veterinario.orElse(null);
-    }
+    
 
     @Override
     public List<Veterinario> findAll() {

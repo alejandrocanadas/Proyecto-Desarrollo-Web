@@ -1,6 +1,10 @@
 package com.example.vetproject.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Table(name = "TRATAMIENTO_TABLE")
 public class Tratamiento {
     @Id
@@ -37,9 +45,6 @@ public class Tratamiento {
     @JoinColumn(name = "veterinario_id", nullable = false)
     private Veterinario veterinario;
 
-    // Constructor vacío
-    public Tratamiento() {}
-
     public Tratamiento(String nombre, Veterinario veterinario, Mascota mascota, Medicamento medicamento) {        
         this.medicamento = medicamento;
         this.veterinario = veterinario;
@@ -47,32 +52,13 @@ public class Tratamiento {
         this.nombre = nombre;
         this.fecha = LocalDateTime.now();
     }
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public Medicamento getMedicamento() {
-        return medicamento;
-    }
-
-    public LocalDateTime getFecha() { return fecha; }
-    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
-
+    
     public void setMedicamento(Medicamento medicamento) {
         this.medicamento = medicamento;
         if (medicamento != null) {
             medicamento.setTratamiento(this);
         }
     }
-
-    public Mascota getMascota() { return mascota; }
-    public void setMascota(Mascota mascota) { this.mascota = mascota; }
-
-    public Veterinario getVeterinario() { return veterinario; }
-    public void setVeterinario(Veterinario veterinario) { this.veterinario = veterinario; }
 
     public String mostrarTratamiento() {
         return "Tratamiento: " + nombre;

@@ -8,8 +8,13 @@ import com.example.vetproject.repository.ClienteRepository;
 import com.example.vetproject.repository.MascotaRepository;
 import com.example.vetproject.repository.MedicamentoRepository;
 import com.example.vetproject.repository.TratamientoRepository;
+import com.example.vetproject.repository.UserRepository;
 import com.example.vetproject.repository.VeterinarioRepository;
 import com.example.vetproject.repository.AdminRepository;
+import com.example.vetproject.repository.RolRepository;
+import com.example.vetproject.entity.UserEntity;
+import com.example.vetproject.entity.Rol;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -44,6 +49,15 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Autowired
     AdminRepository adminRepository;
+
+    @Autowired
+    private RolRepository rolRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRepository userRepository;
 
     private static final String[] NOMBRES_CLIENTES = {
             "Juan", "Maria", "Carlos", "Ana", "Luis", "Elena", "Ricardo", "Sofia", "Fernando", "Gabriela",
@@ -200,9 +214,13 @@ public class DataBaseInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        List<Cliente> clientes = new ArrayList<>();
+        // 1. Crear roles si no existen
+        Rol rolCliente = rolRepository.findByNombre("CLIENTE").orElseGet(() -> rolRepository.save(new Rol("CLIENTE")));
+        Rol rolAdmin = rolRepository.findByNombre("ADMIN").orElseGet(() -> rolRepository.save(new Rol("ADMIN")));
+        Rol rolVet = rolRepository.findByNombre("VETERINARIO").orElseGet(() -> rolRepository.save(new Rol("VETERINARIO")));
 
-        // Lista manual de usuarios y correos
+        // 2. Crear clientes con UserEntity y rol
+        List<Cliente> clientes = new ArrayList<>();
         String[][] datosClientes = {
                 { "Juan", "Perez", "juanp", "juanp@example.com" },
                 { "Maria", "Gomez", "mariag", "mariag@example.com" },
@@ -256,7 +274,6 @@ public class DataBaseInit implements ApplicationRunner {
                 { "Rosa", "Mendoza", "rosam", "rosam@example.com" }
         };
 
-        // Crear usuarios manualmente
         for (String[] datos : datosClientes) {
             String nombre = datos[0];
             String apellido = datos[1];
@@ -265,20 +282,24 @@ public class DataBaseInit implements ApplicationRunner {
             String telefono = "3" + (100000000 + (int) (Math.random() * 90000000));
             String contrasena = "password";
 
-            Cliente cliente = new Cliente(nombre, usuario, apellido, telefono, email, contrasena);
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUsername(usuario);
+            userEntity.setPassword(passwordEncoder.encode(contrasena));
+            userEntity.getRoles().add(rolCliente);
+
+            Cliente cliente = new Cliente(nombre, apellido, telefono, email);
+            cliente.setUser(userEntity);
+
             clientes.add(cliente);
         }
-
-        clienteRepository.saveAll(clientes); // Guardar clientes en la BD
+        clienteRepository.saveAll(clientes);
         
-        // Crear y asignar mascotas (1 perro y 1 gato por usuario)
+        // 3. Crear y asignar mascotas (1 perro y 1 gato por usuario)
         List<Mascota> mascotas = new ArrayList<>();
         for (int i = 0; i < clientes.size(); i++) {
             Cliente cliente = clientes.get(i);
-
             String sexoPerro = (i % 2 == 0) ? "Macho" : "Hembra";
             String estadoPerro = (i % 3 == 0) ? "Inactivo" : "Activo";
-
             Mascota perro = new Mascota(
                     "Firulais" + i,
                     "Perro",
@@ -288,10 +309,8 @@ public class DataBaseInit implements ApplicationRunner {
                     2 + (i % 8),
                     IMAGENES_PERROS[i % IMAGENES_PERROS.length],
                     cliente);
-
             String sexoGato = (i % 2 == 0) ? "Hembra" : "Macho";
             String estadoGato = (i % 4 == 0) ? "Inactivo" : "Activo";
-
             Mascota gato = new Mascota(
                     "Mish" + i,
                     "Gato",
@@ -301,15 +320,13 @@ public class DataBaseInit implements ApplicationRunner {
                     1 + (i % 10),
                     IMAGENES_GATOS[(i + 1) % IMAGENES_GATOS.length],
                     cliente);
-
             mascotas.add(perro);
             mascotas.add(gato);
         }
-
         mascotaRepository.saveAll(mascotas);
         System.out.println("50 usuarios creados y 100 mascotas asignadas.");
 
-        // Crear veterinarios
+        // 4. Crear veterinarios con UserEntity y rol
         List<Veterinario> veterinarios = new ArrayList<>();
         for (int i = 0; i < NOMBRES_VETERINARIOS.length; i++) {
             String nombre = NOMBRES_VETERINARIOS[i];
@@ -317,12 +334,19 @@ public class DataBaseInit implements ApplicationRunner {
             String email = CORREOS_VETERINARIOS[i];
             String usuario = USUARIOS_VETERINARIOS[i];
 
-            Veterinario veterinario = new Veterinario(nombre, telefono, email, usuario, CONTRASENA_VETERINARIO, "Activo");
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUsername(usuario);
+            userEntity.setPassword(passwordEncoder.encode(CONTRASENA_VETERINARIO));
+            userEntity.getRoles().add(rolVet);
+
+            Veterinario veterinario = new Veterinario(nombre, telefono, email, "Activo");
+            veterinario.setUser(userEntity);
+
             veterinarios.add(veterinario);
         }
-        veterinarioRepository.saveAll(veterinarios); // Guardar veterinarios en la BD
+        veterinarioRepository.saveAll(veterinarios);
 
-        // Crear administradores
+        // 5. Crear administradores con UserEntity y rol
         List<Admin> administradores = new ArrayList<>();
         for (int i = 0; i < NOMBRES_ADMIN.length; i++) {
             String nombre = NOMBRES_ADMIN[i];
@@ -330,17 +354,25 @@ public class DataBaseInit implements ApplicationRunner {
             String email = CORREOS_ADMIN[i];
             String usuario = USUARIOS_ADMIN[i];
 
-            Admin administrador = new Admin(nombre, telefono, email, usuario, CONTRASENA_VETERINARIO);
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUsername(usuario);
+            userEntity.setPassword(passwordEncoder.encode(CONTRASENA_VETERINARIO));
+            userEntity.getRoles().add(rolAdmin);
+
+            Admin administrador = Admin.builder()
+                .nombre(nombre)
+                .telefono(telefono)
+                .email(email)
+                .user(userEntity)
+                .build();
             administradores.add(administrador);
         }
-
-        adminRepository.saveAll(administradores); 
-
+        adminRepository.saveAll(administradores);
 
         // Crear medicamentos
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                String filePath = "Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
+                String filePath = "ProyectoWeb/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
                 FileInputStream file = new FileInputStream(filePath);
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);

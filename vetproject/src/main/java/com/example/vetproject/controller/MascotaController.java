@@ -1,6 +1,8 @@
 package com.example.vetproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.vetproject.entity.Cliente;
@@ -27,55 +29,86 @@ public class MascotaController {
 
     @GetMapping("/find/{id}")
     @Operation(summary = "Obtiene una mascota por su ID")
-    public Mascota obtenerMascota(@PathVariable("id") Long id) {
-        Mascota mascota = mascotaService.SearchById(id);
-        if (mascota == null) {
-            throw new NotFoundMascotException(id);
+    public ResponseEntity<?> obtenerMascota(@PathVariable("id") Long id) {
+        try {
+            Mascota mascota = mascotaService.SearchById(id);
+            if (mascota == null) {
+                throw new NotFoundMascotException(id);
+            }
+            return new ResponseEntity<>(mascota, HttpStatus.OK);
+        } catch (NotFoundMascotException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-        return mascota;
     }
 
     @GetMapping("/all")
     @Operation(summary = "Obtiene todas las mascotas")
-    public List<Mascota> obtenerTodasLasMascotas() {
-        return mascotaService.SeachAll();
+    public ResponseEntity<List<Mascota>> obtenerTodasLasMascotas() {
+        List<Mascota> mascotas = mascotaService.SeachAll();
+        return new ResponseEntity<>(mascotas, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "Elimina una mascota por su ID")
-    public void eliminarMascota(@PathVariable("id") Long id) {
-        Mascota mascota = mascotaService.SearchById(id);
-        if (mascota == null) {
-            throw new NotFoundMascotException(id);
+    public ResponseEntity<?> eliminarMascota(@PathVariable("id") Long id) {
+        try {
+            Mascota mascota = mascotaService.SearchById(id);
+            if (mascota == null) {
+                throw new NotFoundMascotException(id);
+            }
+            mascotaService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (NotFoundMascotException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-        mascotaService.deleteById(id);
     }
 
     @PostMapping("/update")
     @Operation(summary = "Actualiza una mascota")
-    public void actualizarMascota(@RequestBody Mascota mascota) {
-        Mascota anterior = mascotaService.SearchById(mascota.getId());
-        if (anterior == null) {
-            throw new NotFoundMascotException(mascota.getId());
+    public ResponseEntity<?> actualizarMascota(@RequestBody Mascota mascota) {
+        try {
+            Mascota anterior = mascotaService.SearchById(mascota.getId());
+            if (anterior == null) {
+                throw new NotFoundMascotException(mascota.getId());
+            }
+            mascota.setCliente(anterior.getCliente());
+            mascotaService.update(mascota);
+            return new ResponseEntity<>(mascota, HttpStatus.OK);
+        } catch (NotFoundMascotException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar la mascota: " + e.getMessage(), 
+                                      HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        mascota.setCliente(anterior.getCliente());
-        mascotaService.update(mascota);
     }
 
     @PostMapping("/add")
     @Operation(summary = "Guarda una nueva mascota")
-    public void guardarMascota(@RequestBody Mascota mascota, @RequestParam Long cliente_id) {
-        Cliente cliente = clienteService.SearchById(cliente_id);
-        if (cliente == null) {
-            throw new RuntimeException("Cliente no encontrado con ID: " + cliente_id);
+    public ResponseEntity<?> guardarMascota(@RequestBody Mascota mascota, @RequestParam Long cliente_id) {
+        try {
+            Cliente cliente = clienteService.SearchById(cliente_id);
+            if (cliente == null) {
+                return new ResponseEntity<>("Cliente no encontrado con ID: " + cliente_id, 
+                                          HttpStatus.NOT_FOUND);
+            }
+            mascota.setCliente(cliente);
+            mascotaService.add(mascota);
+            return new ResponseEntity<>(mascota, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al crear la mascota: " + e.getMessage(), 
+                                      HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        mascota.setCliente(cliente);
-        mascotaService.add(mascota);
     }
 
     @GetMapping("/cliente/{id}")
     @Operation(summary = "Obtiene todas las mascotas de un cliente")
-    public List<Mascota> obtenerMascotasPorCliente(@PathVariable("id") Long id) {
-        return mascotaService.obtenerMascotasPorCliente(id);
+    public ResponseEntity<?> obtenerMascotasPorCliente(@PathVariable("id") Long id) {
+        try {
+            List<Mascota> mascotas = mascotaService.obtenerMascotasPorCliente(id);
+            return new ResponseEntity<>(mascotas, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al obtener las mascotas del cliente: " + e.getMessage(), 
+                                      HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -36,7 +36,7 @@ public class MedicamentoServiceImplementation implements MedicamentoService {
     @Override
     public Medicamento updateStock(Long id, int cantidad) {
         Medicamento medicamento = findById(id);
-        medicamento.setStock(medicamento.getSotck() - cantidad);
+        medicamento.setStock(medicamento.getStock() - cantidad);
         medicamento.setUvendidas(medicamento.getUvendidas() + cantidad);
         return save(medicamento);
     }

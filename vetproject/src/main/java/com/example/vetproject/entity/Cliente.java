@@ -9,13 +9,24 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Table(name = "CLIENT_TABLE")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
     
     @JsonIgnore // lo usamos para que el Json no tenga que retornar la lista de mascotas anidadas al cliente ya que se genera un bulce en donde el cliente tiene mascotas pero las mascotas tambien tienen un cliente
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
@@ -30,16 +41,8 @@ public class Cliente {
     private String nombre;
 
     @NotNull
-    @Column(nullable = false, unique=true)
-    private String usuario; // Asegurar que no haya dos usuarios iguales
-
-    @NotNull
     @Column(nullable = false)
     private String apellido;
-
-    @NotNull
-    @Column(nullable = false)
-    private String contrasena;
 
     @NotNull
     @Column(nullable = false, unique = true)
@@ -51,100 +54,21 @@ public class Cliente {
     private String email;
 
     // Constructores
-    public Cliente(Long id, String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
+    public Cliente(Long id, String nombre, String apellido, String telefono, String email) {
         this.id = id;
         this.nombre = nombre;
-        this.usuario = usuario;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
-        this.contrasena = contrasena;
     }
 
-    public Cliente(String nombre, String usuario, String apellido, String telefono, String email, String contrasena) {
+    public Cliente(String nombre, String apellido, String telefono, String email) {
         this.nombre = nombre;
-        this.usuario = usuario;
+
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
-        this.contrasena = contrasena;
-    }
 
-    public Cliente() {
-        // Constructor vacío
-    }
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Mascota> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(List<Mascota> mascotas) {
-        this.mascotas = mascotas;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public List<Cita> getCitas() {
-        return citas;
-    }
-
-    public void setCitas(List<Cita> citas) {
-        this.citas = citas;
     }
 
     // Métodos para añadir elementos a las listas, inicializándolas solo cuando sea necesario

@@ -3,17 +3,15 @@ package com.example.vetproject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.vetproject.entity.Medicamento;
 import com.example.vetproject.repository.MedicamentoRepository;
 import com.example.vetproject.service.MedicamentoService;
+
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/medicamentos")
@@ -24,17 +22,45 @@ public class MedicamentosController {
     private MedicamentoService medicamentoService;
     
     @GetMapping
-    public List<Medicamento> getAllMedicamentos() {
-        return medicamentoService.findAll();
+    @Operation(summary = "Obtiene todos los medicamentos")
+    public ResponseEntity<List<Medicamento>> getAllMedicamentos() {
+        try {
+            List<Medicamento> medicamentos = medicamentoService.findAll();
+            return new ResponseEntity<>(medicamentos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
     @GetMapping("/{id}")
-    public Medicamento getMedicamentoById(@PathVariable Long id) {
-        return medicamentoService.findById(id);
+    @Operation(summary = "Obtiene un medicamento por su ID")
+    public ResponseEntity<?> getMedicamentoById(@PathVariable Long id) {
+        try {
+            Medicamento medicamento = medicamentoService.findById(id);
+            if (medicamento == null) {
+                return new ResponseEntity<>("Medicamento no encontrado con ID: " + id, 
+                                          HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(medicamento, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al buscar el medicamento: " + e.getMessage(), 
+                                      HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
     @PutMapping("/{id}/stock")
-    public Medicamento updateStock(@PathVariable Long id, @RequestParam int cantidad) {
-        return medicamentoService.updateStock(id, cantidad);
+    @Operation(summary = "Actualiza el stock de un medicamento")
+    public ResponseEntity<?> updateStock(@PathVariable Long id, @RequestParam int cantidad) {
+        try {
+            Medicamento medicamento = medicamentoService.updateStock(id, cantidad);
+            if (medicamento == null) {
+                return new ResponseEntity<>("Medicamento no encontrado con ID: " + id, 
+                                          HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(medicamento, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el stock: " + e.getMessage(), 
+                                      HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

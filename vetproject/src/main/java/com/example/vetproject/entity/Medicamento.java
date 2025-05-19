@@ -13,8 +13,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "MED_TABLE")
 public class Medicamento {
     @Id
@@ -46,18 +54,6 @@ public class Medicamento {
     @JoinColumn(name = "tratamiento_id", nullable = true)
     private Tratamiento tratamiento;
 
-
-
-    public Medicamento(Long id, String nombre, double preciocompra, double precioventa, int stock, int uvendidas, Tratamiento tratamiento) {
-        this.id = id;
-        this.nombre = nombre;
-        this.preciocompra = preciocompra;
-        this.precioventa = precioventa;
-        this.stock = stock;
-        this.uvendidas = uvendidas;
-        this.tratamiento = tratamiento;
-    }
-
     public Medicamento(String nombre, double preciocompra, double precioventa, int stock, int uvendidas) {
         this.nombre = nombre;
         this.preciocompra = preciocompra;
@@ -66,70 +62,11 @@ public class Medicamento {
         this.uvendidas = uvendidas;
     }
 
-    public Medicamento() {}
-
     public Medicamento(String nombre2, double preciocompra2, double precioventa2, int stock2, int uvendidas2,
             Object object) {
         //TODO Auto-generated constructor stub
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getPrecioVenta() {
-        return precioventa;
-    }
-
-    public void setPrecioventa(double precioventa) {
-        this.precioventa = precioventa;
-    }
-
-    public double getPrecioCompra() {
-        return preciocompra;
-    }
-
-    public void setPrecioCompra(double preciocompra) {
-        this.preciocompra = preciocompra;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public int getUvendidas() {
-        return uvendidas;
-    }
-
-    public void setUvendidas(int uvendidas) {
-        this.uvendidas = uvendidas;
-    }
-
-    public Tratamiento getTratamiento() {
-        return tratamiento;
-    }
-
-    public void setTratamiento(Tratamiento tratamiento) {
-        this.tratamiento = tratamiento;
-    }
-    
-    
 }
 
 

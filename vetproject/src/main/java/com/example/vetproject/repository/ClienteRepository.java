@@ -10,7 +10,7 @@ import com.example.vetproject.entity.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
-    Optional<Cliente> findByUsuarioAndContrasena(String usuario, String contrasena);
+    
     Cliente findByEmail(String email);
     long count();
 }

@@ -1,4 +1,4 @@
-package com.example.vetproject.DTO;
+package com.example.vetproject.DTOs;
 
 public class TratamientoRequest {
     private Long mascotaId;

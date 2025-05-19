@@ -44,11 +44,6 @@ public class ClienteServiceImplementation implements ClienteService {
         clienteRepository.save(cliente);
     }
     
-    @Override
-    public Cliente authenticate(String usuario, String contrasena) {
-        Optional<Cliente> cliente = clienteRepository.findByUsuarioAndContrasena(usuario, contrasena);
-        return cliente.orElse(null);
-    }
     
     @Override
     public Cliente findByEmail(String email) {

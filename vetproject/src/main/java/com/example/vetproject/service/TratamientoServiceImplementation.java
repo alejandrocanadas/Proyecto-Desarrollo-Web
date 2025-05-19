@@ -6,7 +6,7 @@ import com.example.vetproject.entity.Tratamiento;
 import com.example.vetproject.entity.Mascota;
 import com.example.vetproject.entity.Medicamento;
 import com.example.vetproject.entity.Veterinario;
-import com.example.vetproject.DTO.TratamientoRequest;
+import com.example.vetproject.DTOs.TratamientoRequest;
 import com.example.vetproject.repository.TratamientoRepository;
 import com.example.vetproject.repository.MascotaRepository;
 import com.example.vetproject.repository.VeterinarioRepository;

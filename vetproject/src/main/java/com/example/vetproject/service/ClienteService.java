@@ -20,8 +20,6 @@ public interface ClienteService {
 
     public void add(Cliente cliente);
 
-    public Cliente authenticate(String username, String password);
-
     public Cliente findByEmail(String email);
 
     public int obtenerTotalClientes();

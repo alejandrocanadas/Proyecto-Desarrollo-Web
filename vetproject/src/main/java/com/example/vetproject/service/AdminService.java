@@ -8,5 +8,7 @@ import com.example.vetproject.repository.AdminRepository;
 
 @Service
 public interface AdminService {
-    public Admin authenticate(String usuario, String contrasena);
+
+    void add(Admin admin);
+    
 }

@@ -12,7 +12,6 @@ import com.example.vetproject.entity.Veterinario;
 public interface VeterinarioService {
     public Veterinario SearchById(Long id);
 
-    public Veterinario authenticate(String username, String password);
 
     public List<Medicamento> getMedicamentos();
 

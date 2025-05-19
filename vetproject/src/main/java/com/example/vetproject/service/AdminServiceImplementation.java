@@ -16,7 +16,12 @@ public class AdminServiceImplementation implements AdminService {
     private AdminRepository adminRepository;
 
     @Override
-    public Admin authenticate(String usuario, String contrasena) {
-        return adminRepository.findByUsuarioAndContrasena(usuario, contrasena);
+    public void add(Admin admin) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
     }
+
+    
+
+    
 }

@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VeterinarioRepository extends JpaRepository<Veterinario, Long> {
-    Optional<Veterinario> findByUsuarioAndContrasena(String usuario, String contrasena);
+    
     Veterinario findByEmail(String email);
     Veterinario findByTelefono(String telefono);
-    Veterinario findByUsuario(String usuario);
+    
     long count();
     int countByEstado(String estado);
 }

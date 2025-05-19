@@ -5,8 +5,16 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Table(name = "CITA_TABLE")
 public class Cita {
 
@@ -32,9 +40,6 @@ public class Cita {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
-    // Constructor vacío
-    public Cita() {}
-
     // Constructor sin ID
     public Cita(Cliente cliente, Mascota mascota, Veterinario veterinario, Date fecha) {
         this.cliente = cliente;
@@ -43,28 +48,4 @@ public class Cita {
         this.fecha = fecha;
     }
 
-    // Constructor con ID
-    public Cita(Long id, Cliente cliente, Mascota mascota, Veterinario veterinario, Date fecha) {
-        this.id = id;
-        this.cliente = cliente;
-        this.mascota = mascota;
-        this.veterinario = veterinario;
-        this.fecha = fecha;
-    }
-
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
-
-    public Mascota getMascota() { return mascota; }
-    public void setMascota(Mascota mascota) { this.mascota = mascota; }
-
-    public Veterinario getVeterinario() { return veterinario; }
-    public void setVeterinario(Veterinario veterinario) { this.veterinario = veterinario; }
-
-    public Date getFecha() { return fecha; }
-    public void setFecha(Date fecha) { this.fecha = fecha; }
 }
