@@ -16,7 +16,7 @@ public class MascotaServiceImplementation implements MascotaService{
 
     @Override
     public Mascota SearchById(Long id) {
-        return mascotaRepository.findById(id).get();
+        return mascotaRepository.findByIdWithClienteAndUser(id).orElse(null);
     }
 
     @Override

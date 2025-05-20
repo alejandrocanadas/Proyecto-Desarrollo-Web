@@ -53,6 +53,13 @@ public class Cliente {
     @Email(message = "Debe ingresar un email válido")
     private String email;
 
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String usuario;
+
+    public String getUsuario() { return usuario; }
+    public void setUsuario(String usuario) { this.usuario = usuario; }
+
     // Constructores
     public Cliente(Long id, String nombre, String apellido, String telefono, String email) {
         this.id = id;
@@ -62,13 +69,12 @@ public class Cliente {
         this.email = email;
     }
 
-    public Cliente(String nombre, String apellido, String telefono, String email) {
+    public Cliente(String nombre, String apellido, String usuario, String telefono, String email) {
         this.nombre = nombre;
-
         this.apellido = apellido;
+        this.usuario = usuario;
         this.telefono = telefono;
         this.email = email;
-
     }
 
     // Métodos para añadir elementos a las listas, inicializándolas solo cuando sea necesario

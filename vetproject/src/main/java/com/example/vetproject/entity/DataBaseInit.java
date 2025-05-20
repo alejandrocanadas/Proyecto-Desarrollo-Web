@@ -287,7 +287,7 @@ public class DataBaseInit implements ApplicationRunner {
             userEntity.setPassword(passwordEncoder.encode(contrasena));
             userEntity.getRoles().add(rolCliente);
 
-            Cliente cliente = new Cliente(nombre, apellido, telefono, email);
+            Cliente cliente = new Cliente(nombre, apellido, usuario, telefono, email);
             cliente.setUser(userEntity);
 
             clientes.add(cliente);
@@ -372,7 +372,7 @@ public class DataBaseInit implements ApplicationRunner {
         // Crear medicamentos
         List<Medicamento> medicamentos = new ArrayList<>();
         try {
-                String filePath = "back/Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
+                String filePath = "/Users/simonmarquez/Dropbox/Simon/UNIVERSIDAD/SEXTO SEMESTRE/DESARROLLO_WEB/PROYECTO/Proyecto-Desarrollo-Web/vetproject/src/main/resources/static/Resources/MEDICAMENTOS_VETERINARIA.xlsx";
                 FileInputStream file = new FileInputStream(filePath);
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);

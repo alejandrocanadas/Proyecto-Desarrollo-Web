@@ -58,7 +58,7 @@ public class CustomUserDetailService implements UserDetailsService{
 
     public UserEntity clienteToUser(Cliente cliente, String rawPassword) {
         UserEntity user = new UserEntity();
-        user.setUsername(cliente.getEmail()); // O el campo que uses como username
+        user.setUsername(cliente.getUsuario());
         user.setPassword(passwordEncoder.encode(rawPassword));
         Rol rol = rolRepository.findByNombre("CLIENTE").orElseThrow();
         user.setRoles(List.of(rol));
