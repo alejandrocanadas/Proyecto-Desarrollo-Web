@@ -59,4 +59,9 @@ public class VeterinarioServiceImplementation implements VeterinarioService{
         throw new UnsupportedOperationException("Unimplemented method 'getMedicamentos'");
     }
 
+    @Override
+    public Veterinario findByUsername(String username) {
+        return veterinarioRepository.findByUserUsername(username).orElse(null);
+    }
+
 }

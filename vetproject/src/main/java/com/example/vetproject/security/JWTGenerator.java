@@ -24,13 +24,21 @@ public class JWTGenerator {
         Date currentDate = new Date();
         Date expirationDate = new Date(currentDate.getTime() + EXPIRATION_TIME);
 
-        //Crear el token
+        // Obtén los roles del usuario autenticado
+        String roles = authentication.getAuthorities().stream()
+            .map(auth -> auth.getAuthority())
+            .reduce((a, b) -> a + "," + b)
+            .orElse("");
 
-        String token = Jwts.builder().setSubject(username)
-        .setIssuedAt(currentDate)
-        .setExpiration(expirationDate)
-        .signWith(key, SignatureAlgorithm.HS512)
-        .compact();
+        // Crear el token
+
+        String token = Jwts.builder()
+            .setSubject(username)
+            .claim("roles", roles)
+            .setIssuedAt(currentDate)
+            .setExpiration(expirationDate)
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
         return token;
     }
 
@@ -45,5 +53,9 @@ public class JWTGenerator {
         } catch (Exception e){
             return false;
         }
+    }
+
+    public Key getKey() {
+        return key;
     }
 }

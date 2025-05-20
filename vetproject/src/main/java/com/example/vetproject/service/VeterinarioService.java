@@ -22,4 +22,6 @@ public interface VeterinarioService {
     void deleteById(Long id);
 
     Veterinario update(Long id, Veterinario veterinario);
+
+    Veterinario findByUsername(String username);
 }

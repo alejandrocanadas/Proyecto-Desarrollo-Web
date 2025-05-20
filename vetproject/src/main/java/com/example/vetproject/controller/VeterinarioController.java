@@ -147,4 +147,19 @@ public class VeterinarioController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/me")
+    @Operation(summary = "Obtiene los detalles del veterinario autenticado")
+    public ResponseEntity<?> getMe(Authentication authentication) {
+        try {
+            Veterinario veterinario = veterinarioService.findByUsername(authentication.getName());
+            if (veterinario == null) {
+                return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
+            }
+            VeterinarioDTO veterinarioDTO = VeterinarioMapper.INSTANCE.convert(veterinario);
+            return new ResponseEntity<>(veterinarioDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al obtener los detalles del veterinario: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

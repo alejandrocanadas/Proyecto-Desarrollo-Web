@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import com.example.vetproject.entity.Cliente;
 import com.example.vetproject.entity.Mascota;
@@ -29,11 +30,18 @@ public class MascotaController {
 
     @GetMapping("/find/{id}")
     @Operation(summary = "Obtiene una mascota por su ID")
-    public ResponseEntity<?> obtenerMascota(@PathVariable("id") Long id) {
+    public ResponseEntity<?> obtenerMascota(@PathVariable("id") Long id, Authentication authentication) {
         try {
             Mascota mascota = mascotaService.SearchById(id);
             if (mascota == null) {
                 throw new NotFoundMascotException(id);
+            }
+            // Si es CLIENTE, solo puede ver su propia mascota
+            if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("CLIENTE"))) {
+                String username = authentication.getName();
+                if (!mascota.getCliente().getUser().getUsername().equals(username)) {
+                    return new ResponseEntity<>("No autorizado", HttpStatus.FORBIDDEN);
+                }
             }
             return new ResponseEntity<>(mascota, HttpStatus.OK);
         } catch (NotFoundMascotException e) {

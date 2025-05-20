@@ -145,4 +145,34 @@ public class ClienteController {
             return new ResponseEntity<>("Usuario o contraseña incorrectos", HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping("/me")
+    @Operation(summary = "Obtiene los detalles del cliente autenticado")
+    public ResponseEntity<?> getMe(Authentication authentication) {
+        try {
+            Cliente cliente = clienteService.findByUsername(authentication.getName());
+            if (cliente == null) {
+                return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+            }
+            ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(cliente);
+            return new ResponseEntity<>(clienteDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al obtener los detalles del cliente: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/mis-mascotas")
+    @Operation(summary = "Obtiene las mascotas del cliente autenticado")
+    public ResponseEntity<?> getMisMascotas(Authentication authentication) {
+        try {
+            Cliente cliente = clienteService.findByUsername(authentication.getName());
+            if (cliente == null) {
+                return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(ClienteMapper.INSTANCE.mascotasToMascotaDTOs(cliente.getMascotas()), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al obtener las mascotas del cliente: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
 }

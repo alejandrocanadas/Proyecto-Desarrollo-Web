@@ -23,4 +23,6 @@ public interface ClienteService {
     public Cliente findByEmail(String email);
 
     public int obtenerTotalClientes();
+
+    Cliente findByUsername(String username);
 }

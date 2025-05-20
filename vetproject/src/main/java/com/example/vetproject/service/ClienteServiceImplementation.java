@@ -53,4 +53,9 @@ public class ClienteServiceImplementation implements ClienteService {
     public int obtenerTotalClientes() {
         return (int) clienteRepository.count();
     }
+
+    @Override
+    public Cliente findByUsername(String username) {
+        return clienteRepository.findByUserUsername(username).orElse(null);
+    }
 }
