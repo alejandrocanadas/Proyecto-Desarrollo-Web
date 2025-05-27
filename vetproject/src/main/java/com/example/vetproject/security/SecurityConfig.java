@@ -43,7 +43,7 @@ public class SecurityConfig {
                     .requestMatchers("/mascotas/all").hasAnyAuthority("VETERINARIO","ADMIN") // Ver todos los clientes
 
                     .requestMatchers("/clientes/update/**").hasAuthority("ADMIN") // Actualizar clientes (cualquier cliente)
-                    .requestMatchers("/clientes/delete/**").hasAuthority("ADMIN") // Eliminar clientes (cualquier cliente)
+                    .requestMatchers(HttpMethod.DELETE, "/clientes/delete/**").hasAuthority("ADMIN") // Eliminar clientes (cualquier cliente)
                     .requestMatchers("/veterinario").hasAuthority("ADMIN") // Ver todos los veterinarios
                     .requestMatchers(HttpMethod.POST, "/veterinario").hasAuthority("ADMIN") // Añadir veterinario
                     .requestMatchers(HttpMethod.PUT, "/veterinario/{id}").hasAuthority("ADMIN") // Actualizar veterinario
